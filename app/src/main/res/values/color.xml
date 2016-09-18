@@ -2,98 +2,54 @@
 <resources>
 
     <!-- Customs -->
+
+    <color name="color_primary">@color/oasis_primary</color>
+    <color name="color_primary_dark">@color/oasis_primary_dark</color>
+    <color name="color_accent">@color/oasis_blue</color>
+    <color name="color_background">@color/oasis_bg</color>
+    <color name="color_text_primary_inverse">@color/oasis_txt</color>
+    <color name="color_text_primary">#de000000</color>
+    <color name="color_text_secondary">#8a000000</color>
+
     <color name="drawer_text">#757575</color>
     <color name="drawer_text_item">#616161</color>
     <color name="drawer_background">#fefefe</color>
     <color name="drawer_pressed">#e6e6e6</color>
     <color name="drawer_divider">#e6e6e6</color>
     <color name="drawer_divider_list">#bdbdbd</color>
-    <color name="color_primary">#009688</color>
-    <color name="color_splash">#1b488c</color>
-    <color name="color_custom_header">#303740</color>
-    <color name="color_custom_header_text">#fff</color>
-    <color name="color_black_text">#303740</color>
-    <color name="color_black_medium">#808080</color>
-    <color name="bkg_card">#8C9EFF</color>
+
     <color name="circle_done">#595959</color>
     <color name="gray_light">#949494</color>
-    <color name="circle_error">#ff2b01</color>
+    <color name="circle_error">#a51d0c</color>
     <color name="orange_light">#ff775f</color>
-    <color name="circle_preparing">#0070c0</color>
+    <color name="circle_preparing">#f6a800</color>
     <color name="blue_light">#ff6bb2d2</color>
-    <color name="text_preparing">#4caad4</color>
-    <color name="circle_ready">#00b050</color>
+    <color name="circle_ready">#24902d</color>
     <color name="green_light">#92c097</color>
-    <color name="text_ready">#00b050</color>
     <color name="text_light">#595959</color>
     <color name="text_black_clear">#454545</color>
     <color name="fab_valid_button_nrm">#00b6a5</color>
-    <color name="fab_valid_button_prs">#009889</color>
-    <color name="fab_valid_button_rpl">#53d3bf</color>
     <color name="text_light_header">#838383</color>
-    <color name="color_lydia_base">#5992CE</color>
-    <color name="background_lydia_dial">#b4000000</color>
 
     <!-- Menu Themes -->
-    <color name="drawer_text_dark">#e0e0e0</color>
-    <color name="drawer_background_dark">#212121</color>
-    <color name="drawer_pressed_dark">#424242</color>
-    <color name="drawer_divider_dark">#424242</color>
 
     <!-- BDE colors -->
-    <color name="color_bde_eldorado">#ff661C</color>
-    <color name="color_bde_eseomega">#1E88E5</color>
 
     <!--Primary-->
-    <color name="md_prim_light_blue">#33b5e5</color>
-    <color name="md_prim_light_violet">#aa66cc</color>
-    <color name="md_prim_light_green">#99cc00</color>
-    <color name="md_prim_light_yellow">#ffbb33</color>
     <color name="md_prim_light_red">#ff4444</color>
 
 
     <color name="md_prim_dark_blue">#0099cc</color>
-    <color name="md_prim_dark_violet">#9933cc</color>
-    <color name="md_prim_dark_green">#669900</color>
     <color name="md_prim_dark_yellow">#ff8800</color>
     <color name="md_prim_dark_red">#cc0000</color>
 
     <!-- More variations -->
-    <color name="md_blue_50">#E3F2FD</color>
-    <color name="md_blue_100">#BBDEFB</color>
-    <color name="md_blue_200">#90CAF9</color>
-    <color name="md_blue_300">#64B5F6</color>
-    <color name="md_blue_400">#42A5F5</color>
-    <color name="md_blue_500">#2196F3</color>
-    <color name="md_blue_600">#1E88E5</color>
     <color name="md_blue_700">#1976D2</color>
     <color name="md_blue_800">#1565C0</color>
-    <color name="md_blue_900">#0D47A1</color>
-    <color name="md_blue_A100">#82B1FF</color>
-    <color name="md_blue_A200">#448AFF</color>
-    <color name="md_blue_A400">#2979FF</color>
-    <color name="md_blue_A700">#2962FF</color>
 
     <!-- green -->
-    <color name="md_green_50">#E8F5E9</color>
-    <color name="md_green_100">#C8E6C9</color>
-    <color name="md_green_200">#A5D6A7</color>
-    <color name="md_green_300">#81C784</color>
-    <color name="md_green_400">#66BB6A</color>
-    <color name="md_green_500">#4CAF50</color>
-    <color name="md_green_600">#43A047</color>
-    <color name="md_green_700">#388E3C</color>
-    <color name="md_green_800">#2E7D32</color>
-    <color name="md_green_900">#1B5E20</color>
-    <color name="md_green_A100">#B9F6CA</color>
-    <color name="md_green_A200">#69F0AE</color>
-    <color name="md_green_A400">#00E676</color>
-    <color name="md_green_A700">#00C853</color>
 
     <!--reds-->
-    <color name="md_red_50">#FFEBEE</color>
-    <color name="md_red_100">#FFCDD2</color>
-    <color name="md_red_200">#EF9A9A</color>
     <color name="md_red_300">#E57373</color>
     <color name="md_red_400">#EF5350</color>
     <color name="md_red_500">#F44336</color>
@@ -101,39 +57,27 @@
     <color name="md_red_700">#D32F2F</color>
     <color name="md_red_800">#C62828</color>
     <color name="md_red_900">#B71C1C</color>
-    <color name="md_red_A100">#FF8A80</color>
     <color name="md_red_A200">#FF5252</color>
-    <color name="md_red_A400">#FF1744</color>
-    <color name="md_red_A700">#D50000</color>
 
     <!--grey-->
-    <color name="md_grey_50">#FAFAFA</color>
-    <color name="md_grey_100">#F5F5F5</color>
     <color name="md_grey_200">#EEEEEE</color>
-    <color name="md_grey_300">#E0E0E0</color>
     <color name="md_grey_400">#BDBDBD</color>
     <color name="md_grey_500">#9E9E9E</color>
     <color name="md_grey_600">#757575</color>
     <color name="md_grey_700">#616161</color>
-    <color name="md_grey_750">#525252</color>
     <color name="md_grey_800">#424242</color>
     <color name="md_grey_900">#212121</color>
-    <color name="md_grey_950">#090909</color>
-    <color name="md_black_1000">#000000</color>
     <color name="md_white_1000">#ffffff</color>
 
     <!--blue grey-->
-    <color name="md_blue_grey_50">#ECEFF1</color>
-    <color name="md_blue_grey_100">#CFD8DC</color>
-    <color name="md_blue_grey_200">#B0BBC5</color>
-    <color name="md_blue_grey_300">#90A4AE</color>
-    <color name="md_blue_grey_400">#78909C</color>
-    <color name="md_blue_grey_500">#607D8B</color>
-    <color name="md_blue_grey_600">#546E7A</color>
-    <color name="md_blue_grey_700">#455A64</color>
-    <color name="md_blue_grey_800">#37474F</color>
-    <color name="md_blue_grey_900">#263238</color>
+    <color name="md_blue_grey_100">#cfd8dc</color>
 
-    <color name="md_color_clouds">#ecf0f1</color>
+
+    <!--oasis-->
+    <color name="oasis_bg">#ffedc0</color>
+    <color name="oasis_txt">#f8e388</color>
+    <color name="oasis_primary">#ff8000</color>
+    <color name="oasis_primary_dark">#e67200</color>
+    <color name="oasis_blue">#71daeb</color>
 
 </resources>

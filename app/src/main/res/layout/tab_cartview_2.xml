@@ -27,7 +27,7 @@
             android:layout_height="85dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/ic_nocommand"/>
+            android:src="@drawable/img_nocommand"/>
 
         <TextView
             android:layout_below="@id/imgNoCart"
@@ -56,7 +56,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:background="@color/md_blue_700"
+        android:background="@color/color_primary"
         android:id="@+id/relativeLayout6"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
@@ -72,7 +72,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_centerVertical="true"
-            android:text="TOTAL : "/>
+            android:text="@string/layout_cartview"/>
 
         <TextView
             android:id="@+id/tvCartPrice"
@@ -96,9 +96,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:src="@drawable/ic_shopping_cart"
-        fab:fab_colorNormal="@color/fab_valid_button_nrm"
-        fab:fab_colorPressed="@color/fab_valid_button_prs"
-        fab:fab_colorRipple="@color/fab_valid_button_rpl"
+        fab:fab_colorNormal="@color/color_accent"
+        fab:fab_colorPressed="@color/color_accent"
+        fab:fab_colorRipple="@color/color_accent"
         android:layout_marginBottom="28dp"
         android:layout_alignBottom="@+id/relativeLayout6"
         android:layout_alignRight="@+id/relativeLayout2"

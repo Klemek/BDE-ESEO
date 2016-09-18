@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/eseo_wide"
+            android:src="@drawable/img_eseo_wide"
             android:id="@+id/imgClub"/>
 
         <TextView
@@ -36,24 +36,7 @@
             android:layout_below="@+id/imgClub"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"/>
-
-        <TextView
-            android:id="@+id/tvClubDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Le BDE c'est en réalité le bureau des étudiants tu vois, au cas où tu savais pas"
-            android:maxLines="2"
-            android:textSize="13sp"
-            android:layout_below="@+id/tvClubName"
-            android:layout_alignLeft="@+id/tvClubName"
-            android:layout_alignStart="@+id/tvClubName"
-            android:layout_alignRight="@+id/tvClubName"
-            android:layout_alignEnd="@+id/tvClubName"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_margin="8dp" />
 
 
     </RelativeLayout>

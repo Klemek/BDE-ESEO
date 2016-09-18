@@ -3,12 +3,13 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/md_blue_800</item>
-        <item name="colorPrimaryDark">@color/md_blue_900</item>
-        <item name="colorAccent">@color/color_primary</item>
+        <item name="colorPrimary">@color/oasis_primary</item>
+        <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
+        <item name="colorAccent">@color/oasis_blue</item>
         <item name="android:windowTranslucentStatus">true</item>
         <!-- Preferences -->
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:colorBackground">@color/oasis_bg</item>
     </style>
 
     <!-- Image view theme. -->

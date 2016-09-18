@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +15,13 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/eseo_wide"/>
+            android:src="@drawable/img_eseo_wide"/>
 
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rlFillProfile"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
@@ -41,7 +41,7 @@
                 android:layout_width="140dp"
                 android:layout_height="140dp"
                 app:border_width="4dp"
-                app:border_color="#fff"
+                app:border_color="@color/md_white_1000"
                 android:src="@drawable/ic_unknown"
                 android:id="@+id/circleView"/>
 
@@ -49,16 +49,15 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="BONJOUR"
+                android:text="@string/layout_view_profile_1"
                 android:gravity="center"
-                android:textStyle="bold"
-                android:id="@+id/tv1"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textSize="28sp"
-                android:text="François LEPAROUX"
+                android:text="Random GUY"
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -68,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Vous avez accès à toutes les fonctionnalités, dont la commande à la caféteria."
+                android:text="@string/layout_view_profile_2"
                 android:layout_marginTop="16dp"
                 android:color="@color/text_light_header"/>
 
@@ -84,7 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
         android:orientation="horizontal"
-        android:background="@color/md_blue_700"
+        android:background="@color/color_primary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -100,7 +99,7 @@
             android:paddingLeft="32dp"
             android:paddingRight="54dp"
             android:background="@drawable/textview_back_button"
-            android:text="DÉCONNEXION"
+            android:text="@string/layout_view_profile_3"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/imageView"
             android:layout_toStartOf="@+id/imageView" />

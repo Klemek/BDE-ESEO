@@ -93,7 +93,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Commentaire : "
+                android:text="@string/layout_order_detail_1"
                 android:textStyle="bold"/>
 
             <TextView
@@ -152,7 +152,7 @@
         android:layout_alignLeft="@+id/scrollView"
         android:layout_alignStart="@+id/scrollView"
         android:layout_marginBottom="8dp"
-        android:text="Numéro de commande"
+        android:text="@string/layout_order_detail_2"
         android:textColor="@color/circle_error"
         android:textSize="18dp"
         android:textStyle="bold"/>

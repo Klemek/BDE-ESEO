@@ -12,7 +12,7 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"/>
 
-    <fr.bde_eseo.eseomega.news.TouchImageView
+    <fr.bde_eseo.eseoasis.news.TouchImageView
         android:id="@+id/touchImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

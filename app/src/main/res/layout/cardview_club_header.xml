@@ -11,7 +11,7 @@
     android:paddingLeft="24dp"
     android:paddingTop="4dp"
     android:paddingBottom="4dp"
-    android:background="@color/md_grey_800"
+    android:background="@color/color_primary_dark"
     android:textSize="@dimen/news_header_text_size"
     android:textStyle="bold"
     android:text="BDE"

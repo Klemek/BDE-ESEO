@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.bde_eseo.eseomega">
+    package="fr.bde_eseo.eseoasis">
 
     <!-- Include following permission for Internet access -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- Vibration for games -->
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
     <!-- GCM permission -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -28,196 +28,151 @@
             android:name=".SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme" >
-
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".GantierActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
-
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".lacommande.IngredientsChooserActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".lacommande.SecoElementChooserActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".lacommande.ElementChooserActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
-
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".TutorialActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeSingle">
-        </activity>
-
+            android:theme="@style/AppThemeSingle"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".events.tickets.TicketHistoryActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_tickets"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeRedSingle" >
-        </activity>
-
+            android:theme="@style/AppThemeRedSingle"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".events.tickets.PresalesActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_sales"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeRedSingle" >
-        </activity>
-
+            android:theme="@style/AppThemeRedSingle"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".events.tickets.ShuttleActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_shuttles"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeRedSingle" >
-        </activity>
+            android:theme="@style/AppThemeRedSingle"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <!-- Activity to see / pay an order (or anything else ... Bluemoon ?) -->
         <!-- Intent scheme : eseomega_pay:// -->
         <activity
-            android:label=""
             android:name=".lydia.LydiaActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeLydia">
-
+            android:label=""
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeLydia"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
-                <!--<action android:name="fr.bde_eseomega.eseomega.LYDIA_CAFET" />-->
+
+                <!-- <action android:name="fr.bde_eseomega.eseomega.LYDIA_CAFET" /> -->
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="eseomega" />
             </intent-filter>
 
-            <!--<intent-filter>
+            <!--
+            <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:host="217.199.187.59/francoisle.fr/lacommande/experimental/app.php" />
                 <data android:scheme="http" />
                 <data android:pathPattern="/app/pay" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
-
         <activity
             android:name=".news.ViewNewsActivityMaterial"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppTheme">
-        </activity>
-
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".lacommande.OrderDetailsActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_order"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppTheme">
-        </activity>
-
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name=".news.ImageViewActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/ImageViewTheme">
-        </activity>
-
+            android:theme="@style/ImageViewTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".community.ClubViewActivity"
+            android:name=".clubs.ClubViewActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppTheme">
-        </activity>
-
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ingenews.IngeListActivity"
-            android:label="@string/app_name_inge"
-            android:screenOrientation="portrait"
+            android:name=".rooms.BigPictureActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeSingle">
-        </activity>
-
-        <activity
-            android:name=".plans.PlansActivity"
-            android:label="@string/app_name_plans"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/AppThemeSingle">
-        </activity>
-
-        <activity
-            android:name=".plans.BigPictureActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden"
-            android:windowSoftInputMode="adjustResize|stateHidden"
-            android:theme="@style/ImageViewTheme">
-        </activity>
+            android:theme="@style/ImageViewTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
 
         <!-- GCM Services & Activities -->
         <!-- [START gcm_receiver] -->
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="gcm.play.android.samples.com.gcmquickstart" />
             </intent-filter>
         </receiver>
         <!-- [END gcm_receiver] -->
 
+
         <!-- [START gcm_listener] -->
         <service
             android:name=".gcmpush.MyGcmListenerService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -228,25 +183,33 @@
             android:name=".gcmpush.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
         <service
             android:name=".gcmpush.RegistrationIntentService"
-            android:exported="false">
-        </service>
+            android:exported="false" />
 
         <!-- Boot receiver -->
         <!-- We don't need to register to boot because GCM do it by itself :D -->
-        <!--<receiver android:name="fr.bde_eseo.eseomega.gcmpush.BootReceiver"
+        <!--
+        <receiver android:name="fr.bde_eseo.eseomega.gcmpush.BootReceiver"
                   android:enabled="true"
                   android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
-        </receiver>-->
+        </receiver>
+        -->
 
+        <activity
+            android:name=".family.FamilyTreeActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name_family"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
 </manifest>

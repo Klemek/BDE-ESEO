@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_blue_grey_100">
+    android:background="@color/color_background">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/events_refresh"
@@ -19,7 +19,7 @@
             android:scrollbars="vertical"
             android:fadeScrollbars="true"
             android:drawSelectorOnTop="true"
-            android:footerDividersEnabled="true"/>
+            android:footerDividersEnabled="true" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -41,10 +41,10 @@
         <ImageView
             android:id="@+id/imgNoEvent"
             android:layout_width="wrap_content"
-            android:layout_height="110dp"
+            android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/ic_noevent"/>
+            android:src="@drawable/img_nothing"/>
 
         <TextView
             android:id="@+id/tvListNothing"

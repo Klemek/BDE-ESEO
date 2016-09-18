@@ -5,15 +5,12 @@
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->
-    <dimen name="navigation_drawer_width">240dp</dimen>
 
     <!-- Text dimensions -->
-    <dimen name="text_header_size">22sp</dimen>
     <dimen name="text_header_size_small">14sp</dimen>
     <dimen name="news_header_text_size">16sp</dimen>
 
     <!-- Material Design UI -->
-    <dimen name="tool_bar_top_padding">0dp</dimen>
 
     <!-- Club actions -->
     <dimen name="icon_size">32dp</dimen>

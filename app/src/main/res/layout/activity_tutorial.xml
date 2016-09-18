@@ -20,55 +20,15 @@
                 android:gravity="center"
                 android:textSize="36sp"
                 android:textStyle="bold"
-                android:textColor="@color/md_blue_grey_600"
-                android:text="Merci !"/>
+                android:textColor="@color/color_primary_dark"
+                android:text="@string/layout_tutorial_01"/>
 
             <TextView
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="... d'avoir installé ou mis à jour notre application.\nLes principales nouveautés sont les suivantes :"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:gravity="center"
-                android:textColor="@color/md_blue_grey_600"
-                android:text="Réservations des événements"/>
-
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Depuis l'onglet Événements, vous pouvez désormais réserver vos places pour les plus grands évenements de l'année, comme la Blue Moon."/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerInside"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/tuto_events"/>
-
-            <TextView
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Plus besoin de vous lever de votre siège, choisissez votre navette chez vous, en amphi ou dans votre salle de bain."/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerInside"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/tuto_resa"/>
+                android:text="@string/layout_tutorial_02"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -77,23 +37,24 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/md_blue_grey_600"
-                android:text="Paiement par carte / Lydia"/>
+                android:textColor="@color/color_primary_dark"
+                android:text="@string/layout_tutorial_10"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/tuto_1"
+                android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Plus besoin de monnaie pour payer à la cafétéria. Désormais, choisissez à la fin de votre commande le paiement par Lydia, et payez sans faire la queue !"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="centerInside"
-                android:layout_marginTop="16dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/tuto_lydia"/>
+                android:text="@string/layout_tutorial_11"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -102,23 +63,87 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:textColor="@color/md_blue_grey_600"
-                android:text="Éditions Ingénews"/>
+                android:textColor="@color/color_primary_dark"
+                android:text="@string/layout_tutorial_20"
+                android:id="@+id/textView" />
 
             <TextView
                 android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Les éditions hebdomadaires du club Ingénews sont désormais accessibles partout où vous êtes ! Vous pouvez y accéder en cliquant sur l'icône en haut de l'onglet News"/>
+                android:text="@string/layout_tutorial_21"
+                android:id="@+id/textView2" />
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
                 android:layout_marginTop="16dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/tuto_news"/>
+                android:src="@drawable/tuto_2"
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/imageView2" />
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/layout_tutorial_22"
+                android:id="@+id/textView5" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/color_primary_dark"
+                android:text="@string/layout_tutorial_30"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/tuto_3"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/layout_tutorial_31"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="@color/color_primary_dark"
+                android:text="@string/layout_tutorial_40"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:layout_marginTop="16dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/tuto_4"
+                android:layout_gravity="center_horizontal"/>
+
+            <TextView
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/layout_tutorial_41"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -126,7 +151,7 @@
                 android:layout_marginTop="24dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Pour fermer ce tutorial, cliquez sur l'îcone en haut."
+                android:text="@string/layout_tutorial_end"
                 android:layout_marginBottom="36dp"/>
 
         </LinearLayout>

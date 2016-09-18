@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:textSize="15sp"
-        android:text="Vous pouvez entrer ci-dessous quelques indications pour votre commande."/>
+        android:text="@string/layout_add_instructions_1"/>
 
     <EditText
         android:id="@+id/etInstructions"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:hint="Consignes, ..."
+        android:hint="@string/layout_add_instructions_2"
         android:textColorHint="@color/md_grey_500"
         android:maxLength="100"/>
 

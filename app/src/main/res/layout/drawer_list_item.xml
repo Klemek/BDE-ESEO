@@ -13,7 +13,8 @@
         android:layout_marginRight="32dp"
         android:layout_marginTop="11.5dp"
         android:contentDescription="@string/desc_list_item_icon"
-        android:src="@drawable/ic_event" />
+        android:src="@drawable/ic_events"
+        android:tint="@color/drawer_text_item" />
 
     <TextView
         android:id="@+id/title"

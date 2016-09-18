@@ -65,6 +65,7 @@
         android:layout_height="match_parent"
         android:id="@+id/webview"
         android:layout_below="@+id/imgHeaderNews"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:background="@color/md_white_1000" />
 
 </RelativeLayout>

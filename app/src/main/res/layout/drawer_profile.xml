@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="178dp"
-        android:src="@drawable/material_blue"
+        android:src="@drawable/material_orange"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/md_white_1000"
             android:text=""
             android:textSize="14sp"
             android:textStyle="bold" />

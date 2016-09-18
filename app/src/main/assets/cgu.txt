@@ -1,24 +1,24 @@
-Le présent document a pour objet de définir les modalités et conditions d'utilisation dans lesquels ESEOmega met à la disposition de ses utilisateurs les services disponibles que ce soit sur le site, les applications ou par les autres plateformes proposées. Le présent document doît être lu et compris par l'utilisateur afin de lui permettre l'accès aux différents services proposés par ESEOmega. En cas de refus complet ou partiel des modalités énoncées ci-dessous, l'utilisateur se verra refuser l'accès aux services dans leur totalité.
+Le présent document a pour objet de définir les modalités et conditions d'utilisation dans lesquels ESEOASIS met à la disposition de ses utilisateurs les services disponibles que ce soit sur le site, les applications ou par les autres plateformes proposées. Le présent document doît être lu et compris par l'utilisateur afin de lui permettre l'accès aux différents services proposés par ESEOASIS. En cas de refus complet ou partiel des modalités énoncées ci-dessous, l'utilisateur se verra refuser l'accès aux services dans leur totalité.
 
 Mentions légales
 ----------------
-ESEOmega est propriétaires des applications ESEOmega pour Android et ESEOmega pour iOS, ainsi que de son site, www.eseomega.fr.
+ESEOASIS est propriétaires des applications ESEOASIS pour Android et ESEOASIS pour iOS, ainsi que de son site, www.eseoasis.fr.
 Android, Apple et les autres marques pouvant être énoncées restent propiétaires de leurs produits respectifs.
 
 Données personnelles
 --------------------
-Vos données personnelles telles que nom d'utilisateur à l'ESEO ainsi que votre identité complète (nom et prénom) sont utilisées par ESEOmega afin de garantir la qualité des services qui vous sont proposés. En aucun cas ces données sont utilisées à des fins personnelles, commerciales, ou partagées publiquement. Conformément à la Loi 78-17 du 6 janvier 1978 modifiée - Loi Informatique et Libertés, vous disposez d'un droit de retrait et de regard concernant vos données personnelles stockées sur les serveurs ESEOmega. ESEOmega ne peut garantir le bon fonctionnement de ses services si l'utilisateur n'a pas renseigné complètement son profil.
+Vos données personnelles telles que nom d'utilisateur à l'ESEO ainsi que votre identité complète (nom et prénom) sont utilisées par ESEOASIS afin de garantir la qualité des services qui vous sont proposés. En aucun cas ces données sont utilisées à des fins personnelles, commerciales, ou partagées publiquement. Conformément à la Loi 78-17 du 6 janvier 1978 modifiée - Loi Informatique et Libertés, vous disposez d'un droit de retrait et de regard concernant vos données personnelles stockées sur les serveurs ESEOASIS. ESEOASIS ne peut garantir le bon fonctionnement de ses services si l'utilisateur n'a pas renseigné complètement son profil.
 
 Responsabilité
 --------------
-L'utilisateur est le seul responsable des informations (texte, images, vidéos, données autres) qu'il peut stocker sur le site ou sur les applications fournies. En cas de perte ou de déterioration du contenu, ESEOmega ne peut être tenu responsable.
+L'utilisateur est le seul responsable des informations (texte, images, vidéos, données autres) qu'il peut stocker sur le site ou sur les applications fournies. En cas de perte ou de déterioration du contenu, ESEOASIS ne peut être tenu responsable.
 
 Cafétéria
 ---------
-ESEOmega propose par ses services la commande de repas depuis ses applications à la cafétéria de l'ESEO tous les jours (sauf exception) de 12h à 13h15 en période scolaire. La commande à la cafétéria depuis une des applications proposées requiert d'avoir pris connaîssance du document présent et d'accepter les modalités énoncées.
+ESEOASIS propose par ses services la commande de repas depuis ses applications à la cafétéria de l'ESEO tous les jours (sauf exception) de 12h à 13h15 en période scolaire. La commande à la cafétéria depuis une des applications proposées requiert d'avoir pris connaîssance du document présent et d'accepter les modalités énoncées.
 Ce service ne peut fonctionner qu'avec les utilisateurs ayant rempli complètement leur profil.
-En cas de problème ou d'oubli (volontaire ou involontaire) de paiement d'un repas auprès d'ESEOmega, l'utilisateur est tenu de se présenter spontanément dans les jours qui suivent auprès d'un membre d'ESEOmega afin de payer la somme exigée et de régulariser sa situation. L'utilisateur ne pourra pas passer de commande tant que ce paiement n'aura pas été effectué. ESEOmega est libre d'appliquer une sanction financière ou non si la situation se reproduit ou si l'utilisateur tarde à rembourser ESEOmega.
+En cas de problème ou d'oubli (volontaire ou involontaire) de paiement d'un repas auprès d'ESEOASIS, l'utilisateur est tenu de se présenter spontanément dans les jours qui suivent auprès d'un membre d'ESEOASIS afin de payer la somme exigée et de régulariser sa situation. L'utilisateur ne pourra pas passer de commande tant que ce paiement n'aura pas été effectué. ESEOASIS est libre d'appliquer une sanction financière ou non si la situation se reproduit ou si l'utilisateur tarde à rembourser ESEOASIS.
 
 Fraude et non respect des conditions d'utilisation
 --------------------------------------------------
-Toute utilisation des services ESEOmega dans le but de récupérer des informations non autorisées ou afin de frauder à la cafétéria (c'est pas en faisant des ping sur notre serveur ou en utilisant Wireshark que tu vas réussir à avoir un sandwich gratuit de toute façon) fera l'objet d'une sanction envers l'utilisateur, pouvant aller d'une interdiction temporaire d'accéder à tous les services proposés par ESEOmega, d'une durée de maximum 365 jours, à une convocation devant un tribunal selon les loi qui régissent la fraude en France.
+Toute utilisation des services ESEOASIS dans le but de récupérer des informations non autorisées ou afin de frauder à la cafétéria (c'est pas en faisant des ping sur notre serveur ou en utilisant Wireshark que tu vas réussir à avoir un sandwich gratuit de toute façon) fera l'objet d'une sanction envers l'utilisateur, pouvant aller d'une interdiction temporaire d'accéder à tous les services proposés par ESEOASIS, d'une durée de maximum 365 jours, à une convocation devant un tribunal selon les loi qui régissent la fraude en France.

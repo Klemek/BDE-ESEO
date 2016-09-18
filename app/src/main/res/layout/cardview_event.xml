@@ -61,19 +61,20 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/linlayout7"
             android:orientation="vertical"
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/rlEventColor"
             android:layout_toEndOf="@+id/rlEventColor"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp">
+            android:layout_marginRight="8dp"
+            android:layout_toStartOf="@+id/eventButton"
+            android:layout_toLeftOf="@+id/eventButton">
 
             <TextView
                 android:id="@+id/tvNameEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Blue Moon 2016"
+                android:text="Titre"
                 android:textColor="@color/text_black_clear"
                 android:maxLines="1"
                 android:textStyle="bold"
@@ -84,11 +85,26 @@
                 android:id="@+id/tvDetailsEvent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="21h50 - Rue Maillé - Grosses basses !"
+                android:text="Details"
                 android:maxLines="2"
                 android:textSize="13sp" />
 
         </LinearLayout>
+
+        <ImageButton
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/rect_rounded_events2"
+            android:id="@+id/eventButton"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_signup"
+            android:scaleType="fitCenter"
+            android:padding="12dp" />
+
     </RelativeLayout>
 
 </android.support.v7.widget.CardView>

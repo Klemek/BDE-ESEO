@@ -3,14 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_blue_grey_100">
+    android:background="@color/color_background">
 
     <TextView
         android:id="@+id/tvChooseShuttle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Choisissez une navette"
+        android:text="@string/layout_shuttles"
         android:visibility="gone"/>
 
     <android.support.v7.widget.RecyclerView
@@ -47,7 +47,7 @@
             android:gravity="center"
             android:paddingLeft="32dp"
             android:paddingRight="54dp"
-            android:text="VALIDER"
+            android:text="@string/dialog_valid"
             android:textColor="@color/md_white_1000"
             android:textSize="16sp"/>
 

@@ -3,7 +3,7 @@
                 xmlns:fab="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/md_blue_grey_100">
+    android:background="@color/color_background">
 
     <TextView
         android:id="@+id/tvServiceInfo"
@@ -37,9 +37,9 @@
         android:layout_margin="16dp"
         android:layout_marginBottom="16dp"
         android:src="@drawable/ic_add_white"
-        fab:fab_colorNormal="@color/md_blue_600"
-        fab:fab_colorPressed="@color/md_blue_800"
-        fab:fab_colorRipple="@color/md_blue_300"/>
+        fab:fab_colorNormal="@color/color_primary"
+        fab:fab_colorPressed="@color/color_primary_dark"
+        fab:fab_colorRipple="@color/color_primary"/>
 
     <!-- Pas a faire : utiliser les vraies tailles en dp !!! -->
     <!-- OK -->
@@ -80,7 +80,6 @@
         android:indeterminate="true"/>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout7"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -93,7 +92,7 @@
             android:layout_height="85dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/ic_nocommand"/>
+            android:src="@drawable/img_nocommand"/>
 
         <TextView
             android:id="@+id/tvListNothing"

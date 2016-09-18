@@ -3,7 +3,7 @@
                 xmlns:fab="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/md_blue_grey_100">
+                android:background="@color/md_white_1000">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cardTickets"
@@ -67,7 +67,6 @@
         android:indeterminate="true"/>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout7"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -80,7 +79,7 @@
             android:layout_height="85dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/ic_no_ticket"/>
+            android:src="@drawable/img_no_ticket"/>
 
         <TextView
             android:id="@+id/tvListNothing"

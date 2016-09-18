@@ -2,10 +2,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"  tools:context=".MainActivity">
 
-    <item android:id="@+id/action_ticketevent"
+    <!--<item android:id="@+id/action_ticketevent"
           android:title="@string/action_ticketevent"
           android:icon="@drawable/ic_ticket"
-          app:showAsAction="ifRoom" />
+          app:showAsAction="ifRoom" />-->
 
     <item android:id="@+id/action_info"
           android:title="@string/action_info"

@@ -1,42 +1,25 @@
 <resources>
-    <string name="app_name">BDE ESEO</string>
-    <string name="app_name_inge">Éditions Ingénews</string>
-    <string name="app_name_plans">Salles ESEO Angers</string>
+    <string name="app_name">ESEOASIS</string>
+    <string name="app_name_family">Généalogie</string>
     <string name="app_name_order">Votre commande</string>
     <string name="app_name_tickets">Vos réservations</string>
     <string name="app_name_sales">Faire une réservation</string>
     <string name="app_name_shuttles">Choisir une navette</string>
-    <string name="app_version_name">3.0.1</string>
-    <string name="app_version_code">24</string>
-    <string name="app_copyright">François Leparoux - ESEOmega 2016</string>
+    <string name="app_version_name">1.0.0</string>
+    <string name="app_version_code">31</string>
+    <string name="app_copyright">None</string>
 
     <string name="desc_list_item_icon">Item Icon</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
-
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-
-    <string name="action_ingenews">Éditions Ingénews</string>
-    <string name="action_plans">Plan des salles</string>
     <string name="action_info">À propos</string>
-    <string name="action_ticketevent">Vos réservations</string>
     <string name="action_read">Fermer</string>
     <string name="action_share">Partager</string>
     <string name="action_lydia">Payer avec Lydia</string>
     <string name="action_browser">Ouvrir dans le navigateur</string>
     <string name="action_plans_details">Afficher le plan complet</string>
-    <string name="text_example">I\'m an example text inside an example fragment !</string>
-    <string name="action_settings">Settings</string>
-    <string name="draweritemTest">Pietra B</string>
-    <string name="draweritemTest_2">pietrabiere@eseo.fr</string>
-    <string name="drawer_profile_edit">Editer le profil</string>
+    <string name="action_sort">Trier</string>
+    <string name="action_search">Rechercher ...</string>
     <string name="text_edit_profile">Votre profil ESEO est nécessaire pour pouvoir accéder à certaines fonctionnalités, comme la commande à la caféteria ou l\'accès aux réservations.\nUne fois la connexion validée, uniquement votre identifiant, nom et prénom sont conservés jusqu\'à votre déconnexion, rien de plus.</string>
-    <string name="loading_text">Chargement des données ...</string>
-    <string name="text_offline_mode">Lecture hors-ligne</string>
-    <string name="text_warning_nopaid">La déconnexion de votre compte provoquera l\'arrêt des services proposés, tels que la commande à la cafétéria. Attention : dans tous les cas, si vous avez une commande en statut "non payée", vous déconnecter ne vous empêchera pas de devoir nous régler le repas en question.</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum, urna a suscipit efficitur, nisl felis laoreet tellus, non gravida enim nisl sed ex. Mauris posuere metus et enim pretium venenatis. In neque diam, sodales sit amet porta quis, rhoncus ac dolor. Aliquam id lectus viverra, gravida erat non, cursus dolor. Quisque vel consequat odio, eu placerat tellus. Aliquam eleifend diam ac lacus posuere dictum. Aliquam ipsum nisi, consectetur eu est et, consequat varius magna. In risus nisl, dictum id ante molestie, sagittis suscipit justo. Aliquam erat volutpat. Nulla eu ligula nulla. Maecenas commodo massa ut odio condimentum tincidunt. Aliquam eu urna a ex gravida porta. Morbi porta imperdiet dapibus. Duis ultrices id ipsum eget rutrum.
 
@@ -47,41 +30,96 @@ Maecenas viverra nisl sit amet nibh maximus vestibulum. Vivamus et arcu non enim
 Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. Nulla varius fermentum fringilla. Praesent turpis tellus, feugiat sit amet eros sed, luctus commodo odio. Nunc pulvinar mollis molestie. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc pretium, risus quis vulputate dapibus, justo sem suscipit sapien, eu mollis orci ex mattis purus. Integer id orci sit amet mi maximus lobortis ac nec diam.</string>
 
     <string-array name="nav_drawer_items">
-        <item >Mon profil</item>
-        <item >News</item>
-        <item >Événements</item>
-        <item >Clubs &amp; Vie Asso</item>
-        <item >Caféteria</item>
-        <item >Bons plans</item>
+        <item>Mon Profil</item>
+        <item>News</item>
+        <item>Événements</item>
+        <item>Clubs &amp; Vie Asso</item>
+        <item>Généalogie</item>
+        <item>Caféteria</item>
+        <item>Bons Plans</item>
+        <item>Liste des Salles</item>
     </string-array>
 
     <string-array name="nav_drawer_options">
-        <item >Réglages</item>
+        <item>Réglages</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item/>
-        <item>@drawable/ic_mail</item>
-        <item>@drawable/ic_event</item>
-        <item>@drawable/ic_team</item>
-        <item>@drawable/ic_pizza</item>
-        <item>@drawable/ic_offer</item>
+        <item />
+        <item>@drawable/ic_news</item>
+        <item>@drawable/ic_events</item>
+        <item>@drawable/ic_clubs</item>
+        <item>@drawable/ic_family</item>
+        <item>@drawable/ic_cafet</item>
+        <item>@drawable/ic_promos</item>
+        <item>@drawable/ic_direction</item>
     </array>
 
     <!-- Bullshit for user's EditText hint -->
     <string-array name="bullshitHintUser">
-        <item >sagetbob</item>
-        <item >eventEnPLS</item>
-        <item >longetdur</item>
-        <item >durdentyler</item>
-        <item >android>iOS</item>
-        <item >f(x)=x²/x</item>
-        <item >printf("oklm")</item>
-        <item >JSONenforce</item>
-        <item >petitspoiscarottes</item>
-        <item >heisenberg</item>
+        <item>ananas</item>
+        <item>oasis</item>
+        <item>chameau</item>
+        <item>android>iOS</item>
+        <item>dromadaire</item>
+        <item>printf("oklm")</item>
+        <item>heisenberg</item>
+        <item>mario</item>
+        <item>luigi</item>
+        <item>samus</item>
+        <item>walterwhite</item>
+        <item>kinginthenorth</item>
+        <item>motherofdragons</item>
+        <item>rickgrimes</item>
+        <item>songoku</item>
+        <item>fry</item>
+        <item>benderbrodriguez</item>
+        <item>ironman</item>
+        <item>batman</item>
+        <item>superman</item>
+        <item>catwoman</item>
+        <item>wonderwoman</item>
+        <item>hawkeye</item>
+        <item>hulk</item>
+        <item>deadpool</item>
+        <item>captainamerica</item>
+        <item>blackwidow</item>
+        <item>thor</item>
+        <item>loki</item>
+        <item>joker</item>
+        <item>robin</item>
+        <item>dracula</item>
+        <item>davidfincher</item>
+        <item>cobb</item>
+        <item>legolas</item>
+        <item>bilbonsaquet</item>
+        <item>gandalf</item>
+        <item>frodonsaquet</item>
+        <item>aragorn</item>
+        <item>neo</item>
+        <item>agentj</item>
+        <item>jacksparrow</item>
+        <item>sherlockholmes</item>
+        <item>doc</item>
+        <item>marty</item>
+        <item>morty</item>
+        <item>rick</item>
+        <item>lukeskywalker</item>
+        <item>darkvador</item>
+        <item>hansolo</item>
+        <item>chewbacca</item>
+        <item>c3po</item>
+        <item>r2d2</item>
+        <item>quigonjinn</item>
+        <item>obiwankenobi</item>
+        <item>anakinskywalker</item>
+        <item>jarjarbinks</item>
+        <item>jamesbond</item>
+        <item>tron</item>
+        <item>wolverine</item>
+        <item>professeurxavier</item>
     </string-array>
 
     <!-- Security -->
@@ -92,14 +130,11 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="MESSAGE_PASS_USER">Oups, erreur de connexion</string> <!-- V2.1 -->
     <string name="MESSAGE_HISTORY_USER">Connexion au serveur ...</string> <!-- V2.1 -->
     <string name="MESSAGE_TICKETS_USER">Connexion en cours</string>
-    <string name="HEADER_SYNC_SCORES">**** SCORES ****</string>
     <string name="MACRO_SYNC_SINGLE">base64(json_encode(#MACRO))</string> <!-- V2.1 -->
     <string name="MESSAGE_SYNC_PUSH">Erreur mémoire cache</string> <!-- V2.1 -->
     <string name="MESSAGE_DESYNC_PUSH">Bonjour %s !</string> <!-- V2.1 -->
 
     <!-- POST Parameters -->
-    <string name="name">name</string>
-    <string name="login">login</string>
     <string name="client">client</string>
     <string name="username">username</string>
     <string name="hash">hash</string>
@@ -114,7 +149,6 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="instructions">instructions</string>
     <string name="version">version</string>
     <string name="password">password</string>
-    <string name="score">score</string>
 
     <!-- Push -->
     <string name="play_api_push">409995288520</string>
@@ -122,14 +156,20 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
 
     <!-- Dialog -->
     <string name="dialog_yes">Oui</string>
+    <string name="dialog_ok">D\'accord</string>
     <string name="dialog_pay">Payer</string>
+    <string name="dialog_continue">Continuer</string>
     <string name="dialog_choose">Choisir</string>
     <string name="dialog_no">Non</string>
     <string name="dialog_cancel">Annuler</string>
-    <string name="dialog_ok">OK</string>
-    <string name="dialog_contact">Contact</string>
+    <string name="dialog_delete">Supprimer</string>
+    <string name="dialog_valid">VALIDER</string>
+    <string name="dialog_contact">Contacter</string>
     <string name="dialog_close">Fermer</string>
     <string name="dialog_retry">Réessayer</string>
+    <string name="dialog_back">Retour</string>
+    <string name="dialog_indeed">En effet</string>
+    <string name="dialog_shame">Dommage</string>
 
     <!-- Update -->
     <string name="update_title">Mise à jour disponible</string>
@@ -137,16 +177,12 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
 
     <!-- About -->
     <string name="about_title">A propos</string>
-    <string name="about_content">Cette application est l\'application officielle ESEOmega pour Android.\n\nDéveloppeur :\nFrançois Leparoux\n\nSupport technique :\ndevelopers.eseomega@gmail.com\n\n© 2016 ESEOmega</string>
+    <string name="about_content">Cette application est l\'application officielle du BDE ESEOASIS pour Android.\n\nDéveloppeurs :\nFrançois Leparoux\nClément Gouin\n\nIcones : Font-Awesome\n\nSupport technique :\nbde@eseoasis.com</string>
 
     <!-- Lydia -->
-    <string name="lydia_phone">Votre numéro de téléphone portable est utilisé par Lydia afin de lier la commande à votre compte.\nIl n\'est pas stocké sur nos serveurs.</string>
-    <string name="lydia_wait">Cette page est actualisée automatiquement. </string>
+    <string name="lydia_phone">Votre numéro de téléphone portable est utilisé par Lydia afin de lier la commande à votre compte.\nIl peut etre aussi utilisé pour vous inscrire à un évènement. Il ne sera jamais utilisé ormis pour vous prévenir en cas d\'un imprévu.</string>
 
     <!-- UI -->
-    <string name="bad_signature_title">Vous avez réussi</string>
-    <string name="bad_signature_content">Décompiler et recompiler une application Android n\'est pas si facile que ça : Bravo à vous.\nEn revanche, cela ne vous donne pas tous les droits.\n(Bien tenté)</string>
-    <string name="bad_signature_button">Snif, je suis nul</string>
 
     <string name="empty_header_event">Aucun évenement trouvé</string>
     <string name="empty_desc_event">Vérifiez votre connexion internet, puis rafraîchissez cette onglet. Sinon, c\'est qu\'on a décidé de pas faire de soirées dans les jours à venir\n(vous allez pouvoir réviser !)</string>
@@ -177,13 +213,279 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="empty_header_club">Aucun club trouvé</string>
     <string name="empty_desc_club">Pourtant, on est pas tout seuls !\nDes clubs à l\'ESEO, y\'en a plein.\nVérifiez l\'état de votre connexion internet, puis rafraîchissez cette onglet.</string>
 
-    <string name="empty_header_inge">Aucune édition Ingénews trouvée</string>
-    <string name="empty_desc_inge">L\'équipe d\'Ingénews n\'a peut être pas encore mis en ligne leur édition !\nAu passage, vérifiez votre connexion internet.</string>
-    <string name="warn_text_inge">Cette page regroupe l\'ensemble des éditions Ingénews que le club a mis en ligne sur nos serveurs.\nESEOmega n\'est en aucun cas responsable du contenu proposé.</string>
-
     <string name="empty_header_plans">Aucune salle trouvée</string>
     <string name="empty_desc_plans">Le bâtiment ESEO a peut-être été détruit, ou alors c\'est que votre connexion internet est pas au top de sa forme ...</string>
 
+    <string name="empty_desc_family">Retrouvez içi la généalogie des familles de parrainage de l\'ESEO. Effectuez une recherche grâce au bouton en haut à droite.</string>
+    <string name="empty_desc_nothing_family">Votre recherche n\'a pas aboutie, vérifiez l\'orthographe du nom. (Si c\'est vous-même, veuillez vous présenter au module RCII du BDE.)</string>
+
+
     <string name="order_cancel_title">Annuler la commande ?</string>
     <string name="order_cancel_message">Vous êtes sur le point de vider définitivement votre panier.\nEn êtes-vous sûr ?</string>
+
+    <string name="club_bureau">Bureau</string>
+    <string name="club_event">Évenements associés</string>
+    <string name="club_related">Articles associés</string>
+
+    <string name="contact_snapchat">Ajoutez le pseudo ci-dessus sur Snapchat !</string>
+    <string name="open_snapchat">Ouvrir Snapchat</string>
+
+    <string name="contact_mail_subject">[Renseignements] ... </string>
+    <string name="contact_mail_text">Bonjour ...</string>
+    <string name="contact_mail_name">Contacter</string>
+
+    <string name="mail_sending_title">Envoi de l\'email</string>
+
+    <string name="mail_send">Votre place a été envoyée à</string>
+
+    <string name="no_app">Pas d\'application installée pour ça !</string>
+
+    <string name="user_welcome">Bienvenue,</string>
+    <string name="user_welcome_desc">Votre profil a été synchronisé, et les notifications ont été activées, vous bénéficiez désormais de toutes les fonctionnalités.\nProfitez-en !</string>
+
+    <string name="log_error_title">Oups ...</string>
+    <string name="log_error_desc">Impossible d\'enregistrer votre appareil sur nos serveur\nVous êtes connectés, mais vous ne pourrez pas recevoir les notifications news et cafétéria.\Tentez de vous reconnecter, ou contactez nous.</string>
+
+    <string name="login_no_id">Vous ne savez pas quoi mettre ?</string>
+    <string name="login_no_pass">Un trou de mémoire ? Mmh ...</string>
+
+    <string name="registration">Enregistrement de l\'appareil</string>
+
+    <string name="notif_update_title">Impossible de recevoir les notifications</string>
+    <string name="notif_update_text">Merci de mettre l\'application à jour depuis le Play Store.</string>
+
+    <string name="cafet_menu">Menu</string>
+    <string name="cafet_added">"a été ajouté au panier</string>
+    <string name="cafet_cant_send">Impossible de lancer cette commande : vous n\'avez pas choisi tous vos éléments.</string>
+    <string name="cafet_choose">Choisissez votre</string>
+    <string name="cafet_choose2">Choisissez vos</string>
+    <string name="cafet_choose3">Choisissez vos éléments</string>
+    <string name="cafet_choose4">Vous devez choisir </string>
+    <string name="cafet_elem">élément</string>
+    <string name="cafet_choose5">dans la liste ci-dessous.</string>
+    <string name="cafet_main">élément principal</string>
+    <string name="cafet_main2">Elément principal</string>
+    <string name="cafet_second">éléments secondaires</string>
+    <string name="cafet_menu2">Carte</string>
+    <string name="cafet_cart">Panier</string>
+    <string name="cafet_cart_expired">Votre panier a expiré</string>
+    <string name="cafet_cart_expired_text">Pour des raisons de sécurité, il n\'est possible de passer commande que pendant 10 minutes sans la valider.\nMerci de bien vouloir recommencer ...</string>
+    <string name="cafet_cart_action_title">Quelle action effectuer ?</string>
+    <string name="cafet_comment">Ajouter un commentaire ?</string>
+    <string name="cafet_dialog_confirm1">Finaliser la commande</string>
+    <string name="cafet_confirm_title">Valider la commande ?</string>
+    <string name="cafet_confirm_txt">En validant, vous vous engagez à payer et récupérer votre repas au comptoir de la cafet aujourd\'hui aux horaires d\'ouverture.\n\nSi ce n\'est pas le cas, il vous sera impossible de passer une nouvelle commande dès demain.</string>
+    <string name="cafet_dialog_confirm2">Je confirme, j\'ai faim !</string>
+    <string name="cafet_empty_cart_title">Panier vide</string>
+    <string name="cafet_empty_cart_txt">Une commande doit comporter au moins un élément !</string>
+    <string name="cafet_full_cart_title">Panier rempli</string>
+    <string name="cafet_full_cart_txt">Une commande est limité à 10 éléments !</string>
+    <string name="cafet_dialog_remove">Je vais en retirer</string>
+    <string name="cafet_too_much_title">Trop gourmand</string>
+    <string name="cafet_too_much_txt">Une commande est limité à 2 menus !</string>
+    <string name="cafet_cmd_validated_title">Commande validée !</string>
+    <string name="cafet_cmd_validated_txt1">Celle-ci</string>
+    <string name="cafet_cmd_validated_txt2">va être traitée après 12h</string>
+    <string name="cafet_cmd_validated_txt3">est en cours de préparation</string>
+    <string name="cafet_cmd_validated_txt4">et sera disponible après avoir payé.\n\Bon appétit !</string>
+    <string name="cafet_cmd_pay">Payer plus tard au comptoir</string>
+    <string name="cafet_cmd_pay_lydia">Payer immédiatement avec Lydia</string>
+
+
+    <string name="event_end">Fin</string>
+    <string name="event_from">Par</string>
+    <string name="event_the">Le</string>
+
+    <string name="event_no_details">Aucuns détails</string>
+    <string name="event_date">Début</string>
+    <string name="event_end_date">Fin</string>
+    <string name="event_place">Lieu</string>
+
+    <string name="room_bat">Bâtiment</string>
+    <string name="room_floor">Étage</string>
+
+    <string name="cmd_status_finished_tostring">Commande terminée</string>
+    <string name="cmd_status_preparing_tostring">En préparation</string>
+    <string name="cmd_status_ready_tostring">Commande prête</string>
+    <string name="cmd_status_unpaid_tostring">Commande non payée</string>
+    <string name="cmd_status_error_tostring">Erreur dans la commande</string>
+
+    <string name="cmd_status_finished">TERMINÉE</string>
+    <string name="cmd_status_preparing">EN PRÉPARATION</string>
+    <string name="cmd_status_ready">PRÊTE</string>
+    <string name="cmd_status_ready_txt">Merci de venir à la cafet\' chercher votre repas.</string>
+    <string name="cmd_status_unpaid">IMPAYÉE</string>
+    <string name="cmd_status_error_txt1">Merci de venir à la cafet\' ou au BDE régler ce</string>
+    <string name="cmd_status_error_txt2">commande</string>
+    <string name="cmd_status_error_txt3">au plus vite, sinon contactez-nous.</string>
+
+    <string name="ingr_title_base">Personnalisez votre</string>
+    <string name="ingr_text1">Vous pouvez y ajouter</string>
+    <string name="ingr_text2">ingrédient</string>
+    <string name="ingr_text3">de votre choix. Au delà de ce nombre, tout supplément est facturé.</string>
+
+    <string name="lydia_payment">Paiement par Lydia</string>
+    <string name="lydia_payment_status">État du paiement Lydia</string>
+    <string name="lydia_payment_done">Paiement effectué !</string>
+    <string name="lydia_payment_ask">Demande de paiement</string>
+    <string name="lydia_payment_refused">Paiement refusé par votre banque</string>
+    <string name="lydia_payment_check">Vérification ...</string>
+    <string name="lydia_phone_error_title">Numéro incorrect</string>
+    <string name="lydia_phone_error_text">Vous pouvez écrire votre téléphone sous la forme +33 ou 06</string>
+
+    <string name="finished">Terminé !</string>
+    <string name="preparing">Préparation ...</string>
+    <string name="updating">Mise à jour ...</string>
+    <string name="mail_dev_title">[APP] Questions / Problèmes</string>
+    <string name="mail_dev_txt">Version de l\'application</string>
+    <string name="contact_dev">Contacter les développeurs ...</string>
+
+    <string name="presales_available">Tickets disponibles</string>
+    <string name="presales_confirm">Confirmer l\'achat</string>
+    <string name="presales_confirm_txt">Les places seront nominatives.\nVotre carte étudiante vous sera demandée à l\'entrée.\nLes CGV s\'appliquent.</string>
+    <string name="presales_reserving">Réservation en cours</string>
+    <string name="presales_reservation_done_txt">Votre réservation a été payée.\nEntrez ci-dessous votre email afin de recevoir votre place au format PDF.\n\nNote : vous pouvez également accéder à cette fenêtre depuis l\'historique des réservations</string>
+    <string name="presales_reservation_fail">Échec de la réservation</string>
+    <string name="presales_reservation_fail_txt">Le paiement n\'a pas abouti.\nImpossible de valider la transaction.\n\nRéessayez plus tard ou contactez un membre du BDE.</string>
+    <string name="presales_reservation_expired">Votre réservation a expiré</string>
+    <string name="presales_reservation_expired_txt">Pour des raisons de sécurité, il est impossible d\'effectuer une réservation pendant plus de 10 minutes sans avoir confimé l\'achat.\nMerci de bien vouloir recommencer ...</string>
+
+    <string name="shuttle_no_select">Vous n\'avez sélectionné aucune navette !\nSélectionnez-en une depuis la liste.</string>
+    <string name="shuttle_departure">Départ</string>
+
+    <string name="date_simp_0">Il y a moins d\'une heure</string>
+    <string name="date_simp_1">Il y a</string>
+    <string name="date_simp_h">heure</string>
+    <string name="date_simp_d">jour</string>
+    <string name="date_simp_w">semaine</string>
+    <string name="date_simp_m">mois</string>
+
+    <string name="menu_price">À partir de</string>
+
+    <string name="shuttle_place">places disponibles</string>
+
+    <string name="sponso_perks">Avantages</string>
+
+    <string name="user_not_connected">Vous n\'êtes pas connecté</string>
+    <string name="user_not_connected_text">Cliquez ici pour ajouter votre profil</string>
+    <string name="user_not_connected_cafet">Nous avons besoin de savoir qui vous êtes avant de pouvoir vous laisser commander.</string>
+    <string name="user_not_connected_ticket">Nous avons besoin de savoir qui vous êtes avant de pouvoir effectuer une réservation.</string>
+
+    <string name="cafet_bad_country">L\'accès à la Cafet ne peut se faire depuis un autre pays que la France.\nEnvoyez nous une carte postale !</string>
+
+    <string name="bad_signature_title">Vous avez réussi</string>
+    <string name="bad_signature_content">Décompiler et recompiler une application Android n\'est pas si facile que ça : Bravo à vous.\nEn revanche, cela ne vous donne pas tous les droits.\n(Bien tenté)</string>
+    <string name="bad_signature_button">Snif, je suis nul</string>
+
+    <string name="news_list_update">Dernière mise à jour</string>
+    <string name="news_list_update_never">jamais</string>
+
+    <string name="news_reading">Lecture news</string>
+
+    <string name="deconnect_title">Déconnexion</string>
+    <string name="deconnect_txt1">Hey,</string>
+    <string name="deconnect_txt2">, en êtes-vous vraiment sûr ?\nVous ne pourrez plus accéder à nos services (et ça, c\'est dommage).</string>
+    <string name="deconnect_yes">Oui, au revoir</string>
+    <string name="deconnect_no">Non, je reste</string>
+
+    <string name="deconnect_error_title">Erreur de déconnexion</string>
+    <string name="deconnect_error_txt">Impossible d\'accéder au serveur.\nVeuiller vérifier votre connexion au réseau puis réessayer.</string>
+
+    <string name="ticket_bad_country">L\'accès aux réservations ne peut se faire depuis un autre pays que la France.\nEnvoyez nous une carte postale !</string>
+
+    <string name="ticket_resend_title">Renvoyer l\'email</string>
+    <string name="ticket_resend_txt">Vous avez perdu votre place, vous ne retouvez plus le mail associé ?\nPas de soucis, vous avez la possibilité de recevoir de nouveau votre place ...</string>
+
+    <string name="ticket_future_events">ÉVÉNEMENTS À VENIR</string>
+    <string name="ticket_terminated_events">ÉVÉNEMENTS PASSÉS</string>
+
+    <string name="congrats">Félicitations !</string>
+    <string name="touch">-- Touchez ici --</string>
+    <string name="personnalize">Personnaliser</string>
+    <string name="at">À</string>
+    <string name="st">er</string>
+    <string name="nd">ème</string>
+    <string name="rd">ème</string>
+    <string name="th">ème</string>
+    <string name="our">Our</string>
+    <string name="plural">s</string>
+    <string name="this_fr">tte</string>
+    <string name="error">Erreur</string>
+    <string name="reason">Cause</string>
+    <string name="wait">Veuillez patienter ...</string>
+    <string name="connecting">Connexion au serveur ...</string>
+    <string name="connected">Connexion effectuée !</string>
+
+    <string name="hey">Hey !</string>
+
+    <!-- Layouts -->
+    <string name="layout_ingr">SUPPLEMENT :</string>
+    <string name="layout_order_detail_1">Commentaire :</string>
+    <string name="layout_order_detail_2">Numéro de commande</string>
+    <string name="layout_shuttles">Choisissez une navette</string>
+
+    <string name="layout_tutorial_01">Merci !</string>
+    <string name="layout_tutorial_02">... d\'avoir installé ou mis à jour notre application.\nLes principales nouveautés sont les suivantes :</string>
+    <string name="layout_tutorial_10">Ce n\'est pas un mirage...</string>
+    <string name="layout_tutorial_11">Et oui ! Changement de BDE, changement d\'application ! Profitez d\'un moment de fraicheur avec le nouveau thème Oasis de l\'application.</string>
+    <string name="layout_tutorial_20">Généalogie</string>
+    <string name="layout_tutorial_21">Vous pouvez maintenant accéder à votre arbre généalogique de parrainage depuis l\'application !</string>
+    <string name="layout_tutorial_22">Depuis l\'onglet généalogie, effectuez une recherche et observez vos ancêtres.</string>
+    <string name="layout_tutorial_30">Pas le temps de niaiser</string>
+    <string name="layout_tutorial_31">Vous pouvez dorénavant indiquer que vous allez participer à un évenement d\'un simple clique depuis la liste !</string>
+    <string name="layout_tutorial_40">Tout est lié !</string>
+    <string name="layout_tutorial_41">Ne perdez rien de l\'activité d\'un club en regardant les articles et évenements associés sur sa description.</string>
+    <string name="layout_tutorial_end">Pour fermer ce tutorial, cliquez sur l\'îcone en haut.</string>
+
+    <string name="layout_add_instructions_1">Vous pouvez entrer ci-dessous quelques indications pour votre commande.</string>
+    <string name="layout_add_instructions_2">Consignes, ...</string>
+    <string name="layout_lydia_1">Numéro de téléphone</string>
+    <string name="layout_lydia_2">Se souvenir de mon numéro</string>
+    <string name="layout_connect_profile_1">Renseignez les informations suivantes puis validez pour synchroniser vos données.</string>
+    <string name="layout_connect_profile_2">Identifiant :</string>
+    <string name="layout_connect_profile_3">******</string>
+    <string name="layout_connect_profile_4">Mot de passe :</string>
+    <string name="layout_view_profile_1">BONJOUR</string>
+    <string name="layout_view_profile_2">Vous avez accès à toutes les fonctionnalités, dont la commande à la caféteria.</string>
+    <string name="layout_view_profile_3">DÉCONNEXION</string>
+    <string name="layout_cartview">TOTAL :</string>
+
+    <!-- Toast text -->
+    <string name="toast_playstore">Erreur d\'accès Play Store</string>
+    <string name="toast_no_phone">Veuillez indiquer votre numéro de téléphone depuis le menu Réglages.</string>
+    <string name="toast_no_user_event">Vous devez être connecté pour participer</string>
+    <string name="toast_cant_read_event">Impossible d\'ouvir l\'évènement</string>
+    <string name="toast_cant_read_news">Impossible de lire l\'article</string>
+    <string name="toast_sort_names">Tri par nom de salle</string>
+    <string name="toast_sort_bat">Tri par bâtiment</string>
+    <string name="toast_sort_floor">Tri par étage</string>
+    <string name="toast_error">Erreur de l\'application (c\'est pas normal)</string>
+    <string name="toast_lydia_payment_web">Le navigateur va être ouvert.</string>
+    <string name="toast_cmd_already_paid">Cette commande est déjà payée !</string>
+    <string name="toast_cafet_select">Vous devez sélectionner tous vos éléments.</string>
+    <string name="toast_cafet_max">Vous avez attend le nombre max d\'éléments</string>
+    <string name="toast_cafet_removed">Élément retiré du panier</string>
+    <string name="toast_pay_lydia_temp">Oh, il semblerait que nous n\'ayont pas tous les éléments pour effectuer un paiement Lydia. Revenez quand l\'orage sera passé et en attendant, payez au comptoir.</string>
+    <string name="toast_good_choice">Vous avez fait le bon choix.</string>
+    <string name="toast_error_img">Erreur lors du traitement de l\'image.</string>
+    <!-- Server Error -->
+
+
+    <string name="error_network_short">Erreur réseau</string>
+    <string name="error_timestamp">On dirait que votre smartphone n\'est pas à l\'heure.\nBien tenté, mais vous ne pouvez pas tricher pour commander à la cafet avant les autres.\n(Et puis de toute manière ça sert à rien)</string>
+    <string name="error_service_out">Désolé ! On sait que vous avez faim. Mais la cafétéria n\'est ouverte que pendant les périodes scolaires de 12h à 13h.</string>
+    <string name="error_user_register">Votre mot de passe est incorrect.\nSi vous l\'avez changé depuis les services ESEO, merci de bien vouloir vous déconnecter puis reconnecter depuis l\'onglet \"Mon profil\" de l\'application</string>
+    <string name="error_password">Mauvaise combinaison identifiant - mot de passe\nVeuillez vérifier vos informations, puis réessayer.</string>
+    <string name="error_unpaid">Hey, vous êtes interdits de commande ! En effet, vous avez un repas (ou plus) de non réglé(s).\nVenez nous voir le plus rapidement possible afin de nous rembourser.</string>
+    <string name="error_app_pb">Le système est en maintenance pour la version Android, nous sommes en train de corriger ça.\nEn attendant, vous pouvez toujours commander au comptoir.\nMerci !</string>
+    <string name="error_user_ban">Vous ne pouvez pas accéder au service.\n\n(Raison : </string>
+    <string name="error_bad_version">Vous ne pouvez pas accéder au service car votre application n\'est pas à jour.\nTéléchargez la nouvelle version depuis le Play Store.</string>
+    <string name="error_network">Impossible de se connecter au serveur. Veuillez vérifier votre connexion ou réessayer plus tard.</string>
+    <string name="error_network2">Échec : réseau indisponible</string>
+    <string name="error_network_unknown">Veuillez réessayer plus tard, le service semble indisponible.</string>
+    <string name="error_server_unknown">Erreur inconnue venant du serveur.</string>
+    <string name="error_server">Erreur en tentant d\'accéder au serveur.</string>
+    <string name="error_offline">Hors-ligne. Veuillez vérifier votre connexion.</string>
+
+
 </resources>

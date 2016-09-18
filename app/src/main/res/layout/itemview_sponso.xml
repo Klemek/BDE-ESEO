@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    >
+
+
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cardview"
+        android:foreground="?android:attr/selectableItemBackground"
+        card_view:cardCornerRadius="1dp"
+        card_view:cardElevation="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:src="@drawable/ic_loading"
+        android:id="@+id/circleSponsor"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignTop="@+id/tvNameSponsor"
+        app:border_width="1dp"
+        app:border_color="@color/md_white_1000"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/tvNameSponsor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alinéa"
+        android:textSize="16dp"
+        android:textColor="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/circleSponsor"
+        android:layout_toEndOf="@+id/circleSponsor"
+        android:layout_marginLeft="16dp" />
+
+            <TextView
+                android:id="@+id/tvAdr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="http://www.alinea.fr"
+                android:layout_below="@+id/tvNameSponsor"
+                android:textColor="@color/text_light"
+                android:layout_alignLeft="@+id/tvDescSponsor"
+                android:layout_alignStart="@+id/tvNameSponsor"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+        android:id="@+id/tvDescSponsor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:text="Description du sponsor"
+        android:layout_below="@+id/tvAdr"
+        android:layout_alignLeft="@+id/tvNameSponsor"
+        android:layout_alignStart="@+id/tvNameSponsor"
+        android:textColor="@color/text_black_clear" />
+
+    <TextView
+        android:id="@+id/tvOffers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="-"
+        android:textColor="@color/text_black_clear"
+        android:layout_below="@id/tvDescSponsor"
+        android:layout_alignLeft="@+id/tvDescSponsor"
+        android:layout_alignStart="@+id/tvDescSponsor"
+        android:visibility="visible" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>

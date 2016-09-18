@@ -19,9 +19,16 @@
             android:textColor="@color/md_white_1000"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="Don du sang"/>
+            android:text="Titre"/>
 
     </RelativeLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="130dp"
+        android:id="@+id/eventImg"
+        android:visibility="visible"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +37,29 @@
         android:textColor="@color/md_grey_800"
         android:textSize="16sp"
         android:id="@+id/tvEventDetails"
-        android:text="blah blah blah"/>
+        android:text="Detail"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/md_grey_600"
+        android:textSize="16sp"
+        android:id="@+id/tvEventDate"
+        android:text="DateDéb" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/md_grey_600"
+        android:textSize="16sp"
+        android:id="@+id/tvEventEndDate"
+        android:text="DateFin" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -41,6 +70,46 @@
         android:textColor="@color/md_grey_600"
         android:textSize="16sp"
         android:id="@+id/tvEventPlace"
-        android:text="Greniers St Jean"/>
+        android:text="Lieu"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventSignup"
+            android:src="@drawable/ic_signup"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventAddCalendar"
+            android:src="@drawable/ic_events"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventMap"
+            android:src="@drawable/ic_map"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/eventUrl"
+            android:src="@drawable/ic_website"
+            android:scaleType="fitCenter"
+            android:adjustViewBounds="true" />
+    </LinearLayout>
 
 </LinearLayout>
