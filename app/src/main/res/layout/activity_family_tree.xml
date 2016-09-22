@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/color_background">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/toolbar_design">
+    </include>
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:id="@+id/horizontalScrollView"
+            android:layout_below="@+id/tool_bar"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true">
+
+            <view
+                class="fr.bde_eseo.eseoasis.family.TreeView"
+                android:id="@+id/tree"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent" />
+        </HorizontalScrollView>
+
+</RelativeLayout>
