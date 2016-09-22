@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fr.bde_eseo.eseoasis">
+    package="fr.bde_eseo.eseomega">
 
     <!-- Include following permission for Internet access -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -25,7 +25,7 @@
 
         <!-- Splash screen -->
         <activity
-            android:name=".SplashActivity"
+            android:name="fr.bde_eseo.eseomega.SplashActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -36,52 +36,52 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="fr.bde_eseo.eseomega.MainActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".lacommande.IngredientsChooserActivity"
+            android:name="fr.bde_eseo.eseomega.lacommande.IngredientsChooserActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".lacommande.SecoElementChooserActivity"
+            android:name="fr.bde_eseo.eseomega.lacommande.SecoElementChooserActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".lacommande.ElementChooserActivity"
+            android:name="fr.bde_eseo.eseomega.lacommande.ElementChooserActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".TutorialActivity"
+            android:name="fr.bde_eseo.eseomega.TutorialActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeSingle"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".events.tickets.TicketHistoryActivity"
+            android:name="fr.bde_eseo.eseomega.events.tickets.TicketHistoryActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_tickets"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeRedSingle"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".events.tickets.PresalesActivity"
+            android:name="fr.bde_eseo.eseomega.events.tickets.PresalesActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_sales"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeRedSingle"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".events.tickets.ShuttleActivity"
+            android:name="fr.bde_eseo.eseomega.events.tickets.ShuttleActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_shuttles"
             android:screenOrientation="portrait"
@@ -91,7 +91,7 @@
         <!-- Activity to see / pay an order (or anything else ... Bluemoon ?) -->
         <!-- Intent scheme : eseomega_pay:// -->
         <activity
-            android:name=".lydia.LydiaActivity"
+            android:name="fr.bde_eseo.eseomega.lydia.LydiaActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label=""
             android:screenOrientation="portrait"
@@ -119,35 +119,35 @@
             -->
         </activity>
         <activity
-            android:name=".news.ViewNewsActivityMaterial"
+            android:name="fr.bde_eseo.eseomega.news.ViewNewsActivityMaterial"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".lacommande.OrderDetailsActivity"
+            android:name="fr.bde_eseo.eseomega.lacommande.OrderDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_order"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".news.ImageViewActivity"
+            android:name="fr.bde_eseo.eseomega.news.ImageViewActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/ImageViewTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".clubs.ClubViewActivity"
+            android:name="fr.bde_eseo.eseomega.clubs.ClubViewActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".rooms.BigPictureActivity"
+            android:name="fr.bde_eseo.eseomega.rooms.BigPictureActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -171,7 +171,7 @@
 
         <!-- [START gcm_listener] -->
         <service
-            android:name=".gcmpush.MyGcmListenerService"
+            android:name="fr.bde_eseo.eseomega.gcmpush.MyGcmListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -180,7 +180,7 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name=".gcmpush.MyInstanceIDListenerService"
+            android:name="fr.bde_eseo.eseomega.gcmpush.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -188,7 +188,7 @@
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name=".gcmpush.RegistrationIntentService"
+            android:name="fr.bde_eseo.eseomega.gcmpush.RegistrationIntentService"
             android:exported="false" />
 
         <!-- Boot receiver -->
@@ -204,7 +204,7 @@
         -->
 
         <activity
-            android:name=".family.FamilyTreeActivity"
+            android:name="fr.bde_eseo.eseomega.family.FamilyTreeActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_family"
             android:screenOrientation="portrait"

@@ -6,7 +6,7 @@ android {
     //useLibrary 'org.apache.http.legacy' // apache support
 
     defaultConfig {
-        applicationId "fr.bde_eseo.eseoasis"
+        applicationId "fr.bde_eseo.eseomega"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 31
