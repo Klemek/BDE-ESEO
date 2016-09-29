@@ -9,6 +9,7 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -243,6 +244,8 @@ public class TreeView extends View {
                     canvas.drawRect(new Rect(k * dx * 3 / 2 + dx / 2, 0, (k + 1) * dx * 3 / 2, he), pb2);
                     if(k != depth-1)
                         canvas.drawRect(new Rect((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx/2, he), pb2g);
+                    else
+                        canvas.drawRect(new Rect((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx/2, he), pb2);
                 }
                 canvas.drawText(StudentItem.getRnk(rnkmx-k), k * dx * 3 / 2 + dx, bs, ppr2);
                 canvas.drawText(prnames[depth-k], k * dx * 3 / 2 + dx, he-bs, ppr);
