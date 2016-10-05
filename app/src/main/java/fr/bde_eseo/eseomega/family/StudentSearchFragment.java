@@ -180,7 +180,7 @@ public class StudentSearchFragment extends Fragment {
                 }
                 asyncJSONSearch = new AsyncJSONSearch(studentItems.isEmpty());
 
-                if (newText.length() > 0) {
+                if (newText.length() > 3) {//Prevent useless request from database, name length is always greater than 3
                     asyncJSONSearch.execute(Constants.URL_JSON_STUDENT_SEARCH + newText);
                 } else {
                     imgA.setVisibility(View.VISIBLE);
