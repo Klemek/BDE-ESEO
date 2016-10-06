@@ -28,8 +28,6 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 import fr.bde_eseo.eseomega.BuildConfig;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
@@ -43,16 +41,18 @@ import fr.bde_eseo.eseomega.utils.Utilities;
 public class AsyncCheckVersion extends AsyncTask<String, String, String> {
 
     private Context context;
+    private AsyncTask<String, Void, String> task;
+    private String taskarg;
 
-    public AsyncCheckVersion(Context context) {
+    public AsyncCheckVersion(Context context, AsyncTask<String, Void, String> task, String taskarg) {
         this.context = context;
+        this.task = task;
+        this.taskarg = taskarg;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        HashMap<String,String> postParam = new HashMap<>();
-        postParam.put(context.getResources().getString(R.string.os), Constants.APP_ID);
-        return ConnexionUtils.postServerData(Constants.URL_API_INFO_VERSION, postParam, context);
+        return ConnexionUtils.getServerData(Constants.URL_JSON_APP_INFO);
     }
 
     @Override
@@ -61,13 +61,17 @@ public class AsyncCheckVersion extends AsyncTask<String, String, String> {
         if (Utilities.isNetworkDataValid(data)) {
             try {
                 JSONObject obj = new JSONObject(data);
-                int status = obj.getInt("status");
+                if(obj.has("err") || data == null){
+                    new MaterialDialog.Builder(context)
+                            .title(R.string.error)
+                            .content(R.string.error_server)
+                            .positiveText(R.string.dialog_back)
+                            .show();
+                }else{
+                    JSONObject info = obj.getJSONObject("android");
+                    String ver = info.getString("version");
 
-                if (status == 1) {
-                    JSONObject jsonData = obj.getJSONObject("data");
-                    String servVersion = jsonData.getString("version");
-
-                    if (!servVersion.equals(BuildConfig.VERSION_NAME)) {
+                    if (!ver.equals(BuildConfig.VERSION_NAME)) {
                         new MaterialDialog.Builder(context)
                                 .title(R.string.update_title)
                                 .content(R.string.update_content)
@@ -87,12 +91,18 @@ public class AsyncCheckVersion extends AsyncTask<String, String, String> {
                                     }
                                 })
                                 .show();
+                    }else{
+                        if(taskarg != null)task.execute(taskarg);
                     }
+
+
+
                 }
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+
     }
 }

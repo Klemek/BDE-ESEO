@@ -325,7 +325,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
 
         } else if (prefsUser.getBoolean(Constants.PREFS_GENERAL_UPDATE, false)) {
             // Else check update if the user asks for it
-            AsyncCheckVersion asyncCheckVersion = new AsyncCheckVersion(MainActivity.this);
+            AsyncCheckVersion asyncCheckVersion = new AsyncCheckVersion(MainActivity.this, null, "");
             asyncCheckVersion.execute();
         }
 

@@ -56,6 +56,7 @@ import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
 
 /**
  * Created by François on 13/04/2015.
@@ -226,12 +227,15 @@ public class OrderHistoryFragment extends Fragment {
                     params.put(getActivity().getResources().getString(R.string.password), userPass);
                     params.put(getActivity().getResources().getString(R.string.tstp), "" + timestamp);
                     params.put(getActivity().getResources().getString(R.string.os), "" + Constants.APP_ID);
-                    params.put(getActivity().getResources().getString(R.string.version), "" + versionName);
+                    //params.put(getActivity().getResources().getString(R.string.version), "" + versionName);
+                    params.put(getActivity().getResources().getString(R.string.version), "" + "1.0.2" /*getString(R.string.app_version_name)*/);
                     params.put(getActivity().getResources().getString(R.string.hash), EncryptUtils.sha256(getActivity().getResources().getString(R.string.MESSAGE_GET_TOKEN) + userLogin + userPass + timestamp + Constants.APP_ID));
 
                     /** Call async task **/
                     SyncTimeToken syncTimeToken = new SyncTimeToken(getActivity());
-                    syncTimeToken.execute(Constants.URL_API_ORDER_PREPARE);
+                    //syncTimeToken.execute(Constants.URL_API_ORDER_PREPARE);
+
+                    new AsyncCheckVersion(getContext(), syncTimeToken, "").execute();
                 }
 
             }
@@ -259,7 +263,7 @@ public class OrderHistoryFragment extends Fragment {
     /**
      * Asynctask to sync time and get token from server
      */
-    class SyncTimeToken extends AsyncTask<String, String, String> {
+    class SyncTimeToken extends AsyncTask<String, Void, String> {
 
         String content;
         Context context;
@@ -277,7 +281,7 @@ public class OrderHistoryFragment extends Fragment {
         }
 
         @Override
-        protected String doInBackground(String... sUrl) {
+        protected String doInBackground(String...args) {
             return ConnexionUtils.postServerData(Constants.URL_API_ORDER_PREPARE, params, context);
         }
 

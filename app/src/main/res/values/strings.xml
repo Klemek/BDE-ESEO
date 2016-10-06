@@ -5,8 +5,8 @@
     <string name="app_name_tickets">Vos réservations</string>
     <string name="app_name_sales">Faire une réservation</string>
     <string name="app_name_shuttles">Choisir une navette</string>
-    <string name="app_version_name">1.0.0</string>
-    <string name="app_version_code">32</string>
+    <string name="app_version_name">1.0.4</string>
+    <string name="app_version_code">36</string>
     <string name="app_copyright">None</string>
 
     <string name="desc_list_item_icon">Item Icon</string>

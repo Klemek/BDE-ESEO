@@ -298,7 +298,7 @@ public class ElementChooserActivity extends AppCompatActivity {
 
         public String getName() {
             if (name == null || name.length() == 0)
-                return getString(R.string.touch);
+                return "-- Touchez ici --";
             else
                 return name;
         }

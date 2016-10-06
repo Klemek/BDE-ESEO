@@ -124,9 +124,11 @@ public class Constants {
 
     //ESEOASIS URLs
 
-    //public static final String URL_SERVER = "https://api.eseoasis.com/";
     public static final String URL_API = "https://api.eseoasis.com/";
     //JSON Reading
+
+    public static final String URL_JSON_APP_INFO = URL_API+"app_info";
+
     //News
     public static final String URL_JSON_NEWS = URL_API + "news?smtype=ANDROID&";
     public static final String URL_JSON_NEWS_SINGLE = URL_API + "news/";

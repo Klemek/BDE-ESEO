@@ -53,9 +53,10 @@ public class OrderTabsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_order, container, false);
 
         mPager = (ViewPager) rootView.findViewById(R.id.home_fragment_pager);
+        titles = new CharSequence[]{"Carte","Panier (0)"};
         mAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), titles, nbTabs);
         mPager.setAdapter(mAdapter);
-        titles = new CharSequence[]{getString(R.string.cafet_menu2), getString(R.string.cafet_cart)+" (0)"};
+
         mTabs = (SlidingTabLayout) rootView.findViewById(R.id.home_fragment_tabs);
         mTabs.setDistributeEvenly(true);
         mTabs.setViewPager(mPager);
@@ -100,7 +101,7 @@ public class OrderTabsFragment extends Fragment {
         int countItem = DataManager.getInstance().getNbCartItems();
 
         // Update tabs
-        mAdapter.setCartTitle(getString(R.string.cafet_cart)+" (" + countItem + ")");
+        mAdapter.setCartTitle("Panier (" + countItem + ")");
         mAdapter.notifyDataSetChanged();
         mTabs.setViewPager(mPager); // RESOLVES EVERYTHING YEAH :D
 

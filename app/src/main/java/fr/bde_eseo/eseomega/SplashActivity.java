@@ -76,7 +76,9 @@ public class SplashActivity extends Activity {
                 //Tutorial at first launch
                 boolean tuto = true;
                 try{
-                    tuto = !prefs_Read.getString(Constants.PREFS_APP_TUTORIAL, "").equals(getString(R.string.app_version_name));
+                    String[] vern = prefs_Read.getString(Constants.PREFS_APP_TUTORIAL, "").split("\\.");
+                    String[] vero = getString(R.string.app_version_name).split("\\.");
+                    tuto = !(vern[0].equals(vero[0]) && vern[1].equals(vero[1]));//check first two numbers of version
                 }catch(ClassCastException ignore){}
                 if (tuto) {
                     i = new Intent(SplashActivity.this, TutorialActivity.class);
