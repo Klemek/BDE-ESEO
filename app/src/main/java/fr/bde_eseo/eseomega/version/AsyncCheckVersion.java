@@ -92,7 +92,7 @@ public class AsyncCheckVersion extends AsyncTask<String, String, String> {
                                 })
                                 .show();
                     }else{
-                        if(taskarg != null)task.execute(taskarg);
+                        if(task != null)task.execute(taskarg);
                     }
 
 
