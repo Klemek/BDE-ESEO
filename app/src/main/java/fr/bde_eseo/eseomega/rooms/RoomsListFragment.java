@@ -96,6 +96,8 @@ public class RoomsListFragment extends Fragment {
     private static final int SORT_BAT = 1;
     private static final int SORT_FLOOR = 2;
 
+    private AsyncJSON asyncJSON;
+
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_simple_list, container, false);
@@ -141,7 +143,7 @@ public class RoomsListFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
 
         // Start download of data
-        AsyncJSON asyncJSON = new AsyncJSON(true); // circle needed for first call
+        asyncJSON = new AsyncJSON(true); // circle needed for first call
         asyncJSON.execute(Constants.URL_JSON_PLANS);
 
         // Swipe-to-refresh implementations
@@ -167,6 +169,12 @@ public class RoomsListFragment extends Fragment {
             }
         });*/
         return rootView;
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncJSON != null)asyncJSON.cancel(true);
     }
 
     @Override

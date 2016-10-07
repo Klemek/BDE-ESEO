@@ -72,6 +72,8 @@ public class ViewProfileFragment extends Fragment {
     private static final int RESULT_OK = -1;
     private MaterialDialog materialDialog;
 
+    private AsyncDisconnect asyncDisconnect;
+
     public ViewProfileFragment () {}
 
     @Override
@@ -79,6 +81,12 @@ public class ViewProfileFragment extends Fragment {
         super.onAttach(activity);
 
         mOnUserProfileChange = (OnUserProfileChange) getActivity();
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncDisconnect != null)asyncDisconnect.cancel(true);
     }
 
     @Override
@@ -134,7 +142,7 @@ public class ViewProfileFragment extends Fragment {
                     public void onPositive(MaterialDialog dialog) {
                         super.onPositive(dialog);
 
-                        AsyncDisconnect asyncDisconnect = new AsyncDisconnect(getActivity(), profile);
+                        asyncDisconnect = new AsyncDisconnect(getActivity(), profile);
                         asyncDisconnect.execute(profile);
 /*
                         materialDialog = new MaterialDialog.Builder(getActivity())

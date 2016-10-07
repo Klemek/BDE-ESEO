@@ -63,6 +63,7 @@ public class ClubsListFragment extends Fragment {
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
     private String cachePath;
+    private AsyncJSON asyncJSON;
     private File cacheFileEseo;
 
     // Model -> static
@@ -105,7 +106,7 @@ public class ClubsListFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
 
         // Start download of data
-        AsyncJSON asyncJSON = new AsyncJSON(true); // circle needed for first call
+        asyncJSON = new AsyncJSON(true); // circle needed for first call
         asyncJSON.execute(Constants.URL_JSON_CLUBS);
 
         // Swipe-to-refresh implementations
@@ -117,7 +118,7 @@ public class ClubsListFragment extends Fragment {
                 long t = System.currentTimeMillis() / 1000;
                 if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
                     timestamp = t;
-                    AsyncJSON asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
+                    asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
                     asyncJSON.execute(Constants.URL_JSON_CLUBS);
                 } else {
                     swipeRefreshLayout.setRefreshing(false);
@@ -138,6 +139,12 @@ public class ClubsListFragment extends Fragment {
         );
 
         return rootView;
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncJSON != null)asyncJSON.cancel(true);
     }
 
     // Scroll listener to prevent issue 77846

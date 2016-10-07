@@ -62,6 +62,7 @@ public class ConnectProfileFragment extends Fragment {
     private OnUserProfileChange mOnUserProfileChange;
     private String[] bullshitHint;
     private Random rand;
+    private AsyncLogin asyncLogin;
     private UserProfile profile;
 
     // Function to set the dialog visibity from activity
@@ -105,6 +106,12 @@ public class ConnectProfileFragment extends Fragment {
     }
 
     @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncLogin != null)asyncLogin.cancel(true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         // Find layout elements
@@ -132,7 +139,7 @@ public class ConnectProfileFragment extends Fragment {
                 } else if (etUserPassword.getText().toString().length() < 1) {
                     etUserPassword.setError(getText(R.string.login_no_pass));
                 } else {
-                    AsyncLogin asyncLogin = new AsyncLogin(getActivity());
+                    asyncLogin = new AsyncLogin(getActivity());
                     asyncLogin.execute();
                 }
                 etUserID.setHint(bullshitHint[rand.nextInt(bullshitHint.length)]);

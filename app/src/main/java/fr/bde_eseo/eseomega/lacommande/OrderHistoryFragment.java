@@ -17,6 +17,7 @@
 
 package fr.bde_eseo.eseomega.lacommande;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -87,6 +88,11 @@ public class OrderHistoryFragment extends Fragment {
     private HashMap<String, String> params;
     private long lastUpdate = 0;
     private Context context;
+    private AsyncInfoService asyncInfoService;
+    private SyncHistory syncHistory;
+    private SyncTimeToken syncTimeToken;
+    private AsyncCheckVersion asyncCheckVersion;
+
 
     private TextView tvNothing, tvNothing2, tvServiceInfo;
     private ImageView imgNothing;
@@ -109,6 +115,15 @@ public class OrderHistoryFragment extends Fragment {
             mHandler.removeCallbacks(updateTimerThread);
             mHandler.postDelayed(updateTimerThread, RUN_START);
         }
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncInfoService != null)asyncInfoService.cancel(true);
+        if(syncTimeToken != null)syncTimeToken.cancel(true);
+        if(asyncCheckVersion != null)asyncCheckVersion.cancel(true);
+        if(syncHistory != null)syncHistory.cancel(true);
     }
 
     @Override
@@ -232,10 +247,10 @@ public class OrderHistoryFragment extends Fragment {
                     params.put(getActivity().getResources().getString(R.string.hash), EncryptUtils.sha256(getActivity().getResources().getString(R.string.MESSAGE_GET_TOKEN) + userLogin + userPass + timestamp + Constants.APP_ID));
 
                     /** Call async task **/
-                    SyncTimeToken syncTimeToken = new SyncTimeToken(getActivity());
+                    syncTimeToken = new SyncTimeToken(getActivity());
                     //syncTimeToken.execute(Constants.URL_API_ORDER_PREPARE);
-
-                    new AsyncCheckVersion(getContext(), syncTimeToken, "").execute();
+                    asyncCheckVersion = new AsyncCheckVersion(getContext(), syncTimeToken, "");
+                    asyncCheckVersion.execute();
                 }
 
             }
@@ -253,7 +268,7 @@ public class OrderHistoryFragment extends Fragment {
         ));
 
         // Who's cooking ?
-        AsyncInfoService asyncInfoService = new AsyncInfoService();
+        asyncInfoService = new AsyncInfoService(getActivity());
         asyncInfoService.execute();
 
         return rootView;
@@ -379,7 +394,7 @@ public class OrderHistoryFragment extends Fragment {
             try {
                 if (run && userProfile.isCreated()) {// && System.currentTimeMillis() - lastUpdate >= RUN_UPDATE) {
                     run = false;
-                    SyncHistory syncHistory = new SyncHistory();
+                    syncHistory = new SyncHistory();
                     syncHistory.execute();
                 }
             } catch (NullPointerException e) { // Stop handler if fragment disappears
@@ -424,6 +439,13 @@ public class OrderHistoryFragment extends Fragment {
 
             // Try to fetch data from server
             jsonStr = ConnexionUtils.postServerData(Constants.URL_API_ORDER_LIST, syncParam, context);
+
+            return jsonStr;
+        }
+
+        // Once File is downloaded
+        @Override
+        protected void onPostExecute(String jsonStr) {
 
             // If data is empty
             if (!Utilities.isNetworkDataValid(jsonStr)) {
@@ -546,15 +568,8 @@ public class OrderHistoryFragment extends Fragment {
                 }
             }
 
-            return jsonStr;
-        }
-
-        // Once File is downloaded
-        @Override
-        protected void onPostExecute(String sJson) {
-
             progressBar.setVisibility(View.GONE);
-            if (sJson != null) {
+            if (jsonStr != null) {
 
                 mAdapter.notifyDataSetChanged();
 
@@ -588,9 +603,15 @@ public class OrderHistoryFragment extends Fragment {
      */
     private class AsyncInfoService extends AsyncTask <String, String, String> {
 
+        private Activity a;
+
+        public AsyncInfoService(Activity a){
+            this.a = a;
+        }
+
         @Override
         protected String doInBackground(String... params) {
-            return ConnexionUtils.postServerData(Constants.URL_API_INFO_SERVICE, null, getActivity());
+            return ConnexionUtils.postServerData(Constants.URL_API_INFO_SERVICE, null, a);
         }
 
         @Override

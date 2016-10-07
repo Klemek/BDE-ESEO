@@ -155,6 +155,12 @@ public class StudentSearchFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        if(asyncJSONSearch != null)asyncJSONSearch.cancel(true);
+    }
+
+    @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_families, menu);
         // Retrieve the SearchView and plug it into SearchManager

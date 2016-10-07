@@ -73,6 +73,7 @@ public class NewsListFragment extends Fragment {
     private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     private File cacheFile;
     private String cachePath;
+    private AsyncJSON asyncJSON;
     private File cacheFileEseo;
 
     @Override
@@ -111,8 +112,8 @@ public class NewsListFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // Start download of data
-        AsyncJSONNews asyncJSONNews = new AsyncJSONNews(true, false); // circle needed for first call, and clear data
-        asyncJSONNews.execute(Constants.URL_JSON_NEWS + "height=5&ptr=0");
+        asyncJSON = new AsyncJSON(true, false); // circle needed for first call, and clear data
+        asyncJSON.execute(Constants.URL_JSON_NEWS + "height=5&ptr=0");
 
         // Swipe-to-refresh implementations
         timestamp = 0;
@@ -123,8 +124,8 @@ public class NewsListFragment extends Fragment {
                 if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
                     timestamp = t;
                     ptr = 0;
-                    AsyncJSONNews asyncJSONNews = new AsyncJSONNews(false, false); // no circle here (already in SwipeLayout)
-                    asyncJSONNews.execute(Constants.URL_JSON_NEWS + "height=5&ptr=0");
+                    AsyncJSON asyncJSON = new AsyncJSON(false, false); // no circle here (already in SwipeLayout)
+                    asyncJSON.execute(Constants.URL_JSON_NEWS + "height=5&ptr=0");
                 } else {
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -153,9 +154,9 @@ public class NewsListFragment extends Fragment {
 
                                 @Override
                                 public void run() {
-                                    AsyncJSONNews asyncJSONNews = new AsyncJSONNews(false, true);
+                                    asyncJSON = new AsyncJSON(false, true);
                                     ptr++;
-                                    asyncJSONNews.execute(Constants.URL_JSON_NEWS + "height=5&ptr=" + ptr*5);
+                                    asyncJSON.execute(Constants.URL_JSON_NEWS + "height=5&ptr=" + ptr*5);
                                 }
                             }, 1000); // pour pas être trop violent
                         }
@@ -165,6 +166,12 @@ public class NewsListFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncJSON != null) asyncJSON.cancel(true);
     }
 
     // Scroll listener to prevent issue 77846
@@ -191,13 +198,13 @@ public class NewsListFragment extends Fragment {
     /**
      * Async task to download news from JSON server's file
      */
-    private class AsyncJSONNews extends AsyncTask<String,String,JSONArray> {
+    private class AsyncJSON extends AsyncTask<String,String,JSONArray> {
 
         private boolean displayCircle;
         private boolean addMore;
         private boolean loadedFromCache;
 
-        private AsyncJSONNews(boolean displayCircle, boolean addMore) {
+        private AsyncJSON(boolean displayCircle, boolean addMore) {
             this.displayCircle = displayCircle;
             this.addMore = addMore;
             this.loadedFromCache = false;

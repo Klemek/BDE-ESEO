@@ -71,6 +71,8 @@ public class SponsoFragment extends Fragment {
     private String cachePath;
     private File cacheFileEseo;
 
+    private AsyncJSON asyncJSON;
+
     public SponsoFragment() {}
 
     @Override
@@ -110,7 +112,7 @@ public class SponsoFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
 
         // Start download of data
-        AsyncJSON asyncJSON = new AsyncJSON(true); // circle needed for first call
+        asyncJSON = new AsyncJSON(true); // circle needed for first call
         asyncJSON.execute(Constants.URL_JSON_SPONSORS);
 
         // Swipe-to-refresh implementations
@@ -122,7 +124,7 @@ public class SponsoFragment extends Fragment {
                 long t = System.currentTimeMillis() / 1000;
                 if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
                     timestamp = t;
-                    AsyncJSON asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
+                    asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
                     asyncJSON.execute(Constants.URL_JSON_SPONSORS);
                 } else {
                     swipeRefreshLayout.setRefreshing(false);
@@ -145,6 +147,12 @@ public class SponsoFragment extends Fragment {
         }));
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        if(asyncJSON != null)asyncJSON.cancel(true);
     }
 
     // Scroll listener to prevent issue 77846

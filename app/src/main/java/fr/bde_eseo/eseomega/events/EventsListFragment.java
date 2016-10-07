@@ -73,6 +73,7 @@ public class EventsListFragment extends Fragment {
     private MyEventsAdapter mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
     private long timestamp;
+    private AsyncJSON asyncJSON;
     private RecyclerView.OnItemTouchListener disabler;
 
     // Model
@@ -125,8 +126,8 @@ public class EventsListFragment extends Fragment {
         mAdapter.notifyDataSetChanged();
 
         // Start download of data
-        AsyncJSONews asyncJSONews = new AsyncJSONews(true); // circle needed for first call
-        asyncJSONews.execute(Constants.URL_JSON_EVENTS);
+        asyncJSON = new AsyncJSON(true); // circle needed for first call
+        asyncJSON.execute(Constants.URL_JSON_EVENTS);
 
 
         // Swipe-to-refresh implementations
@@ -138,8 +139,8 @@ public class EventsListFragment extends Fragment {
                 long t = System.currentTimeMillis() / 1000;
                 if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
                     timestamp = t;
-                    AsyncJSONews asyncJSONews = new AsyncJSONews(false); // no circle here (already in SwipeLayout)
-                    asyncJSONews.execute(Constants.URL_JSON_EVENTS);
+                    asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
+                    asyncJSON.execute(Constants.URL_JSON_EVENTS);
                 } else {
                     swipeRefreshLayout.setRefreshing(false);
                 }
@@ -147,6 +148,12 @@ public class EventsListFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onDetach(){
+        super.onDetach();
+        if(asyncJSON != null) asyncJSON.cancel(true);
     }
 
     // Scroll listener to prevent issue 77846
@@ -291,11 +298,11 @@ public class EventsListFragment extends Fragment {
     /**
      * Download JSON data
      */
-    public class AsyncJSONews extends AsyncTask<String, String, JSONArray> {
+    public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
 
         boolean displayCircle;
 
-        public AsyncJSONews(boolean displayCircle) {
+        public AsyncJSON(boolean displayCircle) {
             this.displayCircle = displayCircle;
         }
 
