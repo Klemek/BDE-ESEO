@@ -7,11 +7,11 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cardTickets"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"

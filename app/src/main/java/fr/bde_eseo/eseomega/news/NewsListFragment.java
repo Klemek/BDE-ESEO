@@ -39,8 +39,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,6 +48,7 @@ import java.util.ArrayList;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -58,6 +57,7 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class NewsListFragment extends Fragment {
 
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     private ArrayList<NewsItem> newsItems;
     private MyNewsAdapter mAdapter;
     private RecyclerView recList;
@@ -70,11 +70,25 @@ public class NewsListFragment extends Fragment {
     private int ptr;
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     private File cacheFile;
     private String cachePath;
     private AsyncJSON asyncJSON;
     private File cacheFileEseo;
+
+    public static void openArticle(Activity act, NewsItem ni) {
+        if (!ni.isHeader() && !ni.isFooter()) {
+            Intent myIntent = new Intent(act, ViewNewsActivityMaterial.class);
+            myIntent.putExtra(Constants.KEY_NEWS_TITLE, ni.getName());
+            myIntent.putExtra(Constants.KEY_NEWS_IMGARRAY, ni.getImgLinks());
+            myIntent.putExtra(Constants.KEY_NEWS_DATE, ni.getFrenchStr());
+            myIntent.putExtra(Constants.KEY_NEWS_HTML, ni.getData());
+            act.startActivity(myIntent);
+        }
+    }
+
+    public static void openArticle(Activity act, int newsid) {
+        new AsyncJSONSingleNews(act).execute(newsid);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
@@ -174,6 +188,35 @@ public class NewsListFragment extends Fragment {
         if(asyncJSON != null) asyncJSON.cancel(true);
     }
 
+    public static class AsyncJSONSingleNews extends AsyncTask<Integer, Void, JSONObject> {
+
+        private Activity act;
+
+        public AsyncJSONSingleNews(Activity act) {
+            this.act = act;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject obj) {
+            try {
+                openArticle(act, new NewsItem(obj));
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Toast.makeText(act.getBaseContext(), R.string.toast_cant_read_news, Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+
+        @Override
+        protected JSONObject doInBackground(Integer... params) {
+
+            JSONObject news = JSONUtils.getJSONFromUrl(Constants.URL_JSON_NEWS_SINGLE + params[0]);
+
+            return news;
+        }
+    }
+
     // Scroll listener to prevent issue 77846
     public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
 
@@ -192,8 +235,6 @@ public class NewsListFragment extends Fragment {
 
         }
     }
-
-
 
     /**
      * Async task to download news from JSON server's file
@@ -307,14 +348,12 @@ public class NewsListFragment extends Fragment {
         }
     }
 
-
     public class MyNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-        private Context ctx;
 
         private final static int TYPE_NORMAL = 0;
         private final static int TYPE_FOOTER = 1;
         private final static int TYPE_HEADER = 2;
+        private Context ctx;
 
         public MyNewsAdapter (Context ctx) {
             this.ctx = ctx;
@@ -361,7 +400,7 @@ public class NewsListFragment extends Fragment {
                 nh.tvName.setText(ni.getName());
                 nh.tvContent.setText(JSONUtils.fromHtml(ni.getShData()));
                 nh.tvDateAuthor.setText(ni.getFrenchStr());
-                Picasso.with(ctx).load(ni.getHeaderImg()).placeholder(R.drawable.placeholder).error(R.drawable.placeholder_error).into(nh.imgHeader);
+                ImageUtils.loadImage(ctx, ni.getHeaderImg(), R.drawable.placeholder, R.drawable.placeholder_error, nh.imgHeader);
                 nh.cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -416,50 +455,6 @@ public class NewsListFragment extends Fragment {
                 tvLast = (TextView) itemView.findViewById(R.id.tvDateLast);
             }
 
-        }
-    }
-
-    public static void openArticle(Activity act, NewsItem ni){
-        if (!ni.isHeader() && !ni.isFooter()) {
-            Intent myIntent = new Intent(act, ViewNewsActivityMaterial.class);
-            myIntent.putExtra(Constants.KEY_NEWS_TITLE, ni.getName());
-            myIntent.putExtra(Constants.KEY_NEWS_IMGARRAY, ni.getImgLinks());
-            myIntent.putExtra(Constants.KEY_NEWS_DATE, ni.getFrenchStr());
-            myIntent.putExtra(Constants.KEY_NEWS_HTML, ni.getData());
-            act.startActivity(myIntent);
-        }
-    }
-
-    public static void openArticle(Activity act, int newsid){
-        new AsyncJSONSingleNews(act).execute(newsid);
-    }
-
-    public static class AsyncJSONSingleNews extends AsyncTask<Integer ,Void, JSONObject> {
-
-        private Activity act;
-
-        public AsyncJSONSingleNews(Activity act) {
-            this.act = act;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject obj) {
-            try{
-                openArticle(act, new NewsItem(obj));
-            }catch(JSONException e){
-                e.printStackTrace();
-                Toast.makeText(act.getBaseContext(),R.string.toast_cant_read_news,Toast.LENGTH_SHORT).show();
-            }
-
-
-        }
-
-        @Override
-        protected JSONObject doInBackground(Integer... params) {
-
-            JSONObject news = JSONUtils.getJSONFromUrl(Constants.URL_JSON_NEWS_SINGLE+params[0]);
-
-            return news;
         }
     }
 }

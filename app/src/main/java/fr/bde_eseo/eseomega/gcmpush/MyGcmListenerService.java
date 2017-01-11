@@ -20,6 +20,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
@@ -27,9 +28,15 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.gcm.GcmListenerService;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.MainActivity;
@@ -38,6 +45,22 @@ import fr.bde_eseo.eseomega.R;
 public class MyGcmListenerService extends GcmListenerService {
 
     private static final String TAG = "MyGcmListenerService";
+
+    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    // [END receive_message]
 
     /**
      * Called when message is received.
@@ -51,6 +74,7 @@ public class MyGcmListenerService extends GcmListenerService {
     public void onMessageReceived(String from, Bundle data) {
 
         if (data != null) {
+            Log.d("debug", "" + data);
             String title = data.getString("title");
             String message = data.getString("message");
             String versionPush = data.getString("versionPush");
@@ -84,7 +108,6 @@ public class MyGcmListenerService extends GcmListenerService {
         }
         // [END_EXCLUDE]
     }
-    // [END receive_message]
 
     /**
      * Create and show a simple notification containing the received GCM message.
@@ -139,8 +162,8 @@ public class MyGcmListenerService extends GcmListenerService {
                     .setContentTitle(title)
                     .setContentText(message)
                     .setAutoCancel(true)
-                    .setLights(Color.BLUE, 1000, 3000)
-                    .setColor(this.getResources().getColor(R.color.md_blue_800))
+                    .setLights(Color.YELLOW, 1000, 3000)
+                    .setColor(this.getResources().getColor(R.color.color_primary))
                     .setVibrate(pattern)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)
@@ -158,4 +181,6 @@ public class MyGcmListenerService extends GcmListenerService {
             notificationManager.notify((int) System.currentTimeMillis(), notificationBuilder.build());
         }
     }
+
+
 }

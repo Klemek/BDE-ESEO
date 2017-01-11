@@ -33,7 +33,6 @@ import android.widget.TextView;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
@@ -42,6 +41,7 @@ import fr.bde_eseo.eseomega.events.tickets.model.CheckShuttleItem;
 import fr.bde_eseo.eseomega.events.tickets.model.ShuttleItem;
 import fr.bde_eseo.eseomega.events.tickets.model.SubEventItem;
 import fr.bde_eseo.eseomega.events.tickets.model.TicketStore;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 
 /**
  * Created by François L. on 13/01/2016.
@@ -154,7 +154,7 @@ public class ShuttleActivity extends AppCompatActivity {
             ShuttleItem si = subEventItem.getShuttleItems().get(i);
             if (!si.getDepartPlace().equalsIgnoreCase(lastHeader)) {
                 lastHeader = si.getDepartPlace();
-                checkShuttleItems.add(new CheckShuttleItem(lastHeader.toUpperCase(Locale.FRANCE)));
+                checkShuttleItems.add(new CheckShuttleItem(lastHeader.toUpperCase(DateUtils.getLocale())));
             }
             checkShuttleItems.add(new CheckShuttleItem(si));
         }

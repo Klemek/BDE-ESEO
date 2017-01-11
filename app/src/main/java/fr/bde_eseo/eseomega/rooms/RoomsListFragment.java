@@ -48,11 +48,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -62,6 +62,12 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class RoomsListFragment extends Fragment {
 
+    // Constants
+    private final static String URI_IMG_PLANS = "assets://plan.jpg";
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
+    private static final int SORT_NAME = 0;
+    private static final int SORT_BAT = 1;
+    private static final int SORT_FLOOR = 2;
     // UI
     private ProgressBar progCircle;
     private ImageView imgA;
@@ -71,31 +77,19 @@ public class RoomsListFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
-
     // Toolbar
     private MenuItem mSearchAction;
     private EditText etSearch;
     private ImageView imgClear;
     private TextView tvSearchTitle;
     private boolean isSearchOpened = false;
-
     // Model
     private ArrayList<RoomItem> roomItems;
     private ArrayList<RoomItem> roomItemsDisplay;
-
-    // Constants
-    private final static String URI_IMG_PLANS = "assets://plan.jpg";
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
-
     // Cache managing
     private String cachePath;
     private File cacheFileEseo;
-
     private int sortType;
-    private static final int SORT_NAME = 0;
-    private static final int SORT_BAT = 1;
-    private static final int SORT_FLOOR = 2;
-
     private AsyncJSON asyncJSON;
 
     @Override
@@ -250,6 +244,114 @@ public class RoomsListFragment extends Fragment {
     }
 
     /**
+     * Sort rooms by names
+     */
+    public void sortRoomArray() {
+        Collections.sort(roomItems, new Comparator<RoomItem>() {
+            @Override
+            public int compare(RoomItem lhs, RoomItem rhs) {
+                switch (sortType) {
+                    case SORT_BAT:
+                        if (lhs.getBatiment() != rhs.getBatiment())
+                            return lhs.getBatiment().compareToIgnoreCase(rhs.getBatiment());
+                        return lhs.getNumber().compareToIgnoreCase(rhs.getNumber());
+                    case SORT_FLOOR:
+                        if (lhs.getFloor() != rhs.getFloor())
+                            return lhs.getFloor() - rhs.getFloor();
+                        return lhs.getName().compareToIgnoreCase(rhs.getName());
+                    default:
+                        return lhs.getName().compareToIgnoreCase(rhs.getName());
+                }
+
+            }
+        });
+    }
+
+    /**
+     * Restrict data in array (search mode)
+     */
+    private void searchInArray(String search) {
+        String sLow = search.toLowerCase(DateUtils.getLocale());
+        roomItemsDisplay.clear();
+        int size = roomItems.size();
+        for (int i = 0; i < size; i++) {
+            RoomItem ci = roomItems.get(i);
+            if (
+                // Recherche sur le nom
+                    ci.getName().toLowerCase(DateUtils.getLocale()).contains(sLow)
+                            ||
+                            // Recherche sur la salle
+                            ci.getNumber().toLowerCase(DateUtils.getLocale()).contains(sLow)
+                            ||
+                            // Recherche sur les infos
+                            ci.getInfo().toLowerCase(DateUtils.getLocale()).contains(sLow)
+
+                    ) {
+                roomItemsDisplay.add(ci);
+            }
+        }
+    }
+
+    /**
+     * Add headers to items
+     */
+    private void addHeaders() {
+        // Add headers into list
+        String actual;
+        int size = roomItemsDisplay.size();
+        if (size > 0) {
+            switch (sortType) {
+                case SORT_NAME:
+                    actual = "" + roomItemsDisplay.get(0).getName().charAt(0);
+                    for (int i = 0; i < size; i++) {
+                        RoomItem ri = roomItemsDisplay.get(i);
+
+                        if (i == 0 || !ri.getName().startsWith(actual)) {
+                            actual = ri.getName().charAt(0) + "";
+                            roomItemsDisplay.add(i, new RoomItem(actual));
+                            i++;
+                        }
+                    }
+                    break;
+                case SORT_BAT:
+                    actual = getString(R.string.room_bat) + " " + roomItemsDisplay.get(0).getBatiment();
+                    for (int i = 0; i < size; i++) {
+                        RoomItem ri = roomItemsDisplay.get(i);
+                        if (i == 0 || !(getString(R.string.room_bat) + " " + ri.getBatiment()).equals(actual)) {
+                            actual = getString(R.string.room_bat) + " " + ri.getBatiment();
+                            roomItemsDisplay.add(i, new RoomItem(actual));
+                            i++;
+                        }
+                    }
+                    break;
+                case SORT_FLOOR:
+                    actual = getString(R.string.room_floor) + " " + roomItemsDisplay.get(0).getFloor();
+                    for (int i = 0; i < size; i++) {
+                        RoomItem ri = roomItemsDisplay.get(i);
+                        if (i == 0 || !(getString(R.string.room_floor) + " " + ri.getFloor()).equals(actual)) {
+                            actual = getString(R.string.room_floor) + " " + ri.getFloor();
+                            roomItemsDisplay.add(i, new RoomItem(actual));
+                            i++;
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Add headers to list
+     */
+    private void fillItems() {
+        roomItemsDisplay.clear();
+        int size = roomItems.size();
+        for (int i = 0; i < size; i++) {
+            RoomItem ri = roomItems.get(i);
+            roomItemsDisplay.add(ri);
+        }
+    }
+
+    /**
      * Download JSON data
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
@@ -326,112 +428,6 @@ public class RoomsListFragment extends Fragment {
                 Utilities.writeStringToFile(cacheFileEseo, array.toString());
             }
             return array;
-        }
-    }
-
-    /**
-     * Sort rooms by names
-     */
-    public void sortRoomArray () {
-        Collections.sort(roomItems, new Comparator<RoomItem>() {
-            @Override
-            public int compare(RoomItem lhs, RoomItem rhs) {
-                switch(sortType){
-                    case SORT_BAT:
-                        if(lhs.getBatiment() != rhs.getBatiment())
-                            return lhs.getBatiment().compareToIgnoreCase(rhs.getBatiment());
-                        return lhs.getNumber().compareToIgnoreCase(rhs.getNumber());
-                    case SORT_FLOOR:
-                        if(lhs.getFloor() != rhs.getFloor())
-                            return lhs.getFloor()-rhs.getFloor();
-                        return lhs.getName().compareToIgnoreCase(rhs.getName());
-                    default:
-                        return lhs.getName().compareToIgnoreCase(rhs.getName());
-                }
-
-            }
-        });
-    }
-
-    /**
-     * Restrict data in array (search mode)
-     */
-    private void searchInArray (String search) {
-        String sLow = search.toLowerCase(Locale.FRANCE);
-        roomItemsDisplay.clear();
-        int size = roomItems.size();
-        for (int i=0;i<size;i++) {
-            RoomItem ci = roomItems.get(i);
-            if (
-                    // Recherche sur le nom
-                    ci.getName().toLowerCase(Locale.FRANCE).contains(sLow)
-                    ||
-                    // Recherche sur la salle
-                    ci.getNumber().toLowerCase(Locale.FRANCE).contains(sLow)
-                    ||
-                    // Recherche sur les infos
-                    ci.getInfo().toLowerCase(Locale.FRANCE).contains(sLow)
-
-            ) {
-                roomItemsDisplay.add(ci);
-            }
-        }
-    }
-
-    /**
-     * Add headers to items
-     */
-    private void addHeaders () {
-        // Add headers into list
-        String actual;
-        int size = roomItemsDisplay.size();
-        switch(sortType){
-            case SORT_NAME:
-                actual = ""+roomItemsDisplay.get(0).getName().charAt(0);
-                for (int i=0;i<size;i++) {
-                    RoomItem ri = roomItemsDisplay.get(i);
-
-                    if (i==0 || !ri.getName().startsWith(actual)) {
-                        actual = ri.getName().charAt(0) + "";
-                        roomItemsDisplay.add(i, new RoomItem(actual));
-                        i++;
-                    }
-                }
-                break;
-            case SORT_BAT:
-                actual = getString(R.string.room_bat)+" "+roomItemsDisplay.get(0).getBatiment();
-                for (int i=0;i<size;i++) {
-                    RoomItem ri = roomItemsDisplay.get(i);
-                    if (i==0 || !(getString(R.string.room_bat)+" "+ri.getBatiment()).equals(actual)) {
-                        actual = getString(R.string.room_bat)+" "+ri.getBatiment();
-                        roomItemsDisplay.add(i, new RoomItem(actual));
-                        i++;
-                    }
-                }
-                break;
-            case SORT_FLOOR:
-                actual = getString(R.string.room_floor) +" "+ roomItemsDisplay.get(0).getFloor();
-                for (int i=0;i<size;i++) {
-                    RoomItem ri = roomItemsDisplay.get(i);
-                    if (i==0 || !(getString(R.string.room_floor)+" "+ri.getFloor()).equals(actual)) {
-                        actual = getString(R.string.room_floor)+" "+ri.getFloor();
-                        roomItemsDisplay.add(i, new RoomItem(actual));
-                        i++;
-                    }
-                }
-                break;
-        }
-    }
-
-    /**
-     * Add headers to list
-     */
-    private void fillItems () {
-        roomItemsDisplay.clear();
-        int size = roomItems.size();
-        for (int i=0;i<size;i++) {
-            RoomItem ri = roomItems.get(i);
-            roomItemsDisplay.add(ri);
         }
     }
 }

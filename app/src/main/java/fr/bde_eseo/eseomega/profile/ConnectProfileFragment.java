@@ -37,7 +37,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Random;
 
 import fr.bde_eseo.eseomega.Constants;
@@ -45,6 +44,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.gcmpush.RegistrationIntentService;
 import fr.bde_eseo.eseomega.interfaces.OnUserProfileChange;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -52,8 +52,6 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  * Created by François on 13/04/2015.
  */
 public class ConnectProfileFragment extends Fragment {
-
-    public ConnectProfileFragment(){}
 
     private MaterialEditText etUserID, etUserPassword;
     private MaterialDialog mdProgress;
@@ -64,6 +62,9 @@ public class ConnectProfileFragment extends Fragment {
     private Random rand;
     private AsyncLogin asyncLogin;
     private UserProfile profile;
+
+    public ConnectProfileFragment() {
+    }
 
     // Function to set the dialog visibity from activity
     public void setPushRegistration (boolean isSent) {
@@ -167,7 +168,7 @@ public class ConnectProfileFragment extends Fragment {
 
         @Override
         protected void onPreExecute() {
-            userID = etUserID.getText().toString().toLowerCase(Locale.FRANCE).trim();
+            userID = etUserID.getText().toString().toLowerCase(DateUtils.getLocale()).trim();
             etUserID.setText(userID);
             userPassword = etUserPassword.getText().toString();
             enPass = EncryptUtils.passBase64(userPassword);

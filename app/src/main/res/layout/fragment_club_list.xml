@@ -15,11 +15,11 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:divider="@drawable/drawer_divider"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="true"
             android:dividerHeight="0.7dp"
+            android:drawSelectorOnTop="true"
+            android:fadeScrollbars="true"
             android:footerDividersEnabled="true"
-            android:drawSelectorOnTop="true"/>
+            android:scrollbars="vertical" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -47,22 +47,22 @@
             android:src="@drawable/img_nothing"/>
 
         <TextView
-            android:layout_below="@id/imgNoClub"
             android:id="@+id/tvListNothing"
-            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/imgNoClub"
             android:layout_marginBottom="14dp"
+            android:gravity="center"
             android:text="@string/empty_header_club"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView
-            android:layout_below="@id/tvListNothing"
             android:id="@+id/tvListNothing2"
-            android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tvListNothing"
+            android:gravity="center"
             android:text="@string/empty_desc_club"
             android:textColor="@color/text_light_header" />
 

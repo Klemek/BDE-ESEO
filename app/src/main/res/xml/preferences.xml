@@ -3,27 +3,30 @@
 
     <PreferenceCategory android:title="Général">
 
-    <ListPreference     android:title="Écran d'accueil"
-                        android:summary="Choisissez l'écran que vous souhaitez voir au démarrage de l'application"
-                        android:key="settings.general.homescreen"
-                        android:defaultValue="1"
+        <ListPreference
+            android:defaultValue="1"
                         android:entries="@array/nav_drawer_items"
-                        android:entryValues="@array/preferences_homescreen_values" />
+            android:entryValues="@array/preferences_homescreen_values"
+            android:key="settings.general.homescreen"
+            android:summary="Choisissez l'écran que vous souhaitez voir au démarrage de l'application"
+            android:title="Écran d'accueil" />
 
-    <CheckBoxPreference android:title="Mises à jour auto"
-                        android:defaultValue="false"
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="settings.general.autoupdate"
                         android:summary="Si coché, l'application effectuera une vérification des mises à jour à chaque démarrage."
-                        android:key="settings.general.autoupdate" />
+            android:title="Mises à jour auto" />
 
     </PreferenceCategory>
 
     <PreferenceCategory android:title="Lydia">
 
-        <EditTextPreference android:title="Numéro de téléphone"
-                            android:summary="Vous pouvez changer le numéro de téléphone portable utilisé par défaut lors d'une commande avec Lydia"
-                            android:key="settings.lydia.phone"
+        <EditTextPreference
+            android:defaultValue=""
                             android:inputType="phone"
-                            android:defaultValue=""/>
+            android:key="settings.lydia.phone"
+            android:summary="Vous pouvez changer le numéro de téléphone portable utilisé par défaut lors d'une commande avec Lydia"
+            android:title="Numéro de téléphone" />
 
 
     </PreferenceCategory>

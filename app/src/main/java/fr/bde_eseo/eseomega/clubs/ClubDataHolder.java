@@ -27,6 +27,7 @@ import java.util.ArrayList;
  */
 public class ClubDataHolder {
     private static ClubDataHolder instance;
+    private ArrayList<ClubItem> clubs;
 
     private ClubDataHolder (){}
 
@@ -35,8 +36,6 @@ public class ClubDataHolder {
             instance = new ClubDataHolder();
         return instance;
     }
-
-    private ArrayList<ClubItem> clubs;
 
     public void reset() {
         if (clubs == null)

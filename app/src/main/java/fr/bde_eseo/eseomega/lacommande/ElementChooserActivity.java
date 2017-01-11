@@ -155,6 +155,65 @@ public class ElementChooserActivity extends AppCompatActivity {
         });
     }
 
+    // A method to find height of the status bar
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        if (activityStarted && mAdapter != null) {
+            activityStarted = false;
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (activityStarted && mAdapter != null && menu != null) {
+            activityStarted = false;
+
+            mAdapter.adapterObjects.clear();
+            String str = "";
+            for (int i = 0; i < menu.getItems().size(); i++) {
+
+                if (menu.getItems().get(i).hasIngredients() > 0) {
+                    mAdapter.adapterObjects.add(new CustomObjItem(menu.getItems().get(i).getName(),
+                            menu.getItems().get(i).getIdstr(),
+                            menu.getItems().get(i).getPrice(),
+                            true));
+                } else {
+                    if (str.length() == 0)
+                        str += "\n";
+                    str += menu.getItems().get(i).getName();
+                }
+            }
+            mAdapter.adapterObjects.add(new CustomObjItem(str, "", 0.0, false));
+
+            mAdapter.notifyDataSetChanged();
+            double total = 0.0;
+            for (int i = 0; i < menu.getItems().size(); i++) {
+                total += menu.getItems().get(i).calcRealPrice(true);
+            }
+
+            if (total > 0) {
+                tvStackMoreText.setVisibility(View.VISIBLE);
+                tvStackMorePrice.setVisibility(View.VISIBLE);
+                tvStackMorePrice.setText(new DecimalFormat("0.00").format(total) + "€");
+            } else {
+                tvStackMoreText.setVisibility(View.INVISIBLE);
+                tvStackMorePrice.setVisibility(View.INVISIBLE);
+            }
+        }
+    }
+
     /**
      * Custom adapter
      */
@@ -305,65 +364,6 @@ public class ElementChooserActivity extends AppCompatActivity {
 
         public void setName(String name) {
             this.name = name;
-        }
-    }
-
-    // A method to find height of the status bar
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
-        }
-        return result;
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        if (activityStarted && mAdapter != null) {
-            activityStarted = false;
-            mAdapter.notifyDataSetChanged();
-        }
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (activityStarted && mAdapter != null && menu != null) {
-            activityStarted = false;
-
-            mAdapter.adapterObjects.clear();
-            String str = "";
-            for (int i = 0; i < menu.getItems().size(); i++) {
-
-                if (menu.getItems().get(i).hasIngredients() > 0) {
-                    mAdapter.adapterObjects.add(new CustomObjItem(menu.getItems().get(i).getName(),
-                            menu.getItems().get(i).getIdstr(),
-                            menu.getItems().get(i).getPrice(),
-                            true));
-                } else {
-                    if (str.length() == 0)
-                        str += "\n";
-                    str += menu.getItems().get(i).getName();
-                }
-            }
-            mAdapter.adapterObjects.add(new CustomObjItem(str, "", 0.0, false));
-
-            mAdapter.notifyDataSetChanged();
-            double total = 0.0;
-            for (int i = 0; i < menu.getItems().size(); i++) {
-                total += menu.getItems().get(i).calcRealPrice(true);
-            }
-
-            if (total > 0) {
-                tvStackMoreText.setVisibility(View.VISIBLE);
-                tvStackMorePrice.setVisibility(View.VISIBLE);
-                tvStackMorePrice.setText(new DecimalFormat("0.00").format(total) + "€");
-            } else {
-                tvStackMoreText.setVisibility(View.INVISIBLE);
-                tvStackMorePrice.setVisibility(View.INVISIBLE);
-            }
         }
     }
 }

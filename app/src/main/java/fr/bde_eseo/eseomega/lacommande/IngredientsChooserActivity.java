@@ -142,6 +142,16 @@ public class IngredientsChooserActivity extends AppCompatActivity {
         });
     }
 
+    // A method to find height of the status bar
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
     /**
      * Custom adapter to handle checkbox events
      */
@@ -223,31 +233,21 @@ public class IngredientsChooserActivity extends AppCompatActivity {
             return visible;
         }
 
-        public String getMore() {
-            return more;
-        }
-
-        public void setChecked(boolean checked) {
-            this.checked = checked;
-        }
-
         public void setVisible(boolean visible) {
             this.visible = visible;
+        }
+
+        public String getMore() {
+            return more;
         }
 
         public boolean isChecked() {
 
             return checked;
         }
-    }
 
-    // A method to find height of the status bar
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
+        public void setChecked(boolean checked) {
+            this.checked = checked;
         }
-        return result;
     }
 }

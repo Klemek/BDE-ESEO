@@ -8,9 +8,9 @@
             android:shape="rectangle">
 
             <solid
-                android:color="@color/drawer_divider"
                 android:height="1dp"
-                android:angle="0" />
+                android:angle="0"
+                android:color="@color/drawer_divider" />
 
         </shape>
 

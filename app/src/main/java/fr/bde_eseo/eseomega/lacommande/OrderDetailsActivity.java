@@ -45,11 +45,8 @@ import com.squareup.picasso.Target;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
@@ -59,6 +56,7 @@ import fr.bde_eseo.eseomega.lydia.LydiaActivity;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.Blur;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -68,29 +66,44 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class OrderDetailsActivity extends AppCompatActivity {
 
+    private static final int RUN_UPDATE = 8000;
+    private static final int RUN_START = 100;
+    private static Handler mHandler;
+    private static boolean run;
     // UI elements
     private Toolbar toolbar;
     private TextView tvOrderDetails, tvOrderPrice, tvOrderDate, tvOrderNumero, tvDesc, tvInstruction, tvInstrHeader;
     private ImageView imgCategory;
     private ProgressBar progressBar;
     private RelativeLayout rl1, rl2;
-
     // Android
     private Context context;
-
     // Others
     private float oldScreenBrightness;
     private int idcmd;
-    private static Handler mHandler;
-    private static final int RUN_UPDATE = 8000;
-    private static final int RUN_START = 100;
-    private static boolean run;
     private String oldData = "";
     private UserProfile profile;
     private DetailedItem detailedItem = null;
 
     // Couleurs des commandes
     private int circle_preparing, blue_light, circle_done, gray_light, circle_ready, green_light, circle_error, orange_light;
+    /**
+     * Background task to fetch data periodically from server
+     */
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+            try {
+                if (run) {
+                    AsyncDetails async = new AsyncDetails();
+                    async.execute();
+                    run = false;
+                }
+            } catch (NullPointerException e) { // Stop handler if fragment disappears
+                mHandler.removeCallbacks(updateTimerThread);
+                run = false;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,23 +250,20 @@ public class OrderDetailsActivity extends AppCompatActivity {
         super.onPause();
     }
 
-    /**
-     * Background task to fetch data periodically from server
-     */
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-            try {
-                if (run) {
-                    AsyncDetails async = new AsyncDetails();
-                    async.execute();
-                    run = false;
-                }
-            } catch (NullPointerException e) { // Stop handler if fragment disappears
-                mHandler.removeCallbacks(updateTimerThread);
-                run = false;
-            }
-        }
-    };
+    @Override
+    public void onStop() {
+        super.onStop();
+        run = false;
+        mHandler.removeCallbacks(updateTimerThread);
+
+        WindowManager.LayoutParams layout = getWindow().getAttributes();
+        layout.screenBrightness = oldScreenBrightness;
+        getWindow().setAttributes(layout);
+    }
+
+    public Date getParsedDate(String strDate) {
+        return DateUtils.oldfromString(strDate);
+    }
 
     /**
      * Async task to download order details
@@ -315,6 +325,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
                             tvOrderPrice.setText(detailedItem.getCommandPriceAsString());
 
                             // Load image, decode it to Bitmap and return Bitmap to callback
+
                             Picasso.with(context).load(detailedItem.getImgUrl()).into(new Target() {
                                 @Override
                                 public void onBitmapLoaded(Bitmap loadedImage, Picasso.LoadedFrom from) {
@@ -399,27 +410,5 @@ public class OrderDetailsActivity extends AppCompatActivity {
             mHandler.postDelayed(updateTimerThread, RUN_UPDATE);
             run = true;
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        run = false;
-        mHandler.removeCallbacks(updateTimerThread);
-
-        WindowManager.LayoutParams layout = getWindow().getAttributes();
-        layout.screenBrightness = oldScreenBrightness;
-        getWindow().setAttributes(layout);
-    }
-
-    public Date getParsedDate(String strDate) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
-        Date date = null;
-        try {
-            date = format.parse(strDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
     }
 }

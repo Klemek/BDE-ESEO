@@ -24,10 +24,10 @@ import org.json.JSONObject;
  * Created by François L. on 17/08/2015.
  */
 public class LacmdElement extends LacmdRoot {
+    public final static String ID_CAT_ELEMENT = "lacmd-elements";
     private String idcat;
     private double pricemore;
     private int stock, outofmenu;
-    public final static String ID_CAT_ELEMENT = "lacmd-elements";
 
     public LacmdElement(String name, String idstr, double priceuni, double pricemore, int stock, int outofmenu, int hasingredients) {
         super(name, idstr, hasingredients, 0, priceuni, ID_CAT_ELEMENT);

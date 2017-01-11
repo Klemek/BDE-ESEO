@@ -68,38 +68,49 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class TicketHistoryActivity extends AppCompatActivity {
 
+    private static final int RUN_UPDATE = 8000;
+    private static final int RUN_START = 100;
+    // Keys
+    private final static String JSON_KEY_SHUTTLES = "event-navettes";
+    // Autoupdate
+    private static Handler mHandler;
+    private static boolean run, backgrounded = false;
+    private static boolean firstDisplay = true;
     // Android objects
     private Context context;
-
     // Model
     private ArrayList<EventTicketItem> eventTicketItems;
-
     // User profile
     private UserProfile userProfile;
-
     // Adapter / recycler
     private MyTicketAdapter mAdapter;
     private RecyclerView recList;
-
     // Layout
     private ProgressBar progressLoad, progressToken;
     private TextView tvNothing, tvNothing2;
     private ImageView imgNothing;
     private View viewToken;
     private FloatingActionButton fab;
-
-    // Autoupdate
-    private static Handler mHandler;
-    private static final int RUN_UPDATE = 8000;
-    private static final int RUN_START = 100;
-    private static boolean run, backgrounded = false;
-    private static boolean firstDisplay = true;
-
     // Cache
     private File cacheTicketsJSON;
+    /**
+     * Background task to fetch data periodically from server
+     */
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
 
-    // Keys
-    private final static String JSON_KEY_SHUTTLES = "event-navettes";
+            try {
+                if (run && userProfile.isCreated()) {
+                    run = false;
+                    SyncTickets syncTickets = new SyncTickets();
+                    syncTickets.execute();
+                }
+            } catch (NullPointerException e) { // Stop handler if activity disappears
+                mHandler.removeCallbacks(updateTimerThread);
+                run = false;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -239,7 +250,6 @@ public class TicketHistoryActivity extends AppCompatActivity {
 
     }
 
-
     /**
      * Menu : back button + arrow in toolbar
      */
@@ -263,7 +273,6 @@ public class TicketHistoryActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onResume() {
         super.onResume();
@@ -284,7 +293,6 @@ public class TicketHistoryActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public void onPause() {
         if (mHandler != null) {
@@ -293,27 +301,6 @@ public class TicketHistoryActivity extends AppCompatActivity {
         run = false;
         super.onPause();
     }
-
-
-    /**
-     * Background task to fetch data periodically from server
-     */
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-
-            try {
-                if (run && userProfile.isCreated()) {
-                    run = false;
-                    SyncTickets syncTickets = new SyncTickets();
-                    syncTickets.execute();
-                }
-            } catch (NullPointerException e) { // Stop handler if activity disappears
-                mHandler.removeCallbacks(updateTimerThread);
-                run = false;
-            }
-        }
-    };
-
 
     /**
      * Sync history, fetch data from server

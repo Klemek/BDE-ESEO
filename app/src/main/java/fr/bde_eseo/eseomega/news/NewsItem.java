@@ -20,13 +20,12 @@ package fr.bde_eseo.eseomega.news;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.Constants;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 
 /**
@@ -38,31 +37,12 @@ public class NewsItem {
     private boolean isHeader;
     private boolean isLoading;
     private Date date;
-
-
-
-    public boolean isFooter() {
-        return isFooter;
-    }
-
     private ArrayList<String> imgLinks;
 
     public NewsItem() {
         isFooter = true;
         isHeader = false;
         isLoading = false;
-    }
-
-    public boolean isLoading() {
-        return isLoading;
-    }
-
-    public void setIsLoading(boolean isLoading) {
-        this.isLoading = isLoading;
-    }
-
-    public boolean isHeader() {
-        return isHeader;
     }
 
     public NewsItem(String text) {
@@ -80,7 +60,7 @@ public class NewsItem {
         this.shData = JSONUtils.getString(obj,Constants.JSON_NEWS_PREVIEW, "").trim();
         this.date = getParsedDate(strDate);
         this.frenchStr = getFrenchDate(strDate);
-        this.headerImg = obj.getString(Constants.JSON_NEWS_IMG);
+        this.headerImg = JSONUtils.getString(obj, Constants.JSON_NEWS_IMG, null, true);
         // TODO parse data and fill imgLinks
         this.imgLinks = new ArrayList<>();
         imgLinks.add(this.headerImg);
@@ -117,6 +97,21 @@ public class NewsItem {
         this.imgLinks = imgLinks;
     }
 
+    public boolean isFooter() {
+        return isFooter;
+    }
+
+    public boolean isLoading() {
+        return isLoading;
+    }
+
+    public void setIsLoading(boolean isLoading) {
+        this.isLoading = isLoading;
+    }
+
+    public boolean isHeader() {
+        return isHeader;
+    }
 
     @Override
     public String toString() {
@@ -135,14 +130,7 @@ public class NewsItem {
 
 
     private Date getParsedDate (String d) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.FRANCE);
-        Date date = null;
-        try {
-            date = format.parse(d);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return DateUtils.fromString(d);
     }
 
     public String getName() {
@@ -179,7 +167,7 @@ public class NewsItem {
 
     private String getFrenchDate (String dt) {
         Date d = getParsedDate(dt);
-        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", DateUtils.getLocale());
         return sdf.format(d);
     }
 }

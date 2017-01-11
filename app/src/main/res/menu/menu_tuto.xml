@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"  tools:context=".TutorialActivity">
 
     <item android:id="@+id/action_read"
-          android:title="@string/action_read"
           android:icon="@drawable/ic_ready"
+        android:title="@string/action_read"
           app:showAsAction="always|withText" />
 
 </menu>

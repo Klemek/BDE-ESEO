@@ -58,6 +58,7 @@ import fr.bde_eseo.eseomega.events.EventsListFragment;
 import fr.bde_eseo.eseomega.news.ImageViewActivity;
 import fr.bde_eseo.eseomega.news.NewsListFragment;
 import fr.bde_eseo.eseomega.utils.Blur;
+import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -75,6 +76,26 @@ public class ClubViewActivity extends AppCompatActivity {
     private DetailsAdapter mAdapter;
     private RecyclerView recList;
     private RelativeLayout rlClubPicture;
+
+    /**
+     * Open another app.
+     *
+     * @param context     current Context, like Activity, App, or Service
+     * @param packageName the full package name of the app to open
+     * @return true if likely successful, false if unsuccessful
+     */
+    public static boolean openApp(Context context, String packageName) {
+        PackageManager manager = context.getPackageManager();
+
+        Intent i = manager.getLaunchIntentForPackage(packageName);
+        if (i == null) {
+            return false;
+            //throw new PackageManager.NameNotFoundException();
+        }
+        i.addCategory(Intent.CATEGORY_LAUNCHER);
+        context.startActivity(i);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +144,7 @@ public class ClubViewActivity extends AppCompatActivity {
         tvDesc.setText(JSONUtils.fromHtml(clubItem.getDesc()));
 
         // Load image, decode it to Bitmap and return Bitmap to callback
-        Picasso.with(this).load(clubItem.getImg()).into(new Target() {
+        ImageUtils.loadImage(this, clubItem.getImg(), new Target() {
             @Override
             public void onBitmapLoaded(Bitmap loadedImage, Picasso.LoadedFrom from) {
                 imgClub.setImageBitmap(Blur.fastblur(ClubViewActivity.this, loadedImage, 12)); // seems ok
@@ -354,6 +375,13 @@ public class ClubViewActivity extends AppCompatActivity {
         }
     }
 
+    // Intent to browser
+    public void intentToBrowser(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+
     /**
      * Custom class for Member + Module
      */
@@ -434,11 +462,7 @@ public class ClubViewActivity extends AppCompatActivity {
                         }
                     });
                 }else{
-                    if (mi.getImgLink().length() > 0){
-                        Picasso.with(ClubViewActivity.this).load(mi.getImgLink()).placeholder(R.drawable.ic_unknown2).error(R.drawable.ic_unknown2).into(mvh.img);
-                    }else{
-                        Picasso.with(ClubViewActivity.this).load(R.drawable.ic_unknown2).into(mvh.img);
-                    }
+                    ImageUtils.loadImage(ClubViewActivity.this, mi.getImgLink(), R.drawable.ic_unknown2, R.drawable.ic_unknown2, mvh.img);
                 }
 
             }
@@ -488,33 +512,6 @@ public class ClubViewActivity extends AppCompatActivity {
                 img = (CircleImageView) v.findViewById(R.id.circleMember);
             }
         }
-    }
-
-    // Intent to browser
-    public void intentToBrowser(String url) {
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(url));
-        startActivity(i);
-    }
-
-    /**
-     * Open another app.
-     *
-     * @param context     current Context, like Activity, App, or Service
-     * @param packageName the full package name of the app to open
-     * @return true if likely successful, false if unsuccessful
-     */
-    public static boolean openApp(Context context, String packageName) {
-        PackageManager manager = context.getPackageManager();
-
-        Intent i = manager.getLaunchIntentForPackage(packageName);
-        if (i == null) {
-            return false;
-            //throw new PackageManager.NameNotFoundException();
-        }
-        i.addCategory(Intent.CATEGORY_LAUNCHER);
-        context.startActivity(i);
-        return true;
     }
 
     public class AsyncJSONClubDetail extends AsyncTask<Integer ,Void, JSONObject> {

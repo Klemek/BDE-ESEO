@@ -30,6 +30,7 @@ import java.util.Iterator;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.events.EventItem;
+import fr.bde_eseo.eseomega.utils.JSONUtils;
 
 /**
  * Created by François L. on 31/08/2015.
@@ -37,19 +38,18 @@ import fr.bde_eseo.eseomega.events.EventItem;
  */
 public class ClubItem {
 
+    public static String NEWSTAG = "news";
+    public static String EVENTTAG = "event";
     private String name, desc, img;
     private HashMap<String, String> contacts;
     private ArrayList<SubList> details;
     private int id;
     private boolean updated;
 
-    public static String NEWSTAG = "news";
-    public static String EVENTTAG = "event";
-
     public ClubItem (JSONObject obj) throws JSONException {
         name = obj.getString(Constants.JSON_CLUB_NAME);
         desc = obj.getString(Constants.JSON_CLUB_DETAIL);
-        img = obj.getString(Constants.JSON_CLUB_IMG);
+        img = JSONUtils.getString(obj, Constants.JSON_CLUB_IMG, null, true);
         id = obj.getInt(Constants.JSON_CLUB_ID);
         contacts = new HashMap<>();
         JSONObject cont = obj.getJSONObject(Constants.JSON_CLUB_CONTACTS);
@@ -141,7 +141,7 @@ public class ClubItem {
                 //Bureau
                 title = obj.getString(Constants.JSON_CLUB_MEMBER_NAME);
                 detail = obj.getString(Constants.JSON_CLUB_MEMBER_DETAIL);
-                img = obj.getString(Constants.JSON_CLUB_MEMBER_IMG);
+                img = JSONUtils.getString(obj, Constants.JSON_CLUB_MEMBER_IMG, null, true);
                 id = 0;
             } else if (obj.has(Constants.JSON_EVENT_DATEFIN)) {
                 //Event

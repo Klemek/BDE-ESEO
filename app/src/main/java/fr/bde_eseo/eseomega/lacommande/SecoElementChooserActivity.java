@@ -157,6 +157,23 @@ public class SecoElementChooserActivity extends AppCompatActivity {
         });
     }
 
+    private void setArrayCheck(String idstr) {
+        for (int i = 0; i < checkboxItems.size(); i++) {
+            if (checkboxItems.get(i).getIdstr().equals(idstr)) {
+                checkboxItems.get(i).setChecked(true);
+            }
+        }
+    }
+
+    // A method to find height of the status bar
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 
     private class CheckboxListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -212,14 +229,6 @@ public class SecoElementChooserActivity extends AppCompatActivity {
         }
     }
 
-    private void setArrayCheck(String idstr) {
-        for (int i = 0; i < checkboxItems.size(); i++) {
-            if (checkboxItems.get(i).getIdstr().equals(idstr)) {
-                checkboxItems.get(i).setChecked(true);
-            }
-        }
-    }
-
     private class CheckboxItem extends LacmdRoot {
         private boolean checked;
         private String more;
@@ -236,31 +245,21 @@ public class SecoElementChooserActivity extends AppCompatActivity {
             return visible;
         }
 
-        public String getMore() {
-            return more;
-        }
-
-        public void setChecked(boolean checked) {
-            this.checked = checked;
-        }
-
         public void setVisible(boolean visible) {
             this.visible = visible;
+        }
+
+        public String getMore() {
+            return more;
         }
 
         public boolean isChecked() {
 
             return checked;
         }
-    }
 
-    // A method to find height of the status bar
-    public int getStatusBarHeight() {
-        int result = 0;
-        int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
-        if (resourceId > 0) {
-            result = getResources().getDimensionPixelSize(resourceId);
+        public void setChecked(boolean checked) {
+            this.checked = checked;
         }
-        return result;
     }
 }

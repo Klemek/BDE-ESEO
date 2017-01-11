@@ -24,9 +24,9 @@ import org.json.JSONObject;
  * Created by François L. on 17/08/2015.
  */
 public class LacmdMenu extends LacmdRoot {
+    public final static String ID_CAT_MENU = "lacmd-menus";
     private String mainElemStr;
     private int maxMainElem, maxSecoElem;
-    public final static String ID_CAT_MENU = "lacmd-menus";
 
     public LacmdMenu(JSONObject obj) throws JSONException {
         super(obj.getString("name"), obj.getString("idstr"), 0, 1, obj.getDouble("price"), ID_CAT_MENU); // no ingredients, but elements yes
@@ -34,6 +34,13 @@ public class LacmdMenu extends LacmdRoot {
         mainElemStr = obj.getString("mainElemStr");
         maxMainElem = obj.getInt("nbMainElem");
         maxSecoElem = obj.getInt("nbSecoElem");
+    }
+
+    public LacmdMenu(LacmdMenu obj) {
+        super(obj.getName(), obj.getIdstr(), obj.hasIngredients(), obj.hasElements(), obj.getPrice(), ID_CAT_MENU);
+        mainElemStr = obj.getMainElemStr();
+        maxMainElem = obj.getMaxMainElem();
+        maxSecoElem = obj.getMaxSecoElem();
     }
 
     public String getMainElemStr() {
@@ -46,13 +53,6 @@ public class LacmdMenu extends LacmdRoot {
 
     public int getMaxSecoElem() {
         return maxSecoElem;
-    }
-
-    public LacmdMenu(LacmdMenu obj) {
-        super(obj.getName(), obj.getIdstr(), obj.hasIngredients(), obj.hasElements(), obj.getPrice(), ID_CAT_MENU);
-        mainElemStr = obj.getMainElemStr();
-        maxMainElem = obj.getMaxMainElem();
-        maxSecoElem = obj.getMaxSecoElem();
     }
 
     /*

@@ -53,6 +53,7 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class SponsoFragment extends Fragment {
 
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     // UI
     private ProgressBar progCircle;
     private ImageView img;
@@ -62,12 +63,8 @@ public class SponsoFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
-
     // Model
     private ArrayList<SponsorItem> sponsorItems;
-
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
-
     private String cachePath;
     private File cacheFileEseo;
 

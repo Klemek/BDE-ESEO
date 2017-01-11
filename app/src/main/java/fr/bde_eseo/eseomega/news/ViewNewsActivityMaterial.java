@@ -39,6 +39,7 @@ import com.squareup.picasso.Target;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.Blur;
+import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
 /**
@@ -88,7 +89,7 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
         if (newsItem != null) {
             imageView = (ImageView) findViewById(R.id.imgHeaderNews);
             // Load image, decode it to Bitmap and return Bitmap to callback
-            Picasso.with(this).load(newsItem.getImgLinks().get(0)).into(new Target() {
+            ImageUtils.loadImage(this, newsItem.getImgLinks().get(0), R.drawable.placeholder, R.drawable.placeholder_error, new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap loadedImage, Picasso.LoadedFrom from) {
                     imageView.setImageBitmap(Blur.fastblur(ViewNewsActivityMaterial.this, loadedImage, 12)); // seems ok

@@ -27,6 +27,30 @@ import fr.bde_eseo.eseomega.events.EventItem;
 public class TicketStore {
 
     private static TicketStore instance;
+    /**
+     * The event list
+     */
+    private ArrayList<EventItem> eventItems;
+    /**
+     * The ticket list
+     */
+    private ArrayList<EventTicketItem> eventTicketItems;
+    /**
+     * Token
+     */
+    private String token;
+    /**
+     * Shuttles items
+     */
+    private ArrayList<ShuttleItem> shuttleItems;
+    /**
+     * Selected ticket
+     */
+    private SubEventItem selectedTicket;
+    /**
+     * Current shuttle
+     */
+    private ShuttleItem selectedShuttle;
 
     private TicketStore (){}
 
@@ -37,16 +61,6 @@ public class TicketStore {
     }
 
     /**
-     * The event list
-     */
-    private ArrayList<EventItem> eventItems;
-
-    /**
-     * The ticket list
-     */
-    private ArrayList<EventTicketItem> eventTicketItems;
-
-    /**
      * Reset function
      */
     public void reset () {
@@ -55,11 +69,6 @@ public class TicketStore {
         if (eventTicketItems == null) eventTicketItems = new ArrayList<>();
         eventTicketItems.clear();
     }
-
-    /**
-     * Token
-     */
-    private String token;
 
     public String getToken() {
         return token;
@@ -87,11 +96,6 @@ public class TicketStore {
     public ArrayList<EventItem> getEventItems() {
         return eventItems;
     }
-
-    /**
-     * Shuttles items
-     */
-    private ArrayList<ShuttleItem> shuttleItems;
 
     public ArrayList<ShuttleItem> getShuttleItems() {
         return shuttleItems;
@@ -124,23 +128,13 @@ public class TicketStore {
         }
     }
 
-    /**
-     * Selected ticket
-     */
-    private SubEventItem selectedTicket;
-
-    public void setSelectedTicket(SubEventItem selectedTicket) {
-        this.selectedTicket = selectedTicket;
-    }
-
     public SubEventItem getSelectedTicket() {
         return selectedTicket;
     }
 
-    /**
-     * Current shuttle
-     */
-    private ShuttleItem selectedShuttle;
+    public void setSelectedTicket(SubEventItem selectedTicket) {
+        this.selectedTicket = selectedTicket;
+    }
 
     public void setSelectedShuttle(ShuttleItem selectedShuttle) {
         this.selectedShuttle = selectedShuttle;

@@ -54,6 +54,8 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
 
 public class StudentSearchFragment extends Fragment {
 
+    // Constants
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     // UI
     private ProgressBar progCircle;
     private ImageView imgA;
@@ -63,7 +65,6 @@ public class StudentSearchFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
-
     // Toolbar
     private MenuItem mSearchAction;
     private EditText etSearch;
@@ -71,12 +72,8 @@ public class StudentSearchFragment extends Fragment {
     private TextView tvSearchTitle;
     private AsyncJSONSearch asyncJSONSearch;
     private boolean isSearchOpened = false;
-
     // Model
     private ArrayList<StudentItem> studentItems;
-
-    // Constants
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
 
     @Override
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {

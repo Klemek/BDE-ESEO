@@ -69,8 +69,11 @@ import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
  */
 public class OrderHistoryFragment extends Fragment {
 
-    public OrderHistoryFragment() {}
-
+    private static final int RUN_UPDATE = 8000;
+    private static final int RUN_START = 100;
+    private static Handler mHandler;
+    private static boolean run, backgrounded = false;
+    private static boolean firstDisplay = true;
     private RecyclerView recList;
     private ProgressBar progressBar, progressBarToken;
     private View viewToken;
@@ -79,11 +82,6 @@ public class OrderHistoryFragment extends Fragment {
     private ArrayList<HistoryItem> historyList;
     private UserProfile userProfile;
     private String userLogin, userPass;
-    private static Handler mHandler;
-    private static final int RUN_UPDATE = 8000;
-    private static final int RUN_START = 100;
-    private static boolean run, backgrounded = false;
-    private static boolean firstDisplay = true;
     private File cacheHistoryJSON;
     private HashMap<String, String> params;
     private long lastUpdate = 0;
@@ -92,10 +90,29 @@ public class OrderHistoryFragment extends Fragment {
     private SyncHistory syncHistory;
     private SyncTimeToken syncTimeToken;
     private AsyncCheckVersion asyncCheckVersion;
-
-
     private TextView tvNothing, tvNothing2, tvServiceInfo;
     private ImageView imgNothing;
+    /**
+     * Background task to fetch data periodically from server
+     */
+    private Runnable updateTimerThread = new Runnable() {
+        public void run() {
+
+            try {
+                if (run && userProfile.isCreated()) {// && System.currentTimeMillis() - lastUpdate >= RUN_UPDATE) {
+                    run = false;
+                    syncHistory = new SyncHistory();
+                    syncHistory.execute();
+                }
+            } catch (NullPointerException e) { // Stop handler if fragment disappears
+                mHandler.removeCallbacks(updateTimerThread);
+                run = false;
+            }
+        }
+    };
+
+    public OrderHistoryFragment() {
+    }
 
     @Override
     public void onResume() {
@@ -274,7 +291,6 @@ public class OrderHistoryFragment extends Fragment {
         return rootView;
     }
 
-
     /**
      * Asynctask to sync time and get token from server
      */
@@ -306,7 +322,6 @@ public class OrderHistoryFragment extends Fragment {
             String err = "";
             int retCode = 0;
             String jsonToken = "";
-
             /** Check if response is token, or an placeholder_error **/
             if (Utilities.isNetworkDataValid(data)) { // 64 : nb chars for a SHA256 value
                 try {
@@ -384,25 +399,6 @@ public class OrderHistoryFragment extends Fragment {
             }
         }
     }
-
-    /**
-     * Background task to fetch data periodically from server
-     */
-    private Runnable updateTimerThread = new Runnable() {
-        public void run() {
-
-            try {
-                if (run && userProfile.isCreated()) {// && System.currentTimeMillis() - lastUpdate >= RUN_UPDATE) {
-                    run = false;
-                    syncHistory = new SyncHistory();
-                    syncHistory.execute();
-                }
-            } catch (NullPointerException e) { // Stop handler if fragment disappears
-                mHandler.removeCallbacks(updateTimerThread);
-                run = false;
-            }
-        }
-    };
 
     /**
      * Sync history, fetch data from server

@@ -69,28 +69,23 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class PresalesActivity extends AppCompatActivity {
 
+    public static final long MAX_DELAY_ORDER = 582 * 1000;
     // Model
     private ArrayList<TicketPictItem> ticketPictItems;
-
     // Android objects
     private Context context;
     private boolean isVisible, messageNotShown;
-
     // User profile
     private UserProfile userProfile;
-
     // UI
     private TextView tvNo1, tvNo2;
     private ImageView imgNo;
-
     // Adapter / recycler
     private MyPresalesAdapter mAdapter;
     private RecyclerView recList;
-
     // Data
     private int idcmd = -1;
     private String eventName, eventDate, eventID, ticketName;
-    public static final long MAX_DELAY_ORDER = 582*1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,86 +239,6 @@ public class PresalesActivity extends AppCompatActivity {
     }
 
     /**
-     * Permet d'envoyer la commande sur les serveurs
-     */
-    private class AsyncSendTicket extends AsyncTask<String, String, String> {
-
-        private MaterialDialog md;
-        private Context context;
-
-        public AsyncSendTicket(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            md = new MaterialDialog.Builder(context)
-                    .title(R.string.presales_reserving)
-                    .content(R.string.wait)
-                    .progress(true, 0)
-                    .progressIndeterminateStyle(false)
-                    .cancelable(false)
-                    .show();
-        }
-
-        @Override
-        protected void onPostExecute(String data) {
-            super.onPostExecute(data);
-            md.hide();
-            int err = 0;
-            String errMsg = getString(R.string.error_network_short);
-
-            if (Utilities.isNetworkDataValid(data)) {
-                try {
-                    JSONObject obj = new JSONObject(data);
-                    err = obj.getInt("status");
-                    errMsg = obj.getString("cause");
-                    JSONObject objData = obj.getJSONObject("data");
-                    idcmd = objData.getInt("idcmd");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            if (err == 1) {
-                // Ok ! Send order to Lydia
-                Intent i = new Intent(context, LydiaActivity.class);
-                i.putExtra(Constants.KEY_LYDIA_ORDER_ID, idcmd);
-                i.putExtra(Constants.KEY_LYDIA_ORDER_TYPE, Constants.TYPE_LYDIA_EVENT);
-                i.putExtra(Constants.KEY_LYDIA_ORDER_ASKED, false);
-                startActivityForResult(i, Constants.RESULT_LYDIA_KEY);
-
-            } else {
-                // Error, show message
-                new MaterialDialog.Builder(context)
-                        .title(R.string.error)
-                        .content(errMsg + (err == 0 ? "" : " (code : " + err + ")"))
-                        .negativeText(R.string.dialog_close)
-                        .show();
-            }
-        }
-
-        @Override
-        protected String doInBackground(String... sData) {
-
-            try {
-                HashMap<String, String> params = new HashMap<>();
-                params.put(context.getResources().getString(R.string.token), TicketStore.getInstance().getToken());
-                params.put(context.getResources().getString(R.string.idevent), Base64.encodeToString(sData[0].getBytes("UTF-8"), Base64.NO_WRAP));
-                if (sData.length > 1 && sData[1] != null && sData[1].length() > 0) {
-                    params.put(context.getResources().getString(R.string.nav), Base64.encodeToString(sData[1].getBytes("UTF-8"), Base64.NO_WRAP));
-                }
-                return ConnexionUtils.postServerData(Constants.URL_API_EVENT_SEND, params, context);
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-    /**
      * Called when called Activities (child) finished
      */
     @Override
@@ -441,5 +356,85 @@ public class PresalesActivity extends AppCompatActivity {
                     }
                 })
                 .show();
+    }
+
+    /**
+     * Permet d'envoyer la commande sur les serveurs
+     */
+    private class AsyncSendTicket extends AsyncTask<String, String, String> {
+
+        private MaterialDialog md;
+        private Context context;
+
+        public AsyncSendTicket(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            md = new MaterialDialog.Builder(context)
+                    .title(R.string.presales_reserving)
+                    .content(R.string.wait)
+                    .progress(true, 0)
+                    .progressIndeterminateStyle(false)
+                    .cancelable(false)
+                    .show();
+        }
+
+        @Override
+        protected void onPostExecute(String data) {
+            super.onPostExecute(data);
+            md.hide();
+            int err = 0;
+            String errMsg = getString(R.string.error_network_short);
+
+            if (Utilities.isNetworkDataValid(data)) {
+                try {
+                    JSONObject obj = new JSONObject(data);
+                    err = obj.getInt("status");
+                    errMsg = obj.getString("cause");
+                    JSONObject objData = obj.getJSONObject("data");
+                    idcmd = objData.getInt("idcmd");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (err == 1) {
+                // Ok ! Send order to Lydia
+                Intent i = new Intent(context, LydiaActivity.class);
+                i.putExtra(Constants.KEY_LYDIA_ORDER_ID, idcmd);
+                i.putExtra(Constants.KEY_LYDIA_ORDER_TYPE, Constants.TYPE_LYDIA_EVENT);
+                i.putExtra(Constants.KEY_LYDIA_ORDER_ASKED, false);
+                startActivityForResult(i, Constants.RESULT_LYDIA_KEY);
+
+            } else {
+                // Error, show message
+                new MaterialDialog.Builder(context)
+                        .title(R.string.error)
+                        .content(errMsg + (err == 0 ? "" : " (code : " + err + ")"))
+                        .negativeText(R.string.dialog_close)
+                        .show();
+            }
+        }
+
+        @Override
+        protected String doInBackground(String... sData) {
+
+            try {
+                HashMap<String, String> params = new HashMap<>();
+                params.put(context.getResources().getString(R.string.token), TicketStore.getInstance().getToken());
+                params.put(context.getResources().getString(R.string.idevent), Base64.encodeToString(sData[0].getBytes("UTF-8"), Base64.NO_WRAP));
+                if (sData.length > 1 && sData[1] != null && sData[1].length() > 0) {
+                    params.put(context.getResources().getString(R.string.nav), Base64.encodeToString(sData[1].getBytes("UTF-8"), Base64.NO_WRAP));
+                }
+                return ConnexionUtils.postServerData(Constants.URL_API_EVENT_SEND, params, context);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }

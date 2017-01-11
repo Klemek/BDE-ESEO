@@ -20,22 +20,22 @@
         </include>
 
         <FrameLayout
-            android:layout_below="@id/tool_bar"
             android:id="@+id/frame_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_below="@id/tool_bar"
             android:clickable="true"/>
 
         <LinearLayout
             android:id="@+id/llMainUpdate"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
+            android:layout_alignParentBottom="true"
             android:background="@color/color_background"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp">
 
             <ProgressBar
                 android:id="@+id/progressMainUpdate"
@@ -44,11 +44,11 @@
                 android:layout_marginRight="8dp"/>
 
             <TextView
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
                 android:id="@+id/tvMainUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
                 android:textColor="@color/md_white_1000"/>
 
         </LinearLayout>
@@ -73,14 +73,14 @@
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:choiceMode="singleChoice"
-        android:divider="@null"
-        android:clipToPadding="false"
+        android:background="@color/drawer_background"
         android:cacheColorHint="?android:attr/windowBackground"
-        android:overScrollFooter="@android:color/transparent"
+        android:choiceMode="singleChoice"
+        android:clipToPadding="false"
+        android:divider="@null"
         android:dividerHeight="0dp"
         android:drawSelectorOnTop="true"
-        android:background="@color/drawer_background"/>
+        android:overScrollFooter="@android:color/transparent" />
 
 </android.support.v4.widget.DrawerLayout>
     <!--android:drawSelectorOnTop="true" android:background="@color/drawer_background"/> android:divider="@drawable/drawer_divider"android:footerDividersEnabled="false"-->

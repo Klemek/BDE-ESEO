@@ -62,19 +62,45 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class ViewProfileFragment extends Fragment {
 
+    private static final int INTENT_GALLERY_ID = 0x42; // quarantdeuuux t'as vu
+    private static final int RESULT_OK = -1;
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
     private UserProfile profile;
     private TextView tvUserName, tvDisconnect;
     private String userName;
     private CircleImageView imageView;
     private OnUserProfileChange mOnUserProfileChange;
     private String userFirst;
-    private static final int INTENT_GALLERY_ID = 0x42; // quarantdeuuux t'as vu
-    private static final int RESULT_OK = -1;
     private MaterialDialog materialDialog;
-
     private AsyncDisconnect asyncDisconnect;
 
     public ViewProfileFragment () {}
+
+    /**
+     * Checks if the app has permission to write to device storage
+     * <p>
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
 
     @Override
     public void onAttach(Activity activity) {
@@ -106,7 +132,7 @@ public class ViewProfileFragment extends Fragment {
         tvUserName.setText(userName);
         userFirst = profile.getFirstName();
         setImageView();
-        
+
         // If user want to change its profile picture, call Intent to gallery
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +195,41 @@ public class ViewProfileFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == INTENT_GALLERY_ID && resultCode == RESULT_OK && data != null) {
+
+            Uri profPicture = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getActivity().getContentResolver().query(profPicture, filePathColumn, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                String picturePath = cursor.getString(columnIndex);
+                cursor.close();
+                if (profile != null) { // cas impossible, mais au cas où ...
+                    profile.setPicturePath(picturePath);
+                    profile.registerProfileInPrefs(getActivity());
+                    setImageView();
+                    mOnUserProfileChange.OnUserProfileChange(profile);
+                }
+            } else {
+                Toast.makeText(getActivity(), R.string.toast_error_img, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void setImageView() {
+        File fp = new File(profile.getPicturePath());
+        if (fp.exists()) {
+            Bitmap bmp = ImageUtils.getResizedBitmap(BitmapFactory.decodeFile(profile.getPicturePath()), MainActivity.MAX_PROFILE_SIZE);
+            if (bmp != null)
+                imageView.setImageBitmap(bmp);
+        }
     }
 
     // Class to disconnect profile from server
@@ -266,69 +327,6 @@ public class ViewProfileFragment extends Fragment {
                         .cancelable(false)
                         .show();
             }
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == INTENT_GALLERY_ID && resultCode == RESULT_OK && data != null) {
-
-            Uri profPicture = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getActivity().getContentResolver().query(profPicture, filePathColumn, null, null, null);
-            if (cursor != null) {
-                cursor.moveToFirst();
-                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                String picturePath = cursor.getString(columnIndex);
-                cursor.close();
-                if (profile != null) { // cas impossible, mais au cas où ...
-                    profile.setPicturePath(picturePath);
-                    profile.registerProfileInPrefs(getActivity());
-                    setImageView();
-                    mOnUserProfileChange.OnUserProfileChange(profile);
-                }
-            } else {
-                Toast.makeText(getActivity(), R.string.toast_error_img, Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    public void setImageView () {
-        File fp = new File(profile.getPicturePath());
-        if (fp.exists()) {
-            Bitmap bmp = ImageUtils.getResizedBitmap(BitmapFactory.decodeFile(profile.getPicturePath()), MainActivity.MAX_PROFILE_SIZE);
-            if (bmp != null)
-                imageView.setImageBitmap(bmp);
-        }
-    }
-
-    // Storage Permissions
-    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
-
-    /**
-     * Checks if the app has permission to write to device storage
-     *
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param activity
-     */
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
         }
     }
 }

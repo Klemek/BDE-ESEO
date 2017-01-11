@@ -39,17 +39,17 @@ public class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private ArrayList<RoomItem> roomItems;
     private Context ctx;
 
+    public MyRoomAdapter(Context ctx, ArrayList<RoomItem> roomItems) {
+        this.roomItems = roomItems;
+        this.ctx = ctx;
+    }
+
     public ArrayList<RoomItem> getRoomItems() {
         return roomItems;
     }
 
     public void setRoomItems(ArrayList<RoomItem> roomItems) {
         this.roomItems = roomItems;
-    }
-
-    public MyRoomAdapter(Context ctx, ArrayList<RoomItem> roomItems) {
-        this.roomItems = roomItems;
-        this.ctx = ctx;
     }
 
     @Override

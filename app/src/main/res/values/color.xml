@@ -62,6 +62,7 @@
 
     <!--grey-->
     <color name="md_grey_200">#EEEEEE</color>
+    <color name="md_grey_300">#d6d6d6</color>
     <color name="md_grey_400">#BDBDBD</color>
     <color name="md_grey_500">#9E9E9E</color>
     <color name="md_grey_600">#757575</color>

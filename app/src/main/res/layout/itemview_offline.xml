@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="16dp"
+    android:layout_marginBottom="8dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginTop="16dp">
 
     <TextView
-        android:gravity="center"
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:gravity="center"
         android:text="Lecture hors ligne"
-        android:id="@+id/textView4"/>
+        android:textStyle="bold" />
 
     <TextView
-        android:gravity="center"
-        android:layout_below="@id/textView4"
+        android:id="@+id/tvDateLast"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dernière mise à jour : 12/05/2015"
-        android:id="@+id/tvDateLast"/>
+        android:layout_below="@id/textView4"
+        android:gravity="center"
+        android:text="Dernière mise à jour : 12/05/2015" />
 
 
 </RelativeLayout>

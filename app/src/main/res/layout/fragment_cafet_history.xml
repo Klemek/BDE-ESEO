@@ -21,10 +21,10 @@
         android:id="@+id/cardHistory"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@id/tvServiceInfo"/>
+        android:layout_below="@id/tvServiceInfo"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"

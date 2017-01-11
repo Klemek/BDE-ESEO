@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/color_background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/color_background">
 
     <ImageView
+        android:id="@+id/imgClub"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:id="@+id/imgClub"
-        android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignParentStart="true"
+        android:scaleType="centerCrop" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_above="@+id/relativeLayout4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="#a01a1a1a"
-        android:layout_above="@+id/relativeLayout4" >
+        android:layout_alignParentTop="true"
+        android:background="#a01a1a1a">
 
     </RelativeLayout>
 
@@ -30,41 +30,41 @@
     </include>
 
     <RelativeLayout
+        android:id="@+id/rlClubPicture"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/relativeLayout4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/tool_bar"
-        android:id="@+id/rlClubPicture"
-        android:layout_above="@+id/relativeLayout4">
+        android:layout_below="@id/tool_bar">
 
         <TextView
+            android:id="@+id/tvDescClub"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_centerInParent="true"
-            android:textSize="13sp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginRight="24dp"
             android:layout_marginEnd="24dp"
-            android:textColor="@color/md_white_1000"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginStart="24dp"
+            android:gravity="center"
             android:text="Le bureau des élèves blah blah blah !"
-            android:id="@+id/tvDescClub"/>
+            android:textColor="@color/md_white_1000"
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/recyList"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="0dp"
-        android:orientation="horizontal"
-        android:gravity="center"
         android:background="#f01a1a1a"
-        android:layout_above="@+id/recyList"
-        android:id="@+id/relativeLayout4">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="0dp">
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -81,66 +81,111 @@
                     android:id="@+id/icoWeb"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_website"/>
 
                 <ImageView
                     android:id="@+id/icoFb"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_facebook"/>
 
                 <ImageView
                     android:id="@+id/icoTwitter"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_twitter"/>
 
                 <ImageView
                     android:id="@+id/icoSnap"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_snap"/>
 
                 <ImageView
                     android:id="@+id/icoInsta"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_insta"/>
 
                 <ImageView
                     android:id="@+id/icoMail"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_message"/>
 
                 <ImageView
                     android:id="@+id/icoYoutube"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
                     android:src="@drawable/ic_youtube"/>
 
                 <ImageView
                     android:id="@+id/icoLinkedIn"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
-                    android:visibility="gone"
-                    android:src="@drawable/ic_linkedin"/>
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
+                    android:src="@drawable/ic_linkedin"
+                    android:visibility="gone" />
 
                 <ImageView
-                    android:visibility="gone"
                     android:id="@+id/icoPhone"
                     android:layout_width="@dimen/icon_size"
                     android:layout_height="@dimen/icon_size"
-                    android:layout_marginTop="@dimen/icon_margin_top_bottom" android:layout_marginBottom="@dimen/icon_margin_top_bottom" android:layout_marginLeft="@dimen/icon_margin_side" android:layout_marginRight="@dimen/icon_margin_side" android:layout_marginStart="@dimen/icon_margin_side" android:layout_marginEnd="@dimen/icon_margin_side"
-                    android:src="@drawable/ic_phone"/>
+                    android:layout_marginBottom="@dimen/icon_margin_top_bottom"
+                    android:layout_marginEnd="@dimen/icon_margin_side"
+                    android:layout_marginLeft="@dimen/icon_margin_side"
+                    android:layout_marginRight="@dimen/icon_margin_side"
+                    android:layout_marginStart="@dimen/icon_margin_side"
+                    android:layout_marginTop="@dimen/icon_margin_top_bottom"
+                    android:src="@drawable/ic_phone"
+                    android:visibility="gone" />
 
             </LinearLayout>
 
@@ -151,32 +196,32 @@
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:layout_centerHorizontal="true"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
         android:id="@+id/recyList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_below="@+id/imgClub"/>
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imgClub"
+        android:layout_centerHorizontal="true"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <TextView
         android:id="@+id/tvNoDetails"
-        android:textSize="18sp"
-        android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/recyList"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imgClub"
         android:gravity="center"
         android:text="@string/event_no_details"
-        android:layout_alignBottom="@+id/recyList"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/imgClub"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

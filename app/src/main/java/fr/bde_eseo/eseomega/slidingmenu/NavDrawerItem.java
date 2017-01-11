@@ -98,18 +98,35 @@ public class NavDrawerItem {
 		return this.title;
 	}
 
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
+	public String getId() {
+		return this.id;
+	}
 
-    public String getId() { return this.id; }
-	
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public int getIcon(){
 		return this.icon;
 	}
-	
+
+	public void setIcon(int icon) {
+		this.icon = icon;
+	}
+
 	public String getCount(){
         return this.count;
 	}
 
+	public void setCount(String count) {
+		this.count = count;
+		isCounterVisible = !count.equals("0");
+	}
+	
     public boolean isProfile() {
         return this.isProfile;
     }
@@ -122,28 +139,8 @@ public class NavDrawerItem {
         return isOption;
     }
 
-    public boolean getCounterVisibility(){
+	public boolean getCounterVisibility() {
 		return this.isCounterVisible;
-	}
-	
-	public void setTitle(String title){
-		this.title = title;
-	}
-
-    public void setId(String id){
-        this.id = id;
-    }
-
-	public void setIcon(int icon){
-		this.icon = icon;
-	}
-	
-	public void setCount(String count){
-		this.count = count;
-		if (!count.equals("0"))
-			isCounterVisible = true;
-		else
-			isCounterVisible = false;
 	}
 	
 	public void setCounterVisibility(boolean isCounterVisible){

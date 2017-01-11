@@ -28,6 +28,30 @@ public class LacmdRoot {
     protected String name, idstr, objectType;
     protected double price;
     protected ArrayList<LacmdRoot> items;
+    protected int hasIngredients;
+    protected int hasElements;
+
+    public LacmdRoot(String name, String idstr, int hasIngredients, int hasElements, double price, String objType) {
+        this.name = name;
+        this.idstr = idstr;
+        this.hasIngredients = hasIngredients;
+        this.hasElements = hasElements;
+        this.price = price;
+        this.objectType = objType;
+    }
+
+    public LacmdRoot(LacmdRoot root) {
+        this.name = root.getName();
+        this.idstr = root.getIdstr();
+        this.hasIngredients = root.hasIngredients();
+        this.hasElements = root.hasElements();
+        this.price = root.getPrice();
+        this.objectType = root.objectType;
+        if (root.getItems() == null)
+            this.items = null;
+        else
+            this.items = new ArrayList<>(root.getItems());
+    }
 
     public ArrayList<LacmdRoot> getItems() {
         return items;
@@ -46,9 +70,6 @@ public class LacmdRoot {
         return hasElements;
     }
 
-    protected int hasIngredients;
-    protected int hasElements;
-
     public double getPrice() {
         return price;
     }
@@ -57,35 +78,13 @@ public class LacmdRoot {
         return (new DecimalFormat("0.00").format(calcRealPrice(false)) + "€");
     }
 
-    public LacmdRoot(String name, String idstr, int hasIngredients, int hasElements, double price, String objType) {
-        this.name = name;
-        this.idstr = idstr;
-        this.hasIngredients = hasIngredients;
-        this.hasElements = hasElements;
-        this.price = price;
-        this.objectType = objType;
-    }
+    public String getName() {
 
-    public LacmdRoot (LacmdRoot root) {
-        this.name = root.getName();
-        this.idstr = root.getIdstr();
-        this.hasIngredients = root.hasIngredients();
-        this.hasElements = root.hasElements();
-        this.price = root.getPrice();
-        this.objectType = root.objectType;
-        if (root.getItems() == null)
-            this.items = null;
-        else
-            this.items = new ArrayList<>(root.getItems());
+        return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getName() {
-
-        return name;
     }
 
     public String getIdstr() {

@@ -2,9 +2,9 @@
 
 <!-- Big picture -->
 <android.support.v7.widget.CardView
-    android:id="@+id/card_food_list"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_food_list"
     android:layout_width="match_parent"
     android:layout_height="173dp"
     android:layout_marginBottom="8dp"

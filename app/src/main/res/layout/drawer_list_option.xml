@@ -7,17 +7,17 @@
 
     <TextView
         android:id="@+id/title"
-        android:text="Paramètres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@color/drawer_text"
-        android:gravity="center_vertical"
+		android:layout_alignParentTop="true"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="16dp"
-        android:layout_alignParentTop="true"
+		android:layout_toEndOf="@+id/icon"
         android:layout_toRightOf="@+id/icon"
-        android:layout_toEndOf="@+id/icon" />
+		android:gravity="center_vertical"
+		android:minHeight="?android:attr/listPreferredItemHeightSmall"
+		android:text="Paramètres"
+		android:textAppearance="?android:attr/textAppearanceListItemSmall"
+		android:textColor="@color/drawer_text" />
 
 </RelativeLayout>

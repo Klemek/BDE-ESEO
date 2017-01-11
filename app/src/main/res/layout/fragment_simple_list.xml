@@ -13,13 +13,13 @@
             android:id="@+id/recyList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/color_background"
             android:divider="@drawable/drawer_divider"
             android:dividerHeight="0.7dp"
             android:drawSelectorOnTop="true"
             android:fadeScrollbars="true"
             android:footerDividersEnabled="true"
-            android:scrollbars="vertical"
-            android:background="@color/color_background" />
+            android:scrollbars="vertical" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -40,12 +40,12 @@
 
         <ImageView
             android:id="@+id/imgA"
-            android:visibility="visible"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/img_nothing" />
+            android:src="@drawable/img_nothing"
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/tvListNothing"

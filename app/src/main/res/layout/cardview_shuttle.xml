@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    card_view:cardCornerRadius="4dp"
-    android:layout_marginTop="10dp"
+    android:layout_marginBottom="4dp"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    android:layout_marginBottom="4dp"
+    android:layout_marginTop="10dp"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardCornerRadius="4dp">
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -21,31 +21,31 @@
             android:id="@+id/rl1"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
             android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="4dp"
             android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp" >
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical">
 
 
             <View
                 android:id="@+id/circleView"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
-                android:background="@drawable/circle_back_shuttle"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:background="@drawable/circle_back_shuttle" />
 
 
             <ImageView
                 android:id="@+id/imgDone"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:src="@drawable/ic_bus"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true" />
+                android:src="@drawable/ic_bus" />
 
         </RelativeLayout>
 
@@ -53,37 +53,37 @@
             android:id="@+id/rl2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/rl1"
+            android:layout_gravity="center_vertical"
             android:layout_toLeftOf="@+id/rl3"
-            android:layout_toStartOf="@+id/rl3">
+            android:layout_toRightOf="@+id/rl1"
+            android:layout_toStartOf="@+id/rl3"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/shuttlePlace"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Place Rochefoucault"
-                android:textColor="@color/text_black_clear"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
-                android:visibility="gone"
                 android:maxLines="1"
+                android:text="Place Rochefoucault"
+                android:textColor="@color/text_black_clear"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/shuttleDeparture"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="11/01 10:00"
-                android:textColor="@color/text_black_clear"
-                android:layout_marginTop="8dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginTop="8dp"
+                android:text="11/01 10:00"
+                android:textColor="@color/text_black_clear"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -91,9 +91,9 @@
                 android:id="@+id/shuttleSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="8dp"
                 android:text="12/25 places disponibles"
                 android:textSize="14dp" />
 
@@ -103,12 +103,12 @@
             android:id="@+id/rl3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true">
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/checkShuttle"

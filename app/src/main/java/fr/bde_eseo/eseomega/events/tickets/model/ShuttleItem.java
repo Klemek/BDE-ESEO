@@ -22,12 +22,11 @@ import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 
 /**
  * Created by François L. on 13/01/2016.
@@ -87,19 +86,12 @@ public class ShuttleItem {
     }
 
     public Date getParsedDate (String datetime) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
-        Date date = null;
-        try {
-            date = format.parse(datetime);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return DateUtils.oldfromString(datetime);
     }
 
     public String getFrenchDate (String datetime) {
         Date d = getParsedDate(datetime);
-        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM 'à' HH'h'mm", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM 'à' HH'h'mm", DateUtils.getLocale());
         return sdf.format(d);
     }
 }

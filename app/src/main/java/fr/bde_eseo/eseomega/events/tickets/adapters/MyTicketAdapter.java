@@ -36,11 +36,10 @@ import fr.bde_eseo.eseomega.events.tickets.model.EventTicketItem;
  */
 public class MyTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<EventTicketItem> eventTicketItems;
-    private Context context;
-
     public static final int TYPE_TICKET_ITEM = 0;
     public static final int TYPE_TICKET_HEADER = 1;
+    private ArrayList<EventTicketItem> eventTicketItems;
+    private Context context;
 
     public MyTicketAdapter(Context context) {
         this.eventTicketItems = new ArrayList<>();

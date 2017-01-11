@@ -9,7 +9,6 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -45,6 +44,16 @@ public class TreeView extends View {
     public TreeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
+    }
+
+    private static int arr(float f) {
+        return (int) (f + 0.5f);
+    }
+
+    private static String crop(String s, String end, int n) {
+        if (s.length() <= n)
+            return s;
+        return s.substring(0, n - end.length()) + end;
     }
 
     private void init(Context context){
@@ -305,16 +314,6 @@ public class TreeView extends View {
 
     private int[] getCoords(int k){
         return new int[]{arr(3f*dx*(rnkmx - family.get(k).getRank())/2f + dx), arr(family.get(k).getP()), };
-    }
-
-    private static int arr(float f){
-        return (int)(f+0.5f);
-    }
-
-    private static String crop(String s, String end, int n){
-        if(s.length()<=n)
-            return s;
-        return s.substring(0, n-end.length())+end;
     }
 
     private void drawMember(Canvas canvas, int k){

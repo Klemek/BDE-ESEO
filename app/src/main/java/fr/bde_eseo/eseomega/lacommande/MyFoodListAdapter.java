@@ -27,12 +27,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdCategory;
+import fr.bde_eseo.eseomega.utils.ImageUtils;
 
 /**
  * Created by François on 24/04/2015.
@@ -40,11 +39,10 @@ import fr.bde_eseo.eseomega.lacommande.model.LacmdCategory;
 
 public class MyFoodListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<LacmdCategory> foodCategoryArrayList;
-    private Context context;
-
     public static final int TYPE_FOOD_ITEM = 0;
     private static final int TYPE_NUMBER = TYPE_FOOD_ITEM + 1;
+    private ArrayList<LacmdCategory> foodCategoryArrayList;
+    private Context context;
 
     public MyFoodListAdapter(Context context) {
         this.foodCategoryArrayList = new ArrayList<>();
@@ -78,8 +76,7 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             fvh.vPrice.setText(fc.getBeginPriceAsStr());
             fvh.vSmallText.setText(fc.getSmallText());
 
-            Picasso.with(context).load(fc.getImgUrl()).placeholder(R.drawable.placeholder).error(R.drawable.placeholder_error).into(fvh.vImg);
-
+            ImageUtils.loadImage(context, fc.getImgUrl(), R.drawable.placeholder, R.drawable.placeholder_error, fvh.vImg);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
                 fvh.cardView.setPreventCornerOverlap(false);
             } else {

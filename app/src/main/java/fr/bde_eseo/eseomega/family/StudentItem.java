@@ -54,6 +54,29 @@ public class StudentItem implements Cloneable{
                 JSONUtils.getInt(obj, Constants.JSON_STUDENT_RANK, 0));
     }
 
+    private static ArrayList<Integer> cloneList(ArrayList<Integer> list) {
+        ArrayList<Integer> clone = new ArrayList<Integer>(list.size());
+        for (Integer item : list) clone.add(item);
+        return clone;
+    }
+
+    public static String getRnk(int rank) {
+        switch (rank) {
+            case 0:
+                return "P1";
+            case 1:
+                return "P2";
+            case 2:
+                return "I1";
+            case 3:
+                return "I2";
+            case 4:
+                return "I3";
+            default:
+                return "Ancien";
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -64,12 +87,6 @@ public class StudentItem implements Cloneable{
 
     public StudentItem clone(){
         return new StudentItem(this.id, name, promo, cloneList(parents), cloneList(children), rank, p);
-    }
-
-    private static ArrayList<Integer> cloneList(ArrayList<Integer> list) {
-        ArrayList<Integer> clone = new ArrayList<Integer>(list.size());
-        for (Integer item : list) clone.add(item);
-        return clone;
     }
 
     public int getRank() {
@@ -83,29 +100,22 @@ public class StudentItem implements Cloneable{
     public int getId() {return id;}
 
     public ArrayList<Integer> getChildren() { return children;}
+
     public void addChild(Integer child){
         children.add(child);
     }
+
     public ArrayList<Integer> getParents() { return parents;}
+
     public void addParent(Integer par){
         parents.add(par);
     }
+
     public float getP(){ return p;}
 
     public void setP(float p){this.p = p;}
 
     public String getDetails() {
         return getRnk(rank) + " • Promotion " +promo;
-    }
-
-    public static String getRnk(int rank){
-        switch(rank){
-            case 0:return "P1";
-            case 1:return "P2";
-            case 2:return "I1";
-            case 3:return "I2";
-            case 4:return "I3";
-            default:return "Ancien";
-        }
     }
 }

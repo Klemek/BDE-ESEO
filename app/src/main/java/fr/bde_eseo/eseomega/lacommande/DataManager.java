@@ -35,10 +35,36 @@ import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
  */
 public class DataManager {
 
+    private final static String ENTRY_MENU_ID = "cat_menus";
+    private final static String JSON_KEY_CATEGORIES = "lacmd-categories";
+    private final static String JSON_KEY_MENUS = "lacmd-menus";
+    private final static String JSON_KEY_ELEMENTS = "lacmd-elements";
+    private final static String JSON_KEY_INGREDIENTS = "lacmd-ingredients";
     private static DataManager instance;
     private String token;
     private int nbCartItems = 0;
-
+    /**
+     * LOOK AT HERE BABY IT'S READY
+     * 17/08/2015
+     */
+    // Get menus, elements and ingredients from JSON Array (syncData.php)
+    private ArrayList<LacmdIngredient> ingredients;
+    private ArrayList<LacmdMenu> menus;
+    private ArrayList<LacmdElement> elements;
+    private ArrayList<LacmdCategory> categories;
+    /**
+     * Cart manager objects ! 19/08/2015
+     * Uses LacmdRoot element for the moment (to store name, price, identifier ...)
+     */
+    private ArrayList<LacmdRoot> cartArray;
+    /**
+     * Curent menu's item list
+     */
+    private LacmdMenu menu;
+    /**
+     * Instructions
+     */
+    private String instructions;
     private DataManager (){}
 
     public static DataManager getInstance() {
@@ -70,21 +96,6 @@ public class DataManager {
         this.categories.clear();
         this.instructions = "";
     }
-
-    /**
-     * LOOK AT HERE BABY IT'S READY
-     * 17/08/2015
-     */
-    // Get menus, elements and ingredients from JSON Array (syncData.php)
-    private ArrayList<LacmdIngredient> ingredients;
-    private ArrayList<LacmdMenu> menus;
-    private ArrayList<LacmdElement> elements;
-    private ArrayList<LacmdCategory> categories;
-    private final static String ENTRY_MENU_ID = "cat_menus";
-    private final static String JSON_KEY_CATEGORIES = "lacmd-categories";
-    private final static String JSON_KEY_MENUS = "lacmd-menus";
-    private final static String JSON_KEY_ELEMENTS = "lacmd-elements";
-    private final static String JSON_KEY_INGREDIENTS = "lacmd-ingredients";
 
     public void fillData (JSONArray array) {
 
@@ -165,12 +176,6 @@ public class DataManager {
         return roots;
     }
 
-    /**
-     * Cart manager objects ! 19/08/2015
-     * Uses LacmdRoot element for the moment (to store name, price, identifier ...)
-     */
-    private ArrayList<LacmdRoot> cartArray;
-
     // Returns the cart array (Usage : for Adapter)
     public ArrayList<LacmdRoot> getCartArray() {
         return cartArray;
@@ -235,29 +240,19 @@ public class DataManager {
         return json;
     }
 
-    /**
-     * Curent menu's item list
-     */
-    private LacmdMenu menu;
+    public LacmdMenu getMenu() {
+        return menu;
+    }
 
     public void setMenu (LacmdMenu menu) {
         this.menu = new LacmdMenu(menu);
     }
 
-    public LacmdMenu getMenu() {
-        return menu;
+    public String getInstructions() {
+        return instructions;
     }
-
-    /**
-     * Instructions
-     */
-    private String instructions;
 
     public void setInstructions (String instructions) {
         this.instructions = instructions;
-    }
-
-    public String getInstructions () {
-        return instructions;
     }
 }

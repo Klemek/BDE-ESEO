@@ -24,17 +24,16 @@ import android.provider.CalendarContract;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.events.tickets.model.SubEventItem;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 
 /**
@@ -86,7 +85,7 @@ public class EventItem {
 
 
         this.url = JSONUtils.getString(obj, Constants.JSON_EVENT_URL, "");
-        this.imgUrl = JSONUtils.getString(obj, Constants.JSON_EVENT_IMGURL, "");
+        this.imgUrl = JSONUtils.getString(obj, Constants.JSON_EVENT_IMGURL, null, true);
 
         this.performShortedDetails(ctx);
 
@@ -121,6 +120,16 @@ public class EventItem {
         performShortedDetails(ctx);
     }
 
+    public EventItem(String name) {
+        this.name = name;
+        this.isHeader = true;
+    }
+
+    public static String getShortedDetails(Context ctx, String stdate, String enddate) {
+        EventItem ei = new EventItem(ctx, stdate, enddate);
+        return ctx.getString(R.string.event_the) + " : " + ei.getDayAsString(ei.getDate()) + " " + ei.getShortedDetails();
+    }
+
     public ArrayList<SubEventItem> getSubEventItems() {
         return subEventItems;
     }
@@ -146,7 +155,6 @@ public class EventItem {
 
         return en;
     }
-
 
     // Like : Heure · club · lieu · description (size limited -> ~35 chars)
     // V2.1 :
@@ -176,16 +184,6 @@ public class EventItem {
         return shorted;
     }
 
-    public static String getShortedDetails (Context ctx, String stdate, String enddate) {
-        EventItem ei = new EventItem(ctx, stdate, enddate);
-        return ctx.getString(R.string.event_the)+ " : "+ ei.getDayAsString(ei.getDate()) + " " + ei.getShortedDetails();
-    }
-
-    public EventItem(String name) {
-        this.name = name;
-        this.isHeader = true;
-    }
-
     public Intent toCalendarIntent () {
         Intent calIntent = new Intent(Intent.ACTION_INSERT);
         calIntent.setType("vnd.android.cursor.item/event");
@@ -193,7 +191,7 @@ public class EventItem {
         calIntent.putExtra(CalendarContract.Events.EVENT_LOCATION, (lieu!=null?lieu:""));
         calIntent.putExtra(CalendarContract.Events.DESCRIPTION, (details!=null?details:""));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH'h'mm", DateUtils.getLocale());
         String sDate = sdf.format(this.date);
         boolean allDay = sDate.equals(HOUR_PASS_ALLDAY);
         calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, allDay);
@@ -203,30 +201,18 @@ public class EventItem {
         return calIntent;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDetails(String details) {
-        this.details = details;
-    }
-
     public void setIsHeader(boolean isHeader) {
         this.isHeader = isHeader;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
     public String getMonthHeader() {
-        SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", Locale.FRANCE);
-        return sdf.format(this.date).toUpperCase(Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("MMMM yyyy", DateUtils.getLocale());
+        return sdf.format(this.date).toUpperCase(DateUtils.getLocale());
     }
 
     // If equal to hour_pass (00h02 ?) set it all day, no specific hour
     public String getTimeAsString (Date d) {
-        SimpleDateFormat sdf = new SimpleDateFormat("HH':'mm", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("HH':'mm", DateUtils.getLocale());
         String sDate = sdf.format(d);
         if (sDate.equals(HOUR_PASS_ALLDAY))
             sDate = "";
@@ -234,21 +220,12 @@ public class EventItem {
     }
 
     public void setDateAsString(String dateAsString, String dateAsStringEnd) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.FRANCE);
-        Date date = null;
-        Date datefin = null;
-        try {
-            date = format.parse(dateAsString);
-            datefin = format.parse(dateAsStringEnd);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        this.datefin = datefin;
-        this.date = date;
+        this.datefin = DateUtils.fromString(dateAsStringEnd);
+        this.date = DateUtils.fromString(dateAsString);
     }
 
     public String getDayAsString(Date d) {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMM", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE dd MMM", DateUtils.getLocale());
         String sDate = sdf.format(d);
         if (sDate.equals(HOUR_PASS_ALLDAY))
             sDate = "";
@@ -257,25 +234,29 @@ public class EventItem {
 
     // Number as String, why ? for TextView call !
     public String getDayNumero () {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd", DateUtils.getLocale());
         return sdf.format(this.date);
     }
 
     public String getDayName () {
-        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", Locale.FRANCE);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE", DateUtils.getLocale());
         return sdf.format(this.date);
-    }
-
-    public void setColor(int color) {
-        this.color = color;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDetails() {
         return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public boolean isHeader() {
@@ -284,6 +265,10 @@ public class EventItem {
 
     public Date getDate() {
         return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getDateString(Context ctx) {
@@ -296,6 +281,10 @@ public class EventItem {
 
     public int getColor() {
         return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 
     public String getUrl() {

@@ -5,8 +5,8 @@
     <string name="app_name_tickets">Vos réservations</string>
     <string name="app_name_sales">Faire une réservation</string>
     <string name="app_name_shuttles">Choisir une navette</string>
-    <string name="app_version_name">1.0.4</string>
-    <string name="app_version_code">38</string>
+    <string name="app_version_name">1.0.7</string>
+    <string name="app_version_code">41</string>
     <string name="app_copyright">None</string>
 
     <string name="desc_list_item_icon">Item Icon</string>
@@ -35,6 +35,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
         <item>Événements</item>
         <item>Clubs &amp; Vie Asso</item>
         <item>Généalogie</item>
+        <item>Ingénews</item>
         <item>Caféteria</item>
         <item>Bons Plans</item>
         <item>Liste des Salles</item>
@@ -52,6 +53,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
         <item>@drawable/ic_events</item>
         <item>@drawable/ic_clubs</item>
         <item>@drawable/ic_family</item>
+        <item>@drawable/ic_ingenews</item>
         <item>@drawable/ic_cafet</item>
         <item>@drawable/ic_promos</item>
         <item>@drawable/ic_direction</item>
@@ -217,7 +219,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="empty_desc_plans">Le bâtiment ESEO a peut-être été détruit, ou alors c\'est que votre connexion internet est pas au top de sa forme ...</string>
 
     <string name="empty_desc_family">Retrouvez içi la généalogie des familles de parrainage de l\'ESEO. Effectuez une recherche grâce au bouton en haut à droite.</string>
-    <string name="empty_desc_nothing_family">Votre recherche n\'a pas aboutie, vérifiez l\'orthographe du nom. (Si c\'est vous-même, veuillez vous présenter au module RCII du BDE.)</string>
+    <string name="empty_desc_nothing_family">Votre recherche n\'a pas abouti, vérifiez l\'orthographe du nom. (Si c\'est vous-même, veuillez vous présenter au module RCII du BDE.)</string>
 
 
     <string name="order_cancel_title">Annuler la commande ?</string>
@@ -296,7 +298,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="event_from">Par</string>
     <string name="event_the">Le</string>
 
-    <string name="event_no_details">Aucuns détails</string>
+    <string name="event_no_details">Aucun détails</string>
     <string name="event_date">Début</string>
     <string name="event_end_date">Fin</string>
     <string name="event_place">Lieu</string>
@@ -398,6 +400,10 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
 
     <string name="ticket_future_events">ÉVÉNEMENTS À VENIR</string>
     <string name="ticket_terminated_events">ÉVÉNEMENTS PASSÉS</string>
+
+    <string name="empty_header_inge">Aucune édition Ingénews trouvée</string>
+    <string name="empty_desc_inge">L\'équipe d\'Ingénews n\'a peut être pas encore mis en ligne leur édition !\nAu passage, vérifiez votre connexion internet.</string>
+    <string name="warn_text_inge">Cette page regroupe l\'ensemble des éditions Ingénews que le club a mis en ligne sur nos serveurs.\nESEOmega n\'est en aucun cas responsable du contenu proposé.</string>
 
     <string name="congrats">Félicitations !</string>
     <string name="touch">-- Touchez ici --</string>

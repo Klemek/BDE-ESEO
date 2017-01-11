@@ -57,8 +57,7 @@ import fr.bde_eseo.eseomega.events.EventsListFragment;
 import fr.bde_eseo.eseomega.family.StudentSearchFragment;
 import fr.bde_eseo.eseomega.gcmpush.QuickstartPreferences;
 import fr.bde_eseo.eseomega.gcmpush.RegistrationIntentService;
-import fr.bde_eseo.eseomega.rooms.RoomsListFragment;
-import fr.bde_eseo.eseomega.sponsors.SponsoFragment;
+import fr.bde_eseo.eseomega.ingenews.IngeListFragment;
 import fr.bde_eseo.eseomega.interfaces.OnItemAddToCart;
 import fr.bde_eseo.eseomega.interfaces.OnUserProfileChange;
 import fr.bde_eseo.eseomega.lacommande.DataManager;
@@ -68,9 +67,11 @@ import fr.bde_eseo.eseomega.news.NewsListFragment;
 import fr.bde_eseo.eseomega.profile.ConnectProfileFragment;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.profile.ViewProfileFragment;
+import fr.bde_eseo.eseomega.rooms.RoomsListFragment;
 import fr.bde_eseo.eseomega.settings.SettingsFragment;
 import fr.bde_eseo.eseomega.slidingmenu.NavDrawerItem;
 import fr.bde_eseo.eseomega.slidingmenu.NavDrawerListAdapter;
+import fr.bde_eseo.eseomega.sponsors.SponsoFragment;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
@@ -81,23 +82,17 @@ import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
  */
 public class MainActivity extends AppCompatActivity implements OnUserProfileChange, OnItemAddToCart {
 
+    // Others constant values
+    public static final int MAX_PROFILE_SIZE = 256; // seems good
+    // Profile item
+    UserProfile profile = new UserProfile();
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
-
-
-
-    // Others constant values
-    public static final int MAX_PROFILE_SIZE = 256; // seems good
-
     // used to store app title
     private CharSequence mTitle;
-
-    // Profile item
-    UserProfile profile = new UserProfile();
-
     // Preferences
     private SharedPreferences prefs_Read;
     private SharedPreferences.Editor prefs_Write;
@@ -205,6 +200,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
 
         // adding nav drawer items to array
         for (int it = 1; it < navMenuTitles.length; it++) {
+            //noinspection ResourceType
             navDrawerItems.add(new NavDrawerItem(navMenuTitles[it], navMenuIcons.getResourceId(it, -1)));
         }
 
@@ -354,17 +350,6 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         }
     }
 
-    /**
-     * Slide menu item click listener
-     */
-    private class SlideMenuClickListener implements ListView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            // display view for selected nav drawer item
-            displayView(position);
-        }
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         switch(fragPosition){
@@ -476,16 +461,19 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
             case 4: // Généalogie
                 fragment = new StudentSearchFragment();
                 break;
-            case 5: // Commande Cafet
+            case 5: // Ingenews
+                fragment = new IngeListFragment();
+                break;
+            case 6: // Commande Cafet
                 fragment = new OrderHistoryFragment();
                 break;
-            case 6: // Bons plans
+            case 7: // Bons plans
                 fragment = new SponsoFragment();
                 break;
-            case 7: // Plan des salles
+            case 8: // Plan des salles
                 fragment = new RoomsListFragment();
                 break;
-            case 9: // Réglages
+            case 10: // Réglages
                 fragment = new SettingsFragment();
                 break;
             default:
@@ -604,5 +592,16 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
     protected void onPause() {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
         super.onPause();
+    }
+
+    /**
+     * Slide menu item click listener
+     */
+    private class SlideMenuClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            // display view for selected nav drawer item
+            displayView(position);
+        }
     }
 }

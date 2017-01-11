@@ -1,115 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:id="@+id/rlBackDialogEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ff2f57"
-        android:paddingTop="26dp"
+        android:paddingBottom="10dp"
         android:paddingLeft="18dp"
-        android:paddingBottom="10dp">
+        android:paddingTop="26dp">
 
         <TextView
             android:id="@+id/tvEventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Titre"
             android:textColor="@color/md_white_1000"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Titre"/>
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
     <ImageView
+        android:id="@+id/eventImg"
         android:layout_width="fill_parent"
         android:layout_height="130dp"
-        android:id="@+id/eventImg"
-        android:visibility="visible"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:visibility="visible" />
 
     <TextView
+        android:id="@+id/tvEventDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:text="Detail"
         android:textColor="@color/md_grey_800"
-        android:textSize="16sp"
-        android:id="@+id/tvEventDetails"
-        android:text="Detail"/>
+        android:textSize="16sp" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="-8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="8dp"
-        android:textColor="@color/md_grey_600"
-        android:textSize="16sp"
         android:id="@+id/tvEventDate"
-        android:text="DateDéb" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-8dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="-8dp"
+        android:text="DateDéb"
         android:textColor="@color/md_grey_600"
-        android:textSize="16sp"
+        android:textSize="16sp" />
+
+    <TextView
         android:id="@+id/tvEventEndDate"
-        android:text="DateFin" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-8dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="-8dp"
+        android:text="DateFin"
         android:textColor="@color/md_grey_600"
-        android:textSize="16sp"
+        android:textSize="16sp" />
+
+    <TextView
         android:id="@+id/tvEventPlace"
-        android:text="Lieu"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="-8dp"
+        android:text="Lieu"
+        android:textColor="@color/md_grey_600"
+        android:textSize="16sp" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:orientation="horizontal">
 
         <ImageButton
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
             android:id="@+id/eventSignup"
-            android:src="@drawable/ic_signup"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true" />
-
-        <ImageButton
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_signup" />
+
+        <ImageButton
             android:id="@+id/eventAddCalendar"
-            android:src="@drawable/ic_events"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true" />
-
-        <ImageButton
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_events" />
+
+        <ImageButton
             android:id="@+id/eventMap"
-            android:src="@drawable/ic_map"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true" />
-
-        <ImageButton
             android:layout_width="60dp"
             android:layout_height="wrap_content"
-            android:id="@+id/eventUrl"
-            android:src="@drawable/ic_website"
+            android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:adjustViewBounds="true" />
+            android:src="@drawable/ic_map" />
+
+        <ImageButton
+            android:id="@+id/eventUrl"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_website" />
     </LinearLayout>
 
 </LinearLayout>

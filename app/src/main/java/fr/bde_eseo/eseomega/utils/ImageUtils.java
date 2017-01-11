@@ -17,9 +17,14 @@
 
 package fr.bde_eseo.eseomega.utils;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 /**
  * Created by François L. on 10/08/2015.
@@ -86,6 +91,34 @@ public class ImageUtils {
         }
 
         return inSampleSize;
+    }
+
+    public static void loadImage(Context ctx, String url, ImageView view) {
+        if (url != null && !url.equals("")) {
+            Picasso.with(ctx).load(url).into(view);
+        }
+    }
+
+    public static void loadImage(Context ctx, String url, int placeholder, int error, ImageView view) {
+        if (url != null && !url.equals("")) {
+            Picasso.with(ctx).load(url).placeholder(placeholder).error(error).into(view);
+        } else {
+            Picasso.with(ctx).load(error).into(view);
+        }
+    }
+
+    public static void loadImage(Context ctx, String url, Target target) {
+        if (url != null && !url.equals("")) {
+            Picasso.with(ctx).load(url).into(target);
+        }
+    }
+
+    public static void loadImage(Context ctx, String url, int placeholder, int error, Target target) {
+        if (url != null && !url.equals("")) {
+            Picasso.with(ctx).load(url).placeholder(placeholder).error(error).into(target);
+        } else {
+            Picasso.with(ctx).load(error).into(target);
+        }
     }
 
 }

@@ -32,14 +32,13 @@ import fr.bde_eseo.eseomega.R;
  * Simple date / time delay container
  */
 public class SimplyDate {
-    private long hours, days, weeks, months;
-    private Date remote_date;
-    private SimpleDateFormat simpleDateFormat;
-
     private static final long ONE_HOUR = 60*60*1000;    // 1 heure = 3600 * 1000 millis
     private static final long ONE_DAY = 24*ONE_HOUR;    // 1 jour = 24 heures
     private static final long ONE_WEEK = 7*ONE_DAY;     // 1 semaine = 7 jours
     private static final long ONE_MONTH = 30*ONE_DAY;   // En moyenne, 1 mois = 30 jours, la flemme de faire une fonction adéquate
+    private long hours, days, weeks, months;
+    private Date remote_date;
+    private SimpleDateFormat simpleDateFormat;
 
     /**
      * If date fail : try with seconds or without (english style)

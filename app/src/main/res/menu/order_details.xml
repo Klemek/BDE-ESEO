@@ -2,8 +2,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/action_pay_lydia"
-        android:title="@string/action_lydia"
         android:icon="@drawable/ic_card"
+        android:title="@string/action_lydia"
         app:showAsAction="ifRoom" />
 
     <!--<item android:id="@+id/action_settings"

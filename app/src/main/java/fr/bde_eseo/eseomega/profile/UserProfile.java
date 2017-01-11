@@ -37,7 +37,7 @@ public class UserProfile {
 
     public static final String RESEAU_ESEO_FR = "@reseau.eseo.fr";
     public static final Pattern PHONE_PATTERN = Pattern.compile("/^((\\+|00)33\\s?|0)[679](\\s?\\d{2}){4}$/");
-
+    private final static int MAX_TEXT_LENGTH = 39;
     private String name;
     private String id;
     private String email;
@@ -46,8 +46,6 @@ public class UserProfile {
     private String picturePath;
     private String pushToken;
     private String phoneNumber; // Lydia oblige
-
-    private final static int MAX_TEXT_LENGTH = 39;
 
     public UserProfile () {
         this.isCreated = false;
@@ -73,8 +71,16 @@ public class UserProfile {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getId () {
         return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPassword () {
@@ -83,14 +89,6 @@ public class UserProfile {
 
     public String getEmail () {
         return this.email;
-    }
-
-    public void setName (String name) {
-        this.name = name;
-    }
-
-    public void setId (String id) {
-        this.id = id;
     }
 
     public void setEmail (String email) {
@@ -105,13 +103,13 @@ public class UserProfile {
         this.isCreated = false;
     }
 
-    public void setPicturePath(String picturePath) {
-        this.picturePath = picturePath;
-    }
-
     public String getPicturePath() {
 
         return picturePath;
+    }
+
+    public void setPicturePath(String picturePath) {
+        this.picturePath = picturePath;
     }
 
     /**
@@ -128,12 +126,12 @@ public class UserProfile {
         return Patterns.PHONE.matcher(phoneNumber).matches() && phoneNumber.length() == 10 || phoneNumber.length() == 12;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public boolean isCreated () {

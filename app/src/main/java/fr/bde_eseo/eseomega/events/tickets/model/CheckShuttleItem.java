@@ -50,15 +50,15 @@ public class CheckShuttleItem {
         return shuttleItem;
     }
 
+    public void setShuttleItem(ShuttleItem shuttleItem) {
+        this.shuttleItem = shuttleItem;
+    }
+
     public boolean isHeader() {
         return isHeader;
     }
 
     public String getName() {
         return name;
-    }
-
-    public void setShuttleItem(ShuttleItem shuttleItem) {
-        this.shuttleItem = shuttleItem;
     }
 }

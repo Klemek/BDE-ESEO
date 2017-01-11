@@ -46,7 +46,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        ImageView vLogo = (ImageView) findViewById(R.id.imgLogo); // Gantier's listener
+        ImageView vLogo = (ImageView) findViewById(R.id.imgLogo);
         profile = new UserProfile();
         profile.readProfilePromPrefs(this);
 

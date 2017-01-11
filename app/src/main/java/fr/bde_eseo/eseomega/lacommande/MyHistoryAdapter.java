@@ -36,13 +36,12 @@ import fr.bde_eseo.eseomega.lacommande.model.HistoryItem;
 
 public class MyHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<HistoryItem> historyList;
-    private Context context;
-
     public static final int TYPE_HISTORY_ITEM = 0;
     public static final int TYPE_HISTORY_HEADER = 1;
     public static final int TYPE_HISTORY_FOOTER = 2;
     private static final int TYPE_NUMBER = TYPE_HISTORY_ITEM + TYPE_HISTORY_HEADER + TYPE_HISTORY_FOOTER;
+    private ArrayList<HistoryItem> historyList;
+    private Context context;
 
     public MyHistoryAdapter(Context context) {
         this.historyList = new ArrayList<>();

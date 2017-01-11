@@ -29,11 +29,12 @@ import android.webkit.WebView;
  */
 public class WebViewTitle extends WebView {
 
+    private int titleHeight;
+    private boolean touchInTitleBar;
+
     public WebViewTitle(Context context, AttributeSet attrs){
         super(context, attrs);
     }
-
-    private int titleHeight;
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec){
@@ -48,7 +49,6 @@ public class WebViewTitle extends WebView {
         return true;   // don't pass our touch events to children (title bar), we send these in dispatchTouchEvent
     }
 
-    private boolean touchInTitleBar;
     @Override
     public boolean dispatchTouchEvent(MotionEvent me){
 

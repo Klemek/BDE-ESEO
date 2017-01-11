@@ -2,12 +2,15 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="@color/drawer_text"/>
 
-    <padding android:left="2dp"
-        android:top="0dp"
-        android:right="2dp"
+    <padding
         android:bottom="0dp"
+        android:left="2dp"
+        android:right="2dp"
+        android:top="0dp"
         />
 
-    <corners android:bottomRightRadius="4dp" android:bottomLeftRadius="4dp"
+    <corners
+        android:bottomLeftRadius="4dp"
+        android:bottomRightRadius="4dp"
         android:topLeftRadius="4dp" android:topRightRadius="4dp"/>
 </shape>

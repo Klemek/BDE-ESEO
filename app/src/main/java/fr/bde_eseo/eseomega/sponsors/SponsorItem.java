@@ -37,7 +37,7 @@ public class SponsorItem {
     public SponsorItem(JSONObject obj) throws JSONException{
         this.name = obj.getString(Constants.JSON_SPONSO_NAME);
         this.detail = obj.getString(Constants.JSON_SPONSO_DETAIL);
-        this.img = obj.getString(Constants.JSON_SPONSO_IMG);
+        this.img = JSONUtils.getString(obj, Constants.JSON_SPONSO_IMG, null, true);
         this.url = JSONUtils.getString(obj, Constants.JSON_SPONSO_URL, "");
         this.adr = JSONUtils.getString(obj, Constants.JSON_SPONSO_ADR, "");
         this.avantages = new ArrayList<>();

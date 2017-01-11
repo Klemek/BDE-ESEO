@@ -15,8 +15,6 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyList"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout2"
@@ -24,7 +22,9 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/tvChooseShuttle"/>
+        android:layout_below="@+id/tvChooseShuttle"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <RelativeLayout
         android:id="@+id/linearLayout2"

@@ -20,106 +20,11 @@ package fr.bde_eseo.eseomega.utils;
 /**
  * Created by François on 08/04/2015.
  */
+
 import java.io.StringWriter;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class StringUtils {
-
-    public static final String simpleString(final String s) {
-        String out = s.toLowerCase(Locale.FRANCE);
-        out = out.replace("é", "e");
-        out = out.replace("è", "e");
-        out = out.replace("ê", "e");
-        out = out.replace("ë", "e");
-        out = out.replace("à", "a");
-        out = out.replace("ä", "a");
-        out = out.replace("ç", "c");
-        out = out.replace(" ", "");
-        out = out.replace("-", "");
-
-        return out;
-    }
-
-    public static final String unescapeHtml3(final String input) {
-        StringWriter writer = null;
-        int len = input.length();
-        int i = 1;
-        int st = 0;
-        while (true) {
-            // look for '&'
-            while (i < len && input.charAt(i-1) != '&')
-                i++;
-            if (i >= len)
-                break;
-
-            // found '&', look for ';'
-            int j = i;
-            while (j < len && j < i + MAX_ESCAPE + 1 && input.charAt(j) != ';')
-                j++;
-            if (j == len || j < i + MIN_ESCAPE || j == i + MAX_ESCAPE + 1) {
-                i++;
-                continue;
-            }
-
-            // found escape
-            if (input.charAt(i) == '#') {
-                // numeric escape
-                int k = i + 1;
-                int radix = 10;
-
-                final char firstChar = input.charAt(k);
-                if (firstChar == 'x' || firstChar == 'X') {
-                    k++;
-                    radix = 16;
-                }
-
-                try {
-                    int entityValue = Integer.parseInt(input.substring(k, j), radix);
-
-                    if (writer == null)
-                        writer = new StringWriter(input.length());
-                    writer.append(input.substring(st, i - 1));
-
-                    if (entityValue > 0xFFFF) {
-                        final char[] chrs = Character.toChars(entityValue);
-                        writer.write(chrs[0]);
-                        writer.write(chrs[1]);
-                    } else {
-                        writer.write(entityValue);
-                    }
-
-                } catch (NumberFormatException ex) {
-                    i++;
-                    continue;
-                }
-            }
-            else {
-                // named escape
-                CharSequence value = lookupMap.get(input.substring(i, j));
-                if (value == null) {
-                    i++;
-                    continue;
-                }
-
-                if (writer == null)
-                    writer = new StringWriter(input.length());
-                writer.append(input.substring(st, i - 1));
-
-                writer.append(value);
-            }
-
-            // skip escape
-            st = j + 1;
-            i = st;
-        }
-
-        if (writer != null) {
-            writer.append(input.substring(st, len));
-            return writer.toString();
-        }
-        return input;
-    }
 
     private static final String[][] ESCAPES = {
             {"\"",     "quot"}, // " - double-quote
@@ -226,15 +131,108 @@ public class StringUtils {
             {"\u00FE", "thorn"}, // ю - lowercase thorn, Icelandic
             {"\u00FF", "yuml"}, // я - lowercase y, umlaut
     };
-
     private static final int MIN_ESCAPE = 2;
     private static final int MAX_ESCAPE = 6;
-
     private static final HashMap<String, CharSequence> lookupMap;
+
     static {
         lookupMap = new HashMap<String, CharSequence>();
         for (final CharSequence[] seq : ESCAPES)
             lookupMap.put(seq[1].toString(), seq[0]);
+    }
+
+    public static final String simpleString(final String s) {
+        String out = s.toLowerCase(DateUtils.getLocale());
+        out = out.replace("é", "e");
+        out = out.replace("è", "e");
+        out = out.replace("ê", "e");
+        out = out.replace("ë", "e");
+        out = out.replace("à", "a");
+        out = out.replace("ä", "a");
+        out = out.replace("ç", "c");
+        out = out.replace(" ", "");
+        out = out.replace("-", "");
+
+        return out;
+    }
+
+    public static final String unescapeHtml3(final String input) {
+        StringWriter writer = null;
+        int len = input.length();
+        int i = 1;
+        int st = 0;
+        while (true) {
+            // look for '&'
+            while (i < len && input.charAt(i - 1) != '&')
+                i++;
+            if (i >= len)
+                break;
+
+            // found '&', look for ';'
+            int j = i;
+            while (j < len && j < i + MAX_ESCAPE + 1 && input.charAt(j) != ';')
+                j++;
+            if (j == len || j < i + MIN_ESCAPE || j == i + MAX_ESCAPE + 1) {
+                i++;
+                continue;
+            }
+
+            // found escape
+            if (input.charAt(i) == '#') {
+                // numeric escape
+                int k = i + 1;
+                int radix = 10;
+
+                final char firstChar = input.charAt(k);
+                if (firstChar == 'x' || firstChar == 'X') {
+                    k++;
+                    radix = 16;
+                }
+
+                try {
+                    int entityValue = Integer.parseInt(input.substring(k, j), radix);
+
+                    if (writer == null)
+                        writer = new StringWriter(input.length());
+                    writer.append(input.substring(st, i - 1));
+
+                    if (entityValue > 0xFFFF) {
+                        final char[] chrs = Character.toChars(entityValue);
+                        writer.write(chrs[0]);
+                        writer.write(chrs[1]);
+                    } else {
+                        writer.write(entityValue);
+                    }
+
+                } catch (NumberFormatException ex) {
+                    i++;
+                    continue;
+                }
+            } else {
+                // named escape
+                CharSequence value = lookupMap.get(input.substring(i, j));
+                if (value == null) {
+                    i++;
+                    continue;
+                }
+
+                if (writer == null)
+                    writer = new StringWriter(input.length());
+                writer.append(input.substring(st, i - 1));
+
+                writer.append(value);
+            }
+
+            // skip escape
+            st = j + 1;
+            i = st;
+        }
+
+        if (writer != null) {
+            writer.append(input.substring(st, len));
+            return writer.toString();
+        }
+        return input;
     }
 
 }

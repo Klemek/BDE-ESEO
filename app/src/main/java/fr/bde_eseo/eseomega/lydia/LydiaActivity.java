@@ -63,42 +63,30 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class LydiaActivity extends AppCompatActivity {
 
+    // Returns
+    private static int LAST_STATUS = 0;
     // Android lifecycle objects
     private Context context;
-
     // Our dialog
     private MaterialDialog md;
     private MaterialDialog.Builder mdb;
-
     // Our dialog's elements
     private EditText etPhone;
     private CheckBox checkRememberPhone;
     private View mdView;
     private TextView tvStatus;
     private ProgressBar progressStatus;
-
     // Divers
     private UserProfile userProfile;
     private String clientPhone;
     private boolean hasBeenPaused = false;
     private SharedPreferences prefsUser;
-
     // Intent-from
     private String orderType = "";
     private int orderID = -1;
-
-    // Returns
-    private static int LAST_STATUS = 0;
     private String MOBILE_URL;
     //private String LYDIA_PACKAGE;
     private String LYDIA_INTENT;
-
-    // Types de requêtes qui ont lieu lors du onCreate (première ouverture de l'app)
-    private enum INTENT_REQUEST {
-        FROM_LYDIA, // Via URL Scheme
-        FROM_APP,   // Via Intent interne
-        ERROR       // Aucun des deux précédents
-    }
 
     // Getteur
     public static int LAST_STATUS() {
@@ -352,6 +340,116 @@ public class LydiaActivity extends AppCompatActivity {
     }
 
     /**
+     * Make an Intent to Lydia App / Web navigator if app is not found
+     */
+    void intentToLydia() {
+
+        // Configure and make Lydia Intent
+        //String intentUri;
+        boolean closeAfter = false;
+
+        // Package Lydia exists ?
+        //intentUri = LYDIA_INTENT; // suppose yes
+
+        /*if (Utilities.isPackageExisted(context, LYDIA_PACKAGE)) {
+            intentUri = LYDIA_INTENT;
+        } else {
+            intentUri = MOBILE_URL; // Package doesn't exists : open URL
+            closeAfter = true; // @see comment below
+            Toast.makeText(context, "Le navigateur va être ouvert.", Toast.LENGTH_SHORT).show();
+        }*/
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(LYDIA_INTENT));
+
+        PackageManager packageManager = context.getPackageManager();
+        if (i.resolveActivity(packageManager) != null) {
+            startActivity(i);
+        } else { // Package doesn't exists : open URL
+            Intent iweb = new Intent();
+            closeAfter = true; // @see comment below
+            Toast.makeText(context, R.string.toast_lydia_payment_web, Toast.LENGTH_SHORT).show();
+            iweb.setData(Uri.parse(MOBILE_URL));
+            startActivity(iweb);
+        }
+
+        if (closeAfter) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    md.dismiss();
+                    close(); // prevent app-resume with null orderID
+                    Toast.makeText(context, "Closing LydiaActivity ...", Toast.LENGTH_SHORT).show();
+                }
+            }, 1000);
+        }
+    }
+
+    /**
+     * If the user come back to the Activity without Intent :
+     * It means that the payment has failed / was cancelled
+     * We have to show a Dialog which checks order status from server and then show status to user
+     */
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (hasBeenPaused) {
+            hasBeenPaused = false;
+
+            dialogInit();
+            dialogFromLydia();
+        }
+    }
+
+    /**
+     * On pause : just save the app has been paused
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        hasBeenPaused = true;
+    }
+
+    /**
+     * Set TextView status text and color
+     */
+    void updateTextStatus(String text, int status, boolean isLoading) {
+
+        tvStatus.setText(text);
+
+        if (isLoading) {
+            tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
+        } else {
+            if (status == 0) {
+                tvStatus.setTextColor(context.getResources().getColor(R.color.md_prim_dark_yellow));
+            } else if (status == 1) {
+                tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
+            } else if (status == 2) {
+                tvStatus.setTextColor(context.getResources().getColor(R.color.circle_ready));
+            } else {
+                tvStatus.setTextColor(context.getResources().getColor(R.color.circle_error));
+            }
+        }
+    }
+
+    /**
+     * Init the dialog for the current session
+     */
+    void dialogInit() {
+        mdb = new MaterialDialog.Builder(context);
+        mdb.theme(Theme.LIGHT);
+        mdb.titleColor(getResources().getColor(R.color.color_primary_dark));
+    }
+
+    // Types de requêtes qui ont lieu lors du onCreate (première ouverture de l'app)
+    private enum INTENT_REQUEST {
+        FROM_LYDIA, // Via URL Scheme
+        FROM_APP,   // Via Intent interne
+        ERROR       // Aucun des deux précédents
+    }
+
+    /**
      * Class to create request to server (Lydia - ESEOmega)
      */
     private class AsyncRequestLydia extends AsyncTask<String, String, String> {
@@ -436,78 +534,6 @@ public class LydiaActivity extends AppCompatActivity {
                         .show();
             }
         }
-    }
-
-    /**
-     * Make an Intent to Lydia App / Web navigator if app is not found
-     */
-    void intentToLydia() {
-
-        // Configure and make Lydia Intent
-        //String intentUri;
-        boolean closeAfter = false;
-
-        // Package Lydia exists ?
-        //intentUri = LYDIA_INTENT; // suppose yes
-
-        /*if (Utilities.isPackageExisted(context, LYDIA_PACKAGE)) {
-            intentUri = LYDIA_INTENT;
-        } else {
-            intentUri = MOBILE_URL; // Package doesn't exists : open URL
-            closeAfter = true; // @see comment below
-            Toast.makeText(context, "Le navigateur va être ouvert.", Toast.LENGTH_SHORT).show();
-        }*/
-
-        Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(LYDIA_INTENT));
-
-        PackageManager packageManager = context.getPackageManager();
-        if (i.resolveActivity(packageManager) != null) {
-            startActivity(i);
-        } else { // Package doesn't exists : open URL
-            Intent iweb = new Intent();
-            closeAfter = true; // @see comment below
-            Toast.makeText(context, R.string.toast_lydia_payment_web, Toast.LENGTH_SHORT).show();
-            iweb.setData(Uri.parse(MOBILE_URL));
-            startActivity(iweb);
-        }
-
-        if (closeAfter) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    md.dismiss();
-                    close(); // prevent app-resume with null orderID
-                    Toast.makeText(context, "Closing LydiaActivity ...", Toast.LENGTH_SHORT).show();
-                }
-            }, 1000);
-        }
-    }
-
-    /**
-     * If the user come back to the Activity without Intent :
-     * It means that the payment has failed / was cancelled
-     * We have to show a Dialog which checks order status from server and then show status to user
-     */
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        if (hasBeenPaused) {
-            hasBeenPaused = false;
-
-            dialogInit();
-            dialogFromLydia();
-        }
-    }
-
-    /**
-     * On pause : just save the app has been paused
-     */
-    @Override
-    protected void onPause() {
-        super.onPause();
-        hasBeenPaused = true;
     }
 
     /**
@@ -599,36 +625,5 @@ public class LydiaActivity extends AppCompatActivity {
                 }
             }, 2000);
         }
-    }
-
-    /**
-     * Set TextView status text and color
-     */
-    void updateTextStatus(String text, int status, boolean isLoading) {
-
-        tvStatus.setText(text);
-
-        if (isLoading) {
-            tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
-        } else {
-            if (status == 0) {
-                tvStatus.setTextColor(context.getResources().getColor(R.color.md_prim_dark_yellow));
-            } else if (status == 1) {
-                tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
-            } else if (status == 2) {
-                tvStatus.setTextColor(context.getResources().getColor(R.color.circle_ready));
-            } else {
-                tvStatus.setTextColor(context.getResources().getColor(R.color.circle_error));
-            }
-        }
-    }
-
-    /**
-     * Init the dialog for the current session
-     */
-    void dialogInit() {
-        mdb = new MaterialDialog.Builder(context);
-        mdb.theme(Theme.LIGHT);
-        mdb.titleColor(getResources().getColor(R.color.color_primary_dark));
     }
 }

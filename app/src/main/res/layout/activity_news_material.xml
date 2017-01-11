@@ -10,37 +10,37 @@
     </include>
 
     <ImageView
+        android:id="@+id/imgHeaderNews"
         android:layout_width="match_parent"
         android:layout_height="220dp"
-        android:scaleType="centerCrop"
-        android:id="@+id/imgHeaderNews"/>
+        android:scaleType="centerCrop" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#70000000"
+        android:layout_alignBottom="@id/imgHeaderNews"
         android:layout_alignParentTop="true"
-        android:layout_alignBottom="@id/imgHeaderNews"/>
+        android:background="#70000000" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:paddingLeft="32dp"
         android:layout_alignBottom="@id/imgHeaderNews"
-        android:layout_below="@+id/tool_bar">
+        android:layout_below="@+id/tool_bar"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="32dp">
 
         <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
             android:textColor="@color/md_white_1000"
-            android:textSize="22sp"
-            android:id="@+id/tvTitle"
-            android:layout_marginLeft="6dp"
-            android:layout_marginRight="16dp"/>
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -49,23 +49,23 @@
             android:background="#7ff7f7f7"/>
 
         <TextView
+            android:id="@+id/tvAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#c0f7f7f7"
             android:layout_marginLeft="6dp"
-            android:textSize="12sp"
-            android:id="@+id/tvAuthor"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginRight="16dp"/>
+            android:textColor="#c0f7f7f7"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
     <WebView
+        android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webview"
-        android:layout_below="@+id/imgHeaderNews"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/imgHeaderNews"
         android:background="@color/md_white_1000" />
 
 </RelativeLayout>

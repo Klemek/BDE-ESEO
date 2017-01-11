@@ -15,11 +15,11 @@
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:divider="@drawable/drawer_divider"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="true"
             android:dividerHeight="0.7dp"
             android:drawSelectorOnTop="true"
-            android:footerDividersEnabled="true"/>
+            android:fadeScrollbars="true"
+            android:footerDividersEnabled="true"
+            android:scrollbars="vertical" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

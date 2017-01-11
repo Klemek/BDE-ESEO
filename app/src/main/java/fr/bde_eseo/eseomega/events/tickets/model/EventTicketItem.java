@@ -24,9 +24,9 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.events.EventItem;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 
 /**
  * Created by François L. on 11/01/2016.
@@ -56,21 +56,25 @@ public class EventTicketItem {
         passed = false;
     }
 
-    public void setPassed(boolean passed) {
-        this.passed = passed;
+    public EventTicketItem(String name) {
+        isHeader = true;
+        this.name = name;
     }
 
     public boolean isPassed() {
         return passed;
     }
 
-    public EventTicketItem(String name) {
-        isHeader = true;
-        this.name = name;
+    public void setPassed(boolean passed) {
+        this.passed = passed;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setLinkedEvent(EventItem linkedEvent) {
@@ -101,10 +105,6 @@ public class EventTicketItem {
         return idevent;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public boolean isHeader() {
         return isHeader;
     }
@@ -118,7 +118,7 @@ public class EventTicketItem {
     }
 
     public Date getParsedDate () {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", DateUtils.getLocale());
         Date date = null;
         try {
             date = format.parse(datetime);
@@ -132,9 +132,9 @@ public class EventTicketItem {
         Date d = getParsedDate();
         SimpleDateFormat sdf;
         if (simpleDate)
-            sdf = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE);
+            sdf = new SimpleDateFormat("EEEE dd MMMM yyyy", DateUtils.getLocale());
         else
-            sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", Locale.FRANCE);
+            sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", DateUtils.getLocale());
         return sdf.format(d);
     }
 

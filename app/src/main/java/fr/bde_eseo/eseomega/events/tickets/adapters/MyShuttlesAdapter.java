@@ -107,6 +107,15 @@ public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return checkShuttleItems == null ? 0 : checkShuttleItems.size();
     }
 
+    /**
+     * Uncheck all items
+     */
+    void uncheckAll() {
+        for (int i = 0; i < checkShuttleItems.size(); i++) {
+            checkShuttleItems.get(i).setIsCheck(false);
+        }
+    }
+
     // Classic View Holder for Shuttle
     public static class ShuttleViewHolder extends RecyclerView.ViewHolder {
 
@@ -132,15 +141,6 @@ public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public ShuttleHeaderViewHolder(View v) {
             super(v);
             vName =  (TextView) v.findViewById(R.id.shuttleHeader);
-        }
-    }
-
-    /**
-     * Uncheck all items
-     */
-    void uncheckAll () {
-        for (int i=0;i<checkShuttleItems.size();i++) {
-            checkShuttleItems.get(i).setIsCheck(false);
         }
     }
 }

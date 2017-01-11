@@ -137,6 +137,11 @@ public class MySponsoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         Picasso.with(ctx).load(si.getImg()).into(svh.imageView);
     }
 
+    @Override
+    public int getItemCount() {
+        return sponsorItems.size();
+    }
+
     private class MyGetter implements Html.ImageGetter {
 
         public MyGetter () {
@@ -150,11 +155,6 @@ public class MySponsoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             else
                 return null;
         }
-    }
-
-    @Override
-    public int getItemCount() {
-        return sponsorItems.size();
     }
 
     // Classic View Holder for Sponsor

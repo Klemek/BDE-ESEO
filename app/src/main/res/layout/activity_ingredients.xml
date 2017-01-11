@@ -10,89 +10,89 @@
     </include>
 
     <TextView
-        android:layout_below="@id/tool_bar"
         android:id="@+id/tv_act_ingr_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tool_bar"
         android:layout_margin="16dp"
         android:text="Vous pouvez y ajouter 3 ingrédients de votre choix. Au delà de ce nombre, tout supplément est facturé."/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyList"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
+        android:layout_height="match_parent"
         android:layout_above="@+id/linearLayout2"
-        android:layout_below="@+id/tv_act_ingr_desc" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_act_ingr_desc"
+        android:fadeScrollbars="true"
+        android:scrollbars="vertical" />
 
     <RelativeLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/abc_action_bar_default_height_material"
-        android:orientation="horizontal"
-        android:background="@color/color_primary"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout2">
+        android:background="@color/color_primary"
+        android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvStackMoreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/layout_ingr"
-            android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="24dp"
             android:layout_marginStart="24dp"
             android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/md_white_1000"/>
+            android:text="@string/layout_ingr"
+            android:textColor="@color/md_white_1000"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/tvStackMorePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+0.10€"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/md_white_1000"
             android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/tvStackMoreText"
             android:layout_toRightOf="@+id/tvStackMoreText"
-            android:layout_toEndOf="@+id/tvStackMoreText" />
+            android:gravity="center"
+            android:text="+0.10€"
+            android:textColor="@color/md_white_1000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvValid"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:textColor="@color/md_white_1000"
-            android:paddingLeft="32dp"
-            android:paddingRight="54dp"
-            android:background="@drawable/textview_back_button"
-            android:text="@string/dialog_valid"
             android:layout_alignParentTop="true"
             android:layout_toLeftOf="@+id/imageView"
-            android:layout_toStartOf="@+id/imageView" />
+            android:layout_toStartOf="@+id/imageView"
+            android:background="@drawable/textview_back_button"
+            android:gravity="center"
+            android:paddingLeft="32dp"
+            android:paddingRight="54dp"
+            android:text="@string/dialog_valid"
+            android:textColor="@color/md_white_1000"
+            android:textSize="16sp" />
 
         <ImageView
+            android:id="@+id/imageView"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_right"
-            android:layout_marginLeft="-48dp"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="32dp"
-            android:id="@+id/imageView" />
+            android:layout_marginLeft="-48dp"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/ic_right" />
 
     </RelativeLayout>
 

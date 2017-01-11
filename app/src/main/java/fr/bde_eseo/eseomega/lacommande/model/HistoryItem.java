@@ -20,12 +20,11 @@ package fr.bde_eseo.eseomega.lacommande.model;
 import android.content.Context;
 
 import java.text.DecimalFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.DateUtils;
 
 /**
  * Created by François L. on 20/07/2015.
@@ -121,23 +120,16 @@ public class HistoryItem {
     }
 
     public Date getParsedDate () {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.FRANCE);
-        Date date = null;
-        try {
-            date = format.parse(this.commandDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date;
+        return DateUtils.oldfromString(this.commandDate);
     }
 
     public String getFrenchDate (boolean simpleDate) {
         Date d = getParsedDate();
         SimpleDateFormat sdf;
         if (simpleDate)
-            sdf = new SimpleDateFormat("EEEE dd MMMM yyyy", Locale.FRANCE);
+            sdf = new SimpleDateFormat("EEEE dd MMMM yyyy", DateUtils.getLocale());
         else
-            sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", Locale.FRANCE);
+            sdf = new SimpleDateFormat("E dd MMMM yyyy, 'à' HH:mm", DateUtils.getLocale());
         return sdf.format(d);
     }
 }

@@ -35,8 +35,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
@@ -45,6 +43,7 @@ import java.io.File;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
+import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
 import fr.bde_eseo.eseomega.utils.Utilities;
 
@@ -53,6 +52,8 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class ClubsListFragment extends Fragment {
 
+    // Constants
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     // UI
     private ProgressBar progCircle;
     private ImageView img;
@@ -64,12 +65,9 @@ public class ClubsListFragment extends Fragment {
     private RecyclerView.OnItemTouchListener disabler;
     private String cachePath;
     private AsyncJSON asyncJSON;
-    private File cacheFileEseo;
 
     // Model -> static
-
-    // Constants
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
+    private File cacheFileEseo;
 
     public ClubsListFragment() {}
 
@@ -256,7 +254,7 @@ public class ClubsListFragment extends Fragment {
             } else {
                 cvh.cardView.setPreventCornerOverlap(true); // Only supported if Android Version is >= Lollipop
             }
-            Picasso.with(getActivity()).load(ci.getImg()).placeholder(R.drawable.placeholder).error(R.drawable.placeholder_error).into(cvh.img);
+            ImageUtils.loadImage(getActivity(), ci.getImg(), R.drawable.placeholder, R.drawable.placeholder_error, cvh.img);
         }
 
         @Override

@@ -88,9 +88,18 @@ public class JSONUtils {
     }
 
     public static String getString(JSONObject obj, String key, String defval){
+        return getString(obj, key, defval, false);
+    }
+
+    public static String getString(JSONObject obj, String key, String defval, boolean avoidBlank) {
        if(obj.has(key)){
            try{
-               return obj.getString(key);
+               String out = obj.getString(key);
+               if (!avoidBlank || !out.equals("") || out != null) { //to avoid picasso "" error
+                   return out;
+               } else {
+                   return defval;
+               }
            }catch (JSONException e) {
                return defval;
            }

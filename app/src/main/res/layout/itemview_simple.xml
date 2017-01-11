@@ -3,34 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="8dp"
+    android:orientation="vertical"
+    android:paddingEnd="16dp"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
-    android:orientation="vertical">
+    android:paddingStart="16dp">
 
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Atelier"
-        android:textSize="16dp"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textSize="16dp" />
 
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14dp"
-        android:text="Etage ABC - Salle du conseil - Il fait chaud dedans"
-        android:layout_below="@+id/tvNameSponsor"
         android:layout_alignLeft="@+id/tvNameSponsor"
-        android:layout_alignStart="@+id/tvNameSponsor" />
+        android:layout_alignStart="@+id/tvNameSponsor"
+        android:layout_below="@+id/tvNameSponsor"
+        android:text="Etage ABC - Salle du conseil - Il fait chaud dedans"
+        android:textSize="14dp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/md_grey_400"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:background="@color/md_grey_400" />
 
 </LinearLayout>

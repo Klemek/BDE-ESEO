@@ -65,6 +65,8 @@ import fr.bde_eseo.eseomega.utils.Utilities;
  */
 public class EventsListFragment extends Fragment {
 
+    // Constants
+    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
     // UI
     private ProgressBar progCircle;
     private ImageView img;
@@ -75,104 +77,12 @@ public class EventsListFragment extends Fragment {
     private long timestamp;
     private AsyncJSON asyncJSON;
     private RecyclerView.OnItemTouchListener disabler;
-
     // Model
     private ArrayList<EventItem> eventItems;
-
-    // Constants
-    private final static int LATENCY_REFRESH = 8; // 8 sec min between 2 refreshs
-
     private String cachePath;
     private File cacheFileEseo;
 
     public EventsListFragment() {
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater rootInfl, ViewGroup container, Bundle savedInstanceState) {
-
-        // UI
-        View rootView = rootInfl.inflate(R.layout.fragment_event_list, container, false);
-        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.events_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
-        progCircle = (ProgressBar) rootView.findViewById(R.id.progressEvent);
-        tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
-        tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
-        img = (ImageView) rootView.findViewById(R.id.imgNoEvent);
-        progCircle.setVisibility(View.GONE);
-        progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
-        tv1.setVisibility(View.GONE);
-        tv2.setVisibility(View.GONE);
-        img.setVisibility(View.GONE);
-        disabler = new RecyclerViewDisabler();
-
-        // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
-        cacheFileEseo = new File(cachePath + "events.json");
-
-        // Init static model
-        TicketStore.getInstance().reset();
-
-        // Model / objects
-        eventItems = TicketStore.getInstance().getEventItems();
-        mAdapter = new MyEventsAdapter(eventItems, getActivity());
-        recList = (RecyclerView) rootView.findViewById(R.id.recyList);
-        recList.setAdapter(mAdapter);
-        recList.setHasFixedSize(false);
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        recList.setLayoutManager(llm);
-        mAdapter.setEventItems(eventItems);
-        mAdapter.notifyDataSetChanged();
-
-        // Start download of data
-        asyncJSON = new AsyncJSON(true); // circle needed for first call
-        asyncJSON.execute(Constants.URL_JSON_EVENTS);
-
-
-        // Swipe-to-refresh implementations
-        timestamp = 0;
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                //Toast.makeText(getActivity(), "Refreshing ...", Toast.LENGTH_SHORT).show();
-                long t = System.currentTimeMillis() / 1000;
-                if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
-                    timestamp = t;
-                    asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
-                    asyncJSON.execute(Constants.URL_JSON_EVENTS);
-                } else {
-                    swipeRefreshLayout.setRefreshing(false);
-                }
-            }
-        });
-
-        return rootView;
-    }
-
-    @Override
-    public void onDetach(){
-        super.onDetach();
-        if(asyncJSON != null) asyncJSON.cancel(true);
-    }
-
-    // Scroll listener to prevent issue 77846
-    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
-
-        @Override
-        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
-            return true;
-        }
-
-        @Override
-        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
-
-        }
-
-        @Override
-        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-
-        }
     }
 
     public static void openEvent(final Activity act, final EventItem ei){
@@ -295,103 +205,72 @@ public class EventsListFragment extends Fragment {
         new AsyncJSONSingleEvent(act).execute(eventid);
     }
 
-    /**
-     * Download JSON data
-     */
-    public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
+    @Override
+    public View onCreateView(LayoutInflater rootInfl, ViewGroup container, Bundle savedInstanceState) {
 
-        boolean displayCircle;
+        // UI
+        View rootView = rootInfl.inflate(R.layout.fragment_event_list, container, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.events_refresh);
+        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        progCircle = (ProgressBar) rootView.findViewById(R.id.progressEvent);
+        tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
+        tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
+        img = (ImageView) rootView.findViewById(R.id.imgNoEvent);
+        progCircle.setVisibility(View.GONE);
+        progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
+        tv1.setVisibility(View.GONE);
+        tv2.setVisibility(View.GONE);
+        img.setVisibility(View.GONE);
+        disabler = new RecyclerViewDisabler();
 
-        public AsyncJSON(boolean displayCircle) {
-            this.displayCircle = displayCircle;
-        }
+        // I/O cache data
+        cachePath = getActivity().getCacheDir() + "/";
+        cacheFileEseo = new File(cachePath + "events.json");
 
-        @Override
-        protected void onPreExecute() {
-            recList.addOnItemTouchListener(disabler);
-            if (eventItems != null) {
-                eventItems.clear();
-            }
-            img.setVisibility(View.GONE);
-            tv1.setVisibility(View.GONE);
-            tv2.setVisibility(View.GONE);
-            if (displayCircle) progCircle.setVisibility(View.VISIBLE);
+        // Init static model
+        TicketStore.getInstance().reset();
 
-        }
+        // Model / objects
+        eventItems = TicketStore.getInstance().getEventItems();
+        mAdapter = new MyEventsAdapter(eventItems, getActivity());
+        recList = (RecyclerView) rootView.findViewById(R.id.recyList);
+        recList.setAdapter(mAdapter);
+        recList.setHasFixedSize(false);
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recList.setLayoutManager(llm);
+        mAdapter.setEventItems(eventItems);
+        mAdapter.notifyDataSetChanged();
 
-        @Override
-        protected void onPostExecute(JSONArray array) {
+        // Start download of data
+        asyncJSON = new AsyncJSON(true); // circle needed for first call
+        asyncJSON.execute(Constants.URL_JSON_EVENTS);
 
-            if (array != null) {
-                try {
-                    String lastHeader = "---"; // undefined for the first iteration (no event before)
-                    //int scrollTo = -1, counter = 0;
 
-                    for (int i = 0; i < array.length(); i++) {
-
-                        EventItem ei = new EventItem(getContext(),array.getJSONObject(i));
-
-                        /*if (ei.getDate().after(new Date()) && scrollTo == -1) {
-                            scrollTo++;
-                        }*/
-
-                        if (ei.getMonthHeader().equals(lastHeader)) { // same month, no header
-                            eventItems.add(0, ei);
-                        } else if (lastHeader.equals("---")) { // another month : add header then event
-                            eventItems.add(ei);
-                            lastHeader = ei.getMonthHeader();
-                        } else {
-                            eventItems.add(0, new EventItem(eventItems.get(0).getMonthHeader()));
-                            eventItems.add(0, ei);
-                            lastHeader = ei.getMonthHeader();
-                        }
-                    }
-
-                    eventItems.add(0, new EventItem(eventItems.get(0).getMonthHeader()));
-
-                    if (displayCircle) progCircle.setVisibility(View.GONE);
-                    mAdapter.setEventItems(eventItems);
-                    mAdapter.notifyDataSetChanged();
-                    /*if (scrollTo >= 2 && recList.getAdapter().getItemViewType(scrollTo-2) == MyEventsAdapter.TYPE_HEADER) {
-                        scrollTo-=2;
-
-                    }
-                    if (scrollTo != -1) {
-                        recList.scrollToPosition(scrollTo);
-                    }*/
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
+        // Swipe-to-refresh implementations
+        timestamp = 0;
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //Toast.makeText(getActivity(), "Refreshing ...", Toast.LENGTH_SHORT).show();
+                long t = System.currentTimeMillis() / 1000;
+                if (t - timestamp > LATENCY_REFRESH) { // timestamp in seconds)
+                    timestamp = t;
+                    asyncJSON = new AsyncJSON(false); // no circle here (already in SwipeLayout)
+                    asyncJSON.execute(Constants.URL_JSON_EVENTS);
+                } else {
+                    swipeRefreshLayout.setRefreshing(false);
                 }
-            } else {
-                if (displayCircle) progCircle.setVisibility(View.GONE);
-                mAdapter.notifyDataSetChanged();
-                img.setVisibility(View.VISIBLE);
-                tv1.setVisibility(View.VISIBLE);
-                tv2.setVisibility(View.VISIBLE);
             }
-            swipeRefreshLayout.setRefreshing(false);
-            recList.removeOnItemTouchListener(disabler);
-        }
+        });
 
-        @Override
-        protected JSONArray doInBackground(String... params) {
+        return rootView;
+    }
 
-            JSONArray obj = JSONUtils.getJSONArrayFromUrl(params[0]);
-
-            if (obj == null) {
-                if (cacheFileEseo.exists()) {
-                    try {
-                        obj = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } else {
-                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
-            }
-            return obj;
-        }
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        if (asyncJSON != null) asyncJSON.cancel(true);
     }
 
     public static class AsyncSignup extends AsyncTask<String, String, String> {
@@ -481,6 +360,124 @@ public class EventsListFragment extends Fragment {
             JSONObject event = JSONUtils.getJSONFromUrl(Constants.URL_JSON_EVENTS+params[0]);
 
             return event;
+        }
+    }
+
+    // Scroll listener to prevent issue 77846
+    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
+
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            return true;
+        }
+
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
+        }
+
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
+    }
+
+    /**
+     * Download JSON data
+     */
+    public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
+
+        boolean displayCircle;
+
+        public AsyncJSON(boolean displayCircle) {
+            this.displayCircle = displayCircle;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            recList.addOnItemTouchListener(disabler);
+            if (eventItems != null) {
+                eventItems.clear();
+            }
+            img.setVisibility(View.GONE);
+            tv1.setVisibility(View.GONE);
+            tv2.setVisibility(View.GONE);
+            if (displayCircle) progCircle.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected void onPostExecute(JSONArray array) {
+
+            if (array != null) {
+                try {
+                    String lastHeader = "---"; // undefined for the first iteration (no event before)
+                    //int scrollTo = -1, counter = 0;
+
+                    for (int i = 0; i < array.length(); i++) {
+
+                        EventItem ei = new EventItem(getContext(), array.getJSONObject(i));
+
+                        /*if (ei.getDate().after(new Date()) && scrollTo == -1) {
+                            scrollTo++;
+                        }*/
+
+                        if (ei.getMonthHeader().equals(lastHeader)) { // same month, no header
+                            eventItems.add(0, ei);
+                        } else if (lastHeader.equals("---")) { // another month : add header then event
+                            eventItems.add(ei);
+                            lastHeader = ei.getMonthHeader();
+                        } else {
+                            eventItems.add(0, new EventItem(eventItems.get(0).getMonthHeader()));
+                            eventItems.add(0, ei);
+                            lastHeader = ei.getMonthHeader();
+                        }
+                    }
+
+                    eventItems.add(0, new EventItem(eventItems.get(0).getMonthHeader()));
+
+                    if (displayCircle) progCircle.setVisibility(View.GONE);
+                    mAdapter.setEventItems(eventItems);
+                    mAdapter.notifyDataSetChanged();
+                    /*if (scrollTo >= 2 && recList.getAdapter().getItemViewType(scrollTo-2) == MyEventsAdapter.TYPE_HEADER) {
+                        scrollTo-=2;
+
+                    }
+                    if (scrollTo != -1) {
+                        recList.scrollToPosition(scrollTo);
+                    }*/
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                if (displayCircle) progCircle.setVisibility(View.GONE);
+                mAdapter.notifyDataSetChanged();
+                img.setVisibility(View.VISIBLE);
+                tv1.setVisibility(View.VISIBLE);
+                tv2.setVisibility(View.VISIBLE);
+            }
+            swipeRefreshLayout.setRefreshing(false);
+            recList.removeOnItemTouchListener(disabler);
+        }
+
+        @Override
+        protected JSONArray doInBackground(String... params) {
+
+            JSONArray obj = JSONUtils.getJSONArrayFromUrl(params[0]);
+
+            if (obj == null) {
+                if (cacheFileEseo.exists()) {
+                    try {
+                        obj = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
+            }
+            return obj;
         }
     }
 }
