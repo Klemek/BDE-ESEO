@@ -71,7 +71,7 @@ public class AsyncCheckVersion extends AsyncTask<String, String, String> {
                     JSONObject info = obj.getJSONObject("android");
                     String ver = info.getString("version");
 
-                    if (!ver.equals(BuildConfig.VERSION_NAME)) {
+                    if (ver.compareTo(BuildConfig.VERSION_NAME) > 0) {
                         new MaterialDialog.Builder(context)
                                 .title(R.string.update_title)
                                 .content(R.string.update_content)
