@@ -21,6 +21,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 public class NavDrawerListAdapter extends BaseAdapter {
 
@@ -118,8 +120,12 @@ public class NavDrawerListAdapter extends BaseAdapter {
             LayoutInflater mInflater = (LayoutInflater)
                     context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
 
-            if (ndi.isProfile())
+            if (ndi.isProfile()) {
                 convertView = mInflater.inflate(R.layout.drawer_profile, null);
+                ImageView iv = (ImageView) convertView.findViewById(R.id.menu_material);
+                context.setTheme(Utils.getPreferredTheme(context));
+                iv.setColorFilter(Utils.resolveColorFromTheme(context, R.attr.colorPrimary), PorterDuff.Mode.MULTIPLY);
+            }
             else if (ndi.isDivider())
                 convertView = mInflater.inflate(R.layout.drawer_list_divider, null);
             else if (ndi.isOption())

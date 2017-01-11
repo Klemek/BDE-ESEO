@@ -51,6 +51,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 public class StudentSearchFragment extends Fragment {
 
@@ -91,7 +92,7 @@ public class StudentSearchFragment extends Fragment {
             }
         });
 
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progress);
         imgA = (ImageView) rootView.findViewById(R.id.imgA);
         imgA.setImageResource(R.drawable.img_family_search);

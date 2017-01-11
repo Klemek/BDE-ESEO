@@ -3,12 +3,6 @@
 
     <!-- Customs -->
 
-    <color name="color_primary">@color/oasis_primary</color>
-    <color name="color_primary_dark">@color/oasis_primary_dark</color>
-    <color name="color_accent">@color/oasis_blue</color>
-    <color name="color_background">@color/oasis_bg</color>
-    <color name="color_background2">@color/oasis_bg_inv</color>
-    <color name="color_text_primary_inverse">@color/oasis_txt</color>
     <color name="color_text_primary">#de000000</color>
     <color name="color_text_secondary">#8a000000</color>
 
@@ -34,8 +28,6 @@
 
     <!-- Menu Themes -->
 
-    <!-- BDE colors -->
-
     <!--Primary-->
     <color name="md_prim_light_red">#ff4444</color>
 
@@ -45,8 +37,7 @@
     <color name="md_prim_dark_red">#cc0000</color>
 
     <!-- More variations -->
-    <color name="md_blue_700">#1976D2</color>
-    <color name="md_blue_800">#1565C0</color>
+    <!--<color name="md_blue_700">#1976D2</color>-->
 
     <!-- green -->
 
@@ -61,6 +52,7 @@
     <color name="md_red_A200">#FF5252</color>
 
     <!--grey-->
+    <color name="md_grey_100">#F5F5F5</color>
     <color name="md_grey_200">#EEEEEE</color>
     <color name="md_grey_300">#d6d6d6</color>
     <color name="md_grey_400">#BDBDBD</color>
@@ -74,13 +66,23 @@
     <!--blue grey-->
     <color name="md_blue_grey_100">#cfd8dc</color>
 
+    <color name="md_blue_700">#1976d2</color>
 
-    <!--oasis-->
-    <color name="oasis_bg">#ffedc0</color>
-    <color name="oasis_bg_inv">#C1F6FF</color>
-    <color name="oasis_txt">#f8e388</color>
+    <!-- BDE colors -->
+
+    <!--ESEOMEGA-->
+    <color name="mega_primary">#1565C0</color>
+    <color name="mega_primary_dark">#0D47A1</color>
+    <color name="mega_accent">#009688</color>
+    <color name="mega_bg">#ffffff</color>
+
+    <!--ESEOASIS-->
     <color name="oasis_primary">#ff8000</color>
     <color name="oasis_primary_dark">#e67200</color>
-    <color name="oasis_blue">#71daeb</color>
+    <color name="oasis_accent">#71daeb</color>
+    <color name="oasis_bg">#ffedc0</color>
+    <color name="oasis_bg2">#C1F6FF</color>
+    <color name="oasis_txt">#f8e388</color>
+
 
 </resources>

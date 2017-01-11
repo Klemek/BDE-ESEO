@@ -24,6 +24,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import fr.bde_eseo.eseomega.utils.Utils;
+
 /**
  * Created by François L. on 18/01/2016.
  * Activité qui montre les fonctionnalités de l'app au 1er lancement, puis redirection vers MainActivity
@@ -33,6 +35,7 @@ public class TutorialActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_tutorial);
 
         // Preferences
@@ -44,7 +47,7 @@ public class TutorialActivity extends AppCompatActivity {
         prefs_Write = prefs_Read.edit();
 
         // We won't reopen this Tutorial ever
-        prefs_Write.putString(Constants.PREFS_APP_TUTORIAL, getString(R.string.app_version_name));
+        prefs_Write.putString(Constants.PREFS_APP_LAST_VERSION, getString(R.string.app_version_name));
         prefs_Write.apply();
     }
 

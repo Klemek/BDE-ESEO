@@ -58,7 +58,7 @@ import fr.bde_eseo.eseomega.utils.Blur;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 10/01/2016.
@@ -108,11 +108,11 @@ public class OrderDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        toolbar.setPadding(0, Utilities.getStatusBarHeight(this), 0, 0);
+        toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -297,7 +297,7 @@ public class OrderDetailsActivity extends AppCompatActivity {
         protected void onPostExecute(String str) {
             super.onPostExecute(str);
 
-            if (Utilities.isNetworkDataValid(str)) {
+            if (Utils.isNetworkDataValid(str)) {
 
                 if (!str.equals(oldData)) {
                     oldData = str;

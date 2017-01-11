@@ -37,6 +37,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdElement;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdIngredient;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 18/08/2015.
@@ -58,6 +59,7 @@ public class IngredientsChooserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_ingredients);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, getStatusBarHeight(), 0, 0);

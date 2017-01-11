@@ -1,27 +1,45 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-        <item name="android:colorBackground">@color/color_background</item>
-        <!-- Preferences Theme -->
-        <!--<item name="preferenceTheme">@style/PreferenceThemeOverlay.</item>-->
+
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
-
-    </style>
-
-    <!-- single activity theme. -->
-    <style name="AppThemeSingle" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-        <item name="android:colorBackground">@color/color_background</item>
-        <item name="android:textColorPrimaryInverse">@color/color_text_primary_inverse</item>
+        <item name="colorPrimary">@color/oasis_primary</item>
+        <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
+        <item name="colorAccent">@color/oasis_accent</item>
+        <item name="android:colorBackground">@color/oasis_bg</item>
+        <item name="android:colorForegroundInverse">@color/oasis_bg2</item>
+        <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
     </style>
+
+    <style name="OasisTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/oasis_primary</item>
+        <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
+        <item name="colorAccent">@color/oasis_accent</item>
+        <item name="android:colorBackground">@color/oasis_bg</item>
+        <item name="android:colorForegroundInverse">@color/oasis_bg2</item>
+        <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
+    </style>
+
+    <style name="MegaTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/mega_primary</item>
+        <item name="colorPrimaryDark">@color/mega_primary_dark</item>
+        <item name="colorAccent">@color/mega_accent</item>
+        <item name="android:colorBackground">@color/mega_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/mega_bg</item>
+    </style>
+
+    <style name="AppThemeSingle" parent="OasisTheme">
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
+        <item name="android:textColorPrimary">?attr/android:textColorPrimaryInverse</item>
+    </style>
+
 
     <!-- single red activity theme (tickets) -->
     <style name="AppThemeRedSingle" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -31,20 +49,11 @@
         <item name="colorAccent">@color/md_prim_light_red</item>
     </style>
 
-    <!-- Splash activity theme. -->
-    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-    </style>
-
     <!-- Image view activity theme. -->
     <style name="ImageViewTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/md_grey_800</item>
         <item name="colorPrimaryDark">@color/md_grey_900</item>
-        <item name="colorAccent">@color/color_primary</item>
     </style>
 
     <!-- Lydia Activity - Dialog like theme -->

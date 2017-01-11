@@ -32,7 +32,7 @@ import fr.bde_eseo.eseomega.BuildConfig;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 10/01/2016.
@@ -58,7 +58,7 @@ public class AsyncCheckVersion extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String data) {
 
-        if (Utilities.isNetworkDataValid(data)) {
+        if (Utils.isNetworkDataValid(data)) {
             try {
                 JSONObject obj = new JSONObject(data);
                 if(obj.has("err") || data == null){

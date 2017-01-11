@@ -26,9 +26,11 @@ import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -51,14 +53,15 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import fr.bde_eseo.eseomega.Constants;
+import fr.bde_eseo.eseomega.R;
 
 /**
  * Created by François on 18/04/2015.
  */
-public class Utilities {
+public class Utils {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private static final String TAG = "Utilities";
+    private static final String TAG = "Utils";
 
     public static void hideSoftKeyboard(Activity activity) {
         InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -299,6 +302,27 @@ public class Utilities {
                 return true;
         }
         return false;
+    }
+
+    /**
+     * Resolve color from theme
+     */
+
+    public static int resolveColorFromTheme(Context ctx, int attr) {
+        TypedValue a = new TypedValue();
+        ctx.getTheme().resolveAttribute(attr, a, true);
+        return a.data;
+    }
+
+    public static int getPreferredTheme(Context ctx) {
+        switch (PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.PREFS_GENERAL_THEME, "0")) {
+            default:
+                return R.style.DefaultTheme;
+            case "1":
+                return R.style.OasisTheme;
+            case "2":
+                return R.style.MegaTheme;
+        }
     }
 
 }

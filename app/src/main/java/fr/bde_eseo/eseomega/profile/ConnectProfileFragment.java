@@ -46,7 +46,7 @@ import fr.bde_eseo.eseomega.interfaces.OnUserProfileChange;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François on 13/04/2015.
@@ -123,7 +123,7 @@ public class ConnectProfileFragment extends Fragment {
         btValid = (Button) rootView.findViewById(R.id.button_disconnect);
         etUserID = (MaterialEditText) rootView.findViewById(R.id.etUserID);
         etUserPassword = (MaterialEditText) rootView.findViewById(R.id.etUserPassword);
-        //Utilities.hideSoftKeyboard(getActivity()); // UI's better with that
+        //Utils.hideSoftKeyboard(getActivity()); // UI's better with that
 
         rand = new Random();
 
@@ -218,7 +218,7 @@ public class ConnectProfileFragment extends Fragment {
             pairs.put(getActivity().getResources().getString(R.string.password), enPass);
             pairs.put(getActivity().getResources().getString(R.string.hash), EncryptUtils.sha256(userID + enPass + getActivity().getResources().getString(R.string.MEMORY_SYNC_USER)));
 
-            if (Utilities.isOnline(getActivity())) {
+            if (Utils.isOnline(getActivity())) {
                 return ConnexionUtils.postServerData(Constants.URL_API_CLIENT_CONNECT, pairs, getActivity());
             } else {
                 return null;
@@ -233,7 +233,7 @@ public class ConnectProfileFragment extends Fragment {
             int status = 0;
 
             // Vérification des données reçues
-            if (Utilities.isNetworkDataValid(result)) {
+            if (Utils.isNetworkDataValid(result)) {
 
                 try {
                     JSONObject obj = new JSONObject(result);
@@ -258,7 +258,7 @@ public class ConnectProfileFragment extends Fragment {
                 profile.registerProfileInPrefs(getActivity());
 
                 // On check les Services Google, puis on démarre la classe Registration
-                if (Utilities.checkPlayServices(getActivity())) {
+                if (Utils.checkPlayServices(getActivity())) {
                     mdProgress.setContent(getText(R.string.registration));
                     // Start IntentService to register this application with GCM.
                     Intent intent = new Intent(getActivity(), RegistrationIntentService.class);

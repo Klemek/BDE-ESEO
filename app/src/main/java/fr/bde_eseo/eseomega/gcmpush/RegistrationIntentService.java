@@ -40,7 +40,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 public class RegistrationIntentService extends IntentService {
 
@@ -136,7 +136,7 @@ public class RegistrationIntentService extends IntentService {
             String err = "";
             int retCode = -1;
 
-            if (Utilities.isNetworkDataValid(data)) {
+            if (Utils.isNetworkDataValid(data)) {
 
                 try {
                     JSONObject obj = new JSONObject(data);

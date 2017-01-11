@@ -56,7 +56,7 @@ import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
 
 /**
@@ -323,7 +323,7 @@ public class OrderHistoryFragment extends Fragment {
             int retCode = 0;
             String jsonToken = "";
             /** Check if response is token, or an placeholder_error **/
-            if (Utilities.isNetworkDataValid(data)) { // 64 : nb chars for a SHA256 value
+            if (Utils.isNetworkDataValid(data)) { // 64 : nb chars for a SHA256 value
                 try {
                     JSONObject obj = new JSONObject(data);
                     retCode = obj.getInt("status");
@@ -444,11 +444,11 @@ public class OrderHistoryFragment extends Fragment {
         protected void onPostExecute(String jsonStr) {
 
             // If data is empty
-            if (!Utilities.isNetworkDataValid(jsonStr)) {
+            if (!Utils.isNetworkDataValid(jsonStr)) {
 
                 // Fetch data from cache history
                 if (cacheHistoryJSON.exists()) {
-                    jsonStr = Utilities.getStringFromFile(cacheHistoryJSON);
+                    jsonStr = Utils.getStringFromFile(cacheHistoryJSON);
                 } else {
                     jsonStr = null; // force empty message
                 }
@@ -557,7 +557,7 @@ public class OrderHistoryFragment extends Fragment {
                     historyList.addAll(tempDoneArray);
 
                     // save data
-                    Utilities.writeStringToFile(cacheHistoryJSON, jsonStr);
+                    Utils.writeStringToFile(cacheHistoryJSON, jsonStr);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -614,7 +614,7 @@ public class OrderHistoryFragment extends Fragment {
         protected void onPostExecute(String data) {
             super.onPostExecute(data);
 
-            if (Utilities.isNetworkDataValid(data)) {
+            if (Utils.isNetworkDataValid(data)) {
                 try {
                     JSONObject jsResp = new JSONObject(data);
                     JSONObject jsData = jsResp.getJSONObject("data");

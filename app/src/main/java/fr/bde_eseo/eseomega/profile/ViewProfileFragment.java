@@ -55,7 +55,7 @@ import fr.bde_eseo.eseomega.interfaces.OnUserProfileChange;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 29/07/2015.
@@ -285,7 +285,7 @@ public class ViewProfileFragment extends Fragment {
             String err = "";
 
             // If disconnexion is successfull (no network problem)
-            if (Utilities.isNetworkDataValid(data)) {
+            if (Utils.isNetworkDataValid(data)) {
 
                 try {
                     JSONObject obj = new JSONObject(data);

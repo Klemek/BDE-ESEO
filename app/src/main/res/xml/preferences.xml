@@ -4,6 +4,14 @@
     <PreferenceCategory android:title="Général">
 
         <ListPreference
+            android:defaultValue="0"
+            android:entries="@array/theme_items"
+            android:entryValues="@array/preferences_theme_values"
+            android:key="settings.general.theme"
+            android:summary="Choisissez le thème principal de l'application (nécessite un redémarrage de l'application)"
+            android:title="Thème" />
+
+        <ListPreference
             android:defaultValue="1"
                         android:entries="@array/nav_drawer_items"
             android:entryValues="@array/preferences_homescreen_values"
@@ -12,7 +20,7 @@
             android:title="Écran d'accueil" />
 
         <CheckBoxPreference
-            android:defaultValue="false"
+            android:defaultValue="true"
             android:key="settings.general.autoupdate"
                         android:summary="Si coché, l'application effectuera une vérification des mises à jour à chaque démarrage."
             android:title="Mises à jour auto" />

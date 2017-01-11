@@ -45,7 +45,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 11/08/2015.
@@ -78,7 +78,7 @@ public class SponsoFragment extends Fragment {
         // UI
         View rootView = rootInfl.inflate(R.layout.fragment_sponso_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.tips_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressList);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -230,13 +230,13 @@ public class SponsoFragment extends Fragment {
             if (obj == null) {
                 if (cacheFileEseo.exists()) {
                     try {
-                        obj = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
+                        obj = new JSONArray(Utils.getStringFromFile(cacheFileEseo));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
+                Utils.writeStringToFile(cacheFileEseo, obj.toString());
             }
 
             return obj;

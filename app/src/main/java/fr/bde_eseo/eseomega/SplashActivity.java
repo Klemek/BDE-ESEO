@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import fr.bde_eseo.eseomega.profile.UserProfile;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François on 20/04/2015.
@@ -45,6 +46,7 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_splash);
         ImageView vLogo = (ImageView) findViewById(R.id.imgLogo);
         profile = new UserProfile();
@@ -74,17 +76,24 @@ public class SplashActivity extends Activity {
                 // This method will be executed once the timer is over
                 Intent i;
                 //Tutorial at first launch
-                boolean tuto = true;
+                boolean tutorial = !prefs_Read.contains(Constants.PREFS_APP_LAST_VERSION);
                 try{
-                    String[] vern = prefs_Read.getString(Constants.PREFS_APP_TUTORIAL, "").split("\\.");
-                    String[] vero = getString(R.string.app_version_name).split("\\.");
-                    tuto = !(vern[0].equals(vero[0]) && vern[1].equals(vero[1]));//check first two numbers of version
+
+                    if (getString(R.string.app_version_name).compareTo(prefs_Read.getString(Constants.PREFS_APP_LAST_VERSION, "")) > 0) {
+                        //Do update things
+
+                        String[] vero2 = prefs_Read.getString(Constants.PREFS_APP_LAST_VERSION, "").split("\\.");
+                        String[] vern2 = getString(R.string.app_version_name).split("\\.");
+
+                        tutorial = vero2.length == 0 || !(vero2[0].equals(vern2[0]) && vero2[1].equals(vern2[1]));//check first two numbers of version
+                    }
                 }catch(ClassCastException ignore){}
-                if (tuto) {
+                if (tutorial) {
                     i = new Intent(SplashActivity.this, TutorialActivity.class);
                 } else {
                     i = new Intent(SplashActivity.this, MainActivity.class);
                 }
+
                 startActivity(i);
                 overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 finish();

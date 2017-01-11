@@ -41,6 +41,7 @@ import java.net.URL;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.MainActivity;
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 public class MyGcmListenerService extends GcmListenerService {
 
@@ -163,7 +164,7 @@ public class MyGcmListenerService extends GcmListenerService {
                     .setContentText(message)
                     .setAutoCancel(true)
                     .setLights(Color.YELLOW, 1000, 3000)
-                    .setColor(this.getResources().getColor(R.color.color_primary))
+                    .setColor(Utils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary))
                     .setVibrate(pattern)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)

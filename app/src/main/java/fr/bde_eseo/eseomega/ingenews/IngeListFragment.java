@@ -46,7 +46,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 22/12/2015.
@@ -86,7 +86,7 @@ public class IngeListFragment extends Fragment {
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.inge_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimary));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressInge);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -228,13 +228,13 @@ public class IngeListFragment extends Fragment {
             if (obj == null) {
                 if (cacheFileEseo.exists()) {
                     try {
-                        obj = new JSONObject(Utilities.getStringFromFile(cacheFileEseo));
+                        obj = new JSONObject(Utils.getStringFromFile(cacheFileEseo));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
+                Utils.writeStringToFile(cacheFileEseo, obj.toString());
             }
             return obj;
         }

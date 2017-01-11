@@ -43,7 +43,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 22/12/2015.
@@ -72,12 +72,15 @@ public class IngeListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+
         setContentView(R.layout.fragment_ingenews_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.inge_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.md_blue_800);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary));
         progCircle = (ProgressBar) findViewById(R.id.progressInge);
         tv1 = (TextView) findViewById(R.id.tvListNothing);
         tv2 = (TextView) findViewById(R.id.tvListNothing2);
@@ -213,13 +216,13 @@ public class IngeListActivity extends AppCompatActivity {
             if (obj == null) {
                 if (cacheFileEseo.exists()) {
                     try {
-                        obj = new JSONObject(Utilities.getStringFromFile(cacheFileEseo));
+                        obj = new JSONObject(Utils.getStringFromFile(cacheFileEseo));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
+                Utils.writeStringToFile(cacheFileEseo, obj.toString());
             }
             return obj;
         }

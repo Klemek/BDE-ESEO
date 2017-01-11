@@ -43,7 +43,7 @@ public class Constants {
     public static final String PREFS_APP_VERSION = "mainactivity.appversion";
     public static final String PREFS_NEWS_LAST_DOWNLOAD_DATE = "fragment.NewsFragment.LAST_DOWNLOAD_DATE";
     public static final String PREFS_APP_WELCOME_DATA = "mainactivity.welcome.DATA";
-    public static final String PREFS_APP_TUTORIAL = "tutorialactivity.alreadyshown";
+    public static final String PREFS_APP_LAST_VERSION = "tutorialactivity.alreadyshown";
 
     public static final String PREFS_USER_PROFILE_KEY = "model.UserProfile.KEY";
     public static final String PREFS_USER_PROFILE_NAME = "model.UserProfile.NAME";
@@ -58,6 +58,7 @@ public class Constants {
 
     // SharedPref class
     public static final String PREFS_GENERAL_HOMESCREEN = "settings.general.homescreen";
+    public static final String PREFS_GENERAL_THEME = "settings.general.theme";
     public static final String PREFS_GENERAL_UPDATE = "settings.general.autoupdate";
     public static final String PREFS_LYDIA_PHONE = "settings.lydia.phone";
 

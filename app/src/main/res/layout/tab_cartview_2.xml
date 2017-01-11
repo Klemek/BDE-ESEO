@@ -60,7 +60,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@color/color_primary">
+        android:background="?attr/colorPrimary">
 
 
         <TextView
@@ -101,9 +101,9 @@
         android:layout_marginBottom="28dp"
         android:src="@drawable/ic_shopping_cart"
         android:visibility="visible"
-        fab:fab_colorNormal="@color/color_accent"
-        fab:fab_colorPressed="@color/color_accent"
-        fab:fab_colorRipple="@color/color_accent" />
+        fab:fab_colorNormal="?attr/colorAccent"
+        fab:fab_colorPressed="?attr/colorAccent"
+        fab:fab_colorRipple="?attr/colorAccent" />
 
     <View
         android:id="@+id/viewCircle"

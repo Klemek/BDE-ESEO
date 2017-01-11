@@ -57,7 +57,7 @@ import fr.bde_eseo.eseomega.events.tickets.model.TicketStore;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 14/08/2015.
@@ -211,7 +211,7 @@ public class EventsListFragment extends Fragment {
         // UI
         View rootView = rootInfl.inflate(R.layout.fragment_event_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.events_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressEvent);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -469,13 +469,13 @@ public class EventsListFragment extends Fragment {
             if (obj == null) {
                 if (cacheFileEseo.exists()) {
                     try {
-                        obj = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
+                        obj = new JSONArray(Utils.getStringFromFile(cacheFileEseo));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                Utilities.writeStringToFile(cacheFileEseo, obj.toString());
+                Utils.writeStringToFile(cacheFileEseo, obj.toString());
             }
             return obj;
         }

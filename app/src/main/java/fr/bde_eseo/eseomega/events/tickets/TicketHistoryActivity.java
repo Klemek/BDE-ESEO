@@ -60,7 +60,7 @@ import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 11/01/2016.
@@ -205,7 +205,7 @@ public class TicketHistoryActivity extends AppCompatActivity {
                         .callback(new MaterialDialog.ButtonCallback() {
                             @Override
                             public void onNegative(MaterialDialog dialog) {
-                                Utilities.hideKeyboardFromActivity(TicketHistoryActivity.this); // Doesn't works ...
+                                Utils.hideKeyboardFromActivity(TicketHistoryActivity.this); // Doesn't works ...
                                 super.onNegative(dialog);
                             }
                         })
@@ -338,11 +338,11 @@ public class TicketHistoryActivity extends AppCompatActivity {
             jsonStr = ConnexionUtils.postServerData(Constants.URL_API_EVENT_LIST, syncParam, context);
 
             // If data is empty
-            if (!Utilities.isNetworkDataValid(jsonStr)) {
+            if (!Utils.isNetworkDataValid(jsonStr)) {
 
                 // Fetch data from cache history
                 if (cacheTicketsJSON.exists()) {
-                    jsonStr = Utilities.getStringFromFile(cacheTicketsJSON);
+                    jsonStr = Utils.getStringFromFile(cacheTicketsJSON);
                 } else {
                     jsonStr = null; // force empty message
                 }
@@ -426,7 +426,7 @@ public class TicketHistoryActivity extends AppCompatActivity {
                     eventTicketItems.addAll(tempDoneArray);
 
                     // save data
-                    Utilities.writeStringToFile(cacheTicketsJSON, jsonStr);
+                    Utils.writeStringToFile(cacheTicketsJSON, jsonStr);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -515,7 +515,7 @@ public class TicketHistoryActivity extends AppCompatActivity {
             String jsonToken = "";
 
             /** Check if response is token, or an placeholder_error **/
-            if (Utilities.isNetworkDataValid(networkPrepare) && Utilities.isNetworkDataValid(networkItems)) { // 64 : nb chars for a SHA256 value
+            if (Utils.isNetworkDataValid(networkPrepare) && Utils.isNetworkDataValid(networkItems)) { // 64 : nb chars for a SHA256 value
                 try {
                     JSONObject obj = new JSONObject(networkPrepare);
                     JSONArray arrayItems = new JSONArray(networkItems);

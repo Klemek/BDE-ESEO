@@ -73,7 +73,7 @@ import fr.bde_eseo.eseomega.slidingmenu.NavDrawerItem;
 import fr.bde_eseo.eseomega.slidingmenu.NavDrawerListAdapter;
 import fr.bde_eseo.eseomega.sponsors.SponsoFragment;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
 
 /**
@@ -122,11 +122,15 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+
         setContentView(R.layout.activity_main);
+
 
         // Global UI View
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        toolbar.setPadding(0, Utilities.getStatusBarHeight(this), 0, 0);
+        toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         mTitle = getTitle();
         llUpdate = (LinearLayout) findViewById(R.id.llMainUpdate);
@@ -136,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         llUpdate.setVisibility(View.GONE);
 
         // Check app auth
-        boolean installPlayStore = Utilities.verifyInstaller(this);
-        boolean installSigned = Utilities.checkAppSignature(this);
+        boolean installPlayStore = Utils.verifyInstaller(this);
+        boolean installSigned = Utils.checkAppSignature(this);
 
         if (!BuildConfig.DEBUG && (!installPlayStore || !installSigned)) {
             new MaterialDialog.Builder(this)
@@ -319,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
             prefs_Write.putBoolean(Constants.PREFS_APP_WELCOME_DATA, false);
             prefs_Write.apply();
 
-        } else if (prefsUser.getBoolean(Constants.PREFS_GENERAL_UPDATE, false)) {
+        } else if (prefsUser.getBoolean(Constants.PREFS_GENERAL_UPDATE, true)) {
             // Else check update if the user asks for it
             AsyncCheckVersion asyncCheckVersion = new AsyncCheckVersion(MainActivity.this, null, "");
             asyncCheckVersion.execute();
@@ -330,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         // - check pushToken pas bon / enregistré
         // - check Services Google présents
         // → alors on démarre la classe Registration
-        if (profile.isCreated() && !profile.isPushRegistered() && Utilities.checkPlayServices(this)) {
+        if (profile.isCreated() && !profile.isPushRegistered() && Utils.checkPlayServices(this)) {
 
             llUpdate.setVisibility(View.VISIBLE);
             //llUpdate.animate().translationY(-llUpdate.getHeight());

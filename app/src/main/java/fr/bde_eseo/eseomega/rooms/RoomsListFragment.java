@@ -54,7 +54,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 22/12/2015.
@@ -102,7 +102,7 @@ public class RoomsListFragment extends Fragment {
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progress);
         imgA = (ImageView) rootView.findViewById(R.id.imgA);
         imgA.setImageResource(R.drawable.img_nothing);
@@ -419,13 +419,13 @@ public class RoomsListFragment extends Fragment {
             if (array == null) {
                 if (cacheFileEseo.exists()) {
                     try {
-                        array = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
+                        array = new JSONArray(Utils.getStringFromFile(cacheFileEseo));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             } else {
-                Utilities.writeStringToFile(cacheFileEseo, array.toString());
+                Utils.writeStringToFile(cacheFileEseo, array.toString());
             }
             return array;
         }

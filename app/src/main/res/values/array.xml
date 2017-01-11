@@ -8,4 +8,112 @@
         <item>5</item>
         <item>6</item>
     </string-array>
+
+    <string-array name="preferences_theme_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="theme_items">
+        <item>Défaut</item>
+        <item>Eseoasis</item>
+        <item>Eseomega</item>
+    </string-array>
+
+    <string-array name="nav_drawer_items">
+        <item>Mon Profil</item>
+        <item>News</item>
+        <item>Événements</item>
+        <item>Clubs &amp; Vie Asso</item>
+        <item>Généalogie</item>
+        <item>Ingénews</item>
+        <item>Caféteria</item>
+        <item>Bons Plans</item>
+        <item>Liste des Salles</item>
+    </string-array>
+
+    <string-array name="nav_drawer_options">
+        <item>Réglages</item>
+    </string-array>
+
+    <!-- Nav Drawer List Item Icons -->
+    <!-- Keep them in order as the titles are in -->
+    <array name="nav_drawer_icons">
+        <item />
+        <item>@drawable/ic_news</item>
+        <item>@drawable/ic_events</item>
+        <item>@drawable/ic_clubs</item>
+        <item>@drawable/ic_family</item>
+        <item>@drawable/ic_ingenews</item>
+        <item>@drawable/ic_cafet</item>
+        <item>@drawable/ic_promos</item>
+        <item>@drawable/ic_direction</item>
+    </array>
+
+    <!-- Bullshit for user's EditText hint -->
+    <string-array name="bullshitHintUser">
+        <item>ananas</item>
+        <item>oasis</item>
+        <item>chameau</item>
+        <item>android>iOS</item>
+        <item>dromadaire</item>
+        <item>printf("oklm")</item>
+        <item>heisenberg</item>
+        <item>mario</item>
+        <item>luigi</item>
+        <item>samus</item>
+        <item>walterwhite</item>
+        <item>kinginthenorth</item>
+        <item>motherofdragons</item>
+        <item>rickgrimes</item>
+        <item>songoku</item>
+        <item>fry</item>
+        <item>benderbrodriguez</item>
+        <item>ironman</item>
+        <item>batman</item>
+        <item>superman</item>
+        <item>catwoman</item>
+        <item>wonderwoman</item>
+        <item>hawkeye</item>
+        <item>hulk</item>
+        <item>deadpool</item>
+        <item>captainamerica</item>
+        <item>blackwidow</item>
+        <item>thor</item>
+        <item>loki</item>
+        <item>joker</item>
+        <item>robin</item>
+        <item>dracula</item>
+        <item>davidfincher</item>
+        <item>cobb</item>
+        <item>legolas</item>
+        <item>bilbonsaquet</item>
+        <item>gandalf</item>
+        <item>frodonsaquet</item>
+        <item>aragorn</item>
+        <item>neo</item>
+        <item>agentj</item>
+        <item>jacksparrow</item>
+        <item>sherlockholmes</item>
+        <item>doc</item>
+        <item>marty</item>
+        <item>morty</item>
+        <item>rick</item>
+        <item>lukeskywalker</item>
+        <item>darkvador</item>
+        <item>hansolo</item>
+        <item>chewbacca</item>
+        <item>c3po</item>
+        <item>r2d2</item>
+        <item>quigonjinn</item>
+        <item>obiwankenobi</item>
+        <item>anakinskywalker</item>
+        <item>jarjarbinks</item>
+        <item>jamesbond</item>
+        <item>tron</item>
+        <item>wolverine</item>
+        <item>professeurxavier</item>
+    </string-array>
+
 </resources>

@@ -50,7 +50,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 25/08/2015.
@@ -100,7 +100,7 @@ public class NewsListFragment extends Fragment {
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
         img = (ImageView) rootView.findViewById(R.id.imgNoNews);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.news_refresh);
-        swipeRefreshLayout.setColorSchemeColors(R.color.color_primary_dark);
+        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle.setVisibility(View.GONE);
         progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
         tv1.setVisibility(View.GONE);
@@ -289,7 +289,7 @@ public class NewsListFragment extends Fragment {
                             //newsItems.add(new NewsItem("Dernière mise à jour : " +
                             //prefs_Read.getString(Constants.PREFS_NEWS_LAST_DOWNLOAD_DATE, "jamais")));
                         } else {
-                            prefs_Write.putString(Constants.PREFS_NEWS_LAST_DOWNLOAD_DATE, Utilities.getCalendarAsString());
+                            prefs_Write.putString(Constants.PREFS_NEWS_LAST_DOWNLOAD_DATE, Utils.getCalendarAsString());
                             prefs_Write.apply();
                         }
                     }
@@ -330,13 +330,13 @@ public class NewsListFragment extends Fragment {
             if (news != null) {
                 // save it if it's the 5 first news
                 if (ptr == 0) {
-                    Utilities.writeStringToFile(cacheFileEseo, news.toString());
+                    Utils.writeStringToFile(cacheFileEseo, news.toString());
                 }
             } else {
                 // Else if offline : load JSON file from cache if it exists
                 if (cacheFileEseo.exists()) {
                     try {
-                        news = new JSONArray(Utilities.getStringFromFile(cacheFileEseo));
+                        news = new JSONArray(Utils.getStringFromFile(cacheFileEseo));
                         loadedFromCache = true;
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -441,7 +441,7 @@ public class NewsListFragment extends Fragment {
             public NewsFooterHolder (View itemView) {
                 super(itemView);
                 progressMore = (ProgressBar) itemView.findViewById(R.id.progressNewsMore);
-                progressMore.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.color_primary_dark), PorterDuff.Mode.SRC_IN);
+                progressMore.getIndeterminateDrawable().setColorFilter(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
             }
 
         }

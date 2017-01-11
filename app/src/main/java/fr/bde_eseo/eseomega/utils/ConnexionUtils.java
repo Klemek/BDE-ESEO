@@ -52,7 +52,7 @@ public class ConnexionUtils {
         String result = "";
         URL url = null;
 
-        if (Utilities.isOnline(ctx)) {
+        if (Utils.isOnline(ctx)) {
             try {
                 url = new URL(sUrl);
                 try {

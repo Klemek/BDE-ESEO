@@ -1,23 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:windowTranslucentStatus">true</item>
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/oasis_primary</item>
         <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
-        <item name="colorAccent">@color/oasis_blue</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <!-- Preferences -->
-        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="colorAccent">@color/oasis_accent</item>
         <item name="android:colorBackground">@color/oasis_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
     </style>
+
+    <style name="OasisTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/oasis_primary</item>
+        <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
+        <item name="colorAccent">@color/oasis_accent</item>
+        <item name="android:colorBackground">@color/oasis_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
+    </style>
+
+    <style name="MegaTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/mega_primary</item>
+        <item name="colorPrimaryDark">@color/mega_primary_dark</item>
+        <item name="colorAccent">@color/mega_accent</item>
+        <item name="android:colorBackground">@color/mega_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/mega_bg</item>
+    </style>
+
 
     <!-- Image view theme. -->
     <style name="ImageViewTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/md_grey_800</item>
         <item name="colorPrimaryDark">@color/md_grey_900</item>
-        <item name="colorAccent">@color/color_primary</item>
+        <item name="colorAccent">?attr/colorPrimary</item>
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 </resources>

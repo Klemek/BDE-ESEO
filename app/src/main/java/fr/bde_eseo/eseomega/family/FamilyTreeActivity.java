@@ -16,7 +16,7 @@ import java.util.HashMap;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 public class FamilyTreeActivity extends AppCompatActivity {
 
@@ -27,9 +27,12 @@ public class FamilyTreeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+
         setContentView(R.layout.activity_family_tree);
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        toolbar.setPadding(0, Utilities.getStatusBarHeight(this), 0, 0);
+        toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         trv = (TreeView) findViewById(R.id.tree);
         trv.setVisibility(View.GONE);
         setSupportActionBar(toolbar);

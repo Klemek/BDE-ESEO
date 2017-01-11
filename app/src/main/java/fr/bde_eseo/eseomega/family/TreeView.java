@@ -7,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.Typeface;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -17,6 +16,7 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import fr.bde_eseo.eseomega.R;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 
 /**
@@ -37,13 +37,9 @@ public class TreeView extends View {
     private int height, width;
     private String[] prnames;
 
-    //private GestureDetector gestureDetector;
-
-
-
     public TreeView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     private static int arr(float f) {
@@ -56,13 +52,13 @@ public class TreeView extends View {
         return s.substring(0, n - end.length()) + end;
     }
 
-    private void init(Context context){
+    private void init() {
         pb = new Paint();
-        pb.setColor(getResources().getColor(R.color.color_background));
+        pb.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground));
         pb.setStyle(Paint.Style.FILL);
 
         pb2 = new Paint();
-        pb2.setColor(getResources().getColor(R.color.color_background2));
+        pb2.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.colorForegroundInverse));
 
         pb2g = new Paint();
 
@@ -77,7 +73,7 @@ public class TreeView extends View {
         pline.setAntiAlias(true);
 
         pn2 = new Paint();
-        pn2.setColor(getResources().getColor(R.color.color_text_primary_inverse));
+        pn2.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.textColorPrimaryInverse));
         pn2.setTextAlign(Paint.Align.CENTER);
         pn2.setAntiAlias(true);
 
@@ -308,8 +304,8 @@ public class TreeView extends View {
         }
         pb2g.setShader(new LinearGradient(0, 0,
                 dx/2, 0,
-                ContextCompat.getColor(getContext(), R.color.color_background2),
-                ContextCompat.getColor(getContext(), R.color.color_background), Shader.TileMode.MIRROR));
+                Utils.resolveColorFromTheme(getContext(), android.R.attr.colorForegroundInverse), //TODO change
+                Utils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground), Shader.TileMode.MIRROR));
     }
 
     private int[] getCoords(int k){

@@ -54,7 +54,7 @@ import fr.bde_eseo.eseomega.lacommande.model.LacmdMenu;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.lydia.LydiaActivity;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 
 public class TabCartView extends Fragment {
@@ -279,7 +279,7 @@ public class TabCartView extends Fragment {
             floatingShop.setVisibility(View.VISIBLE);
             viewOrder.setVisibility(View.INVISIBLE);
 
-            if (Utilities.isNetworkDataValid(data)) {
+            if (Utils.isNetworkDataValid(data)) {
 
                 try {
                     JSONObject obj = new JSONObject(data);

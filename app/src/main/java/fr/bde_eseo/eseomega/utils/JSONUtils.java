@@ -40,7 +40,7 @@ public class JSONUtils {
         JSONObject obj = null;
 
         result = ConnexionUtils.getServerData(url);
-        if (Utilities.isNetworkDataValid(result)) {
+        if (Utils.isNetworkDataValid(result)) {
             try {
                 obj = new JSONObject(result);
             } catch (JSONException e) {
@@ -57,7 +57,7 @@ public class JSONUtils {
         JSONArray array = null;
 
         result = ConnexionUtils.getServerData(url);
-        if (Utilities.isNetworkDataValid(result)) {
+        if (Utils.isNetworkDataValid(result)) {
             try {
                 array = new JSONArray(result);
             } catch (JSONException e) {
@@ -75,7 +75,7 @@ public class JSONUtils {
         JSONArray array = null;
 
         result = ConnexionUtils.postServerData(url, new HashMap<String, String>(), ctx);
-        if (Utilities.isNetworkDataValid(result)) {
+        if (Utils.isNetworkDataValid(result)) {
             try {
                 array = new JSONArray(result);
             } catch (JSONException e) {

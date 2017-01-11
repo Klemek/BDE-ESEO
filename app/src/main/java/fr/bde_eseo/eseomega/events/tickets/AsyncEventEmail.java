@@ -36,7 +36,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Sends the email adress to server
@@ -83,7 +83,7 @@ public class AsyncEventEmail extends AsyncTask<String, String, String> {
         int err = 0;
         String errMsg = context.getResources().getString(R.string.error_network_short);
 
-        if (Utilities.isNetworkDataValid(data)) {
+        if (Utils.isNetworkDataValid(data)) {
             try {
                 JSONObject obj = new JSONObject(data);
                 err = obj.getInt("status");

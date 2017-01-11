@@ -52,7 +52,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
-import fr.bde_eseo.eseomega.utils.Utilities;
+import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 05/01/2016.
@@ -311,7 +311,7 @@ public class LydiaActivity extends AppCompatActivity {
         // Dialog's elements
         tvStatus = (TextView) mdView.findViewById(R.id.tvStatusLydia);
         progressStatus = (ProgressBar) mdView.findViewById(R.id.progressCheckLydia);
-        progressStatus.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.color_primary_dark), PorterDuff.Mode.SRC_IN);
+        progressStatus.getIndeterminateDrawable().setColorFilter(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
         // Set values
         progressStatus.setVisibility(View.GONE);
@@ -351,7 +351,7 @@ public class LydiaActivity extends AppCompatActivity {
         // Package Lydia exists ?
         //intentUri = LYDIA_INTENT; // suppose yes
 
-        /*if (Utilities.isPackageExisted(context, LYDIA_PACKAGE)) {
+        /*if (Utils.isPackageExisted(context, LYDIA_PACKAGE)) {
             intentUri = LYDIA_INTENT;
         } else {
             intentUri = MOBILE_URL; // Package doesn't exists : open URL
@@ -417,14 +417,13 @@ public class LydiaActivity extends AppCompatActivity {
     void updateTextStatus(String text, int status, boolean isLoading) {
 
         tvStatus.setText(text);
-
         if (isLoading) {
-            tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
+            tvStatus.setTextColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
         } else {
             if (status == 0) {
                 tvStatus.setTextColor(context.getResources().getColor(R.color.md_prim_dark_yellow));
             } else if (status == 1) {
-                tvStatus.setTextColor(context.getResources().getColor(R.color.color_primary_dark));
+                tvStatus.setTextColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
             } else if (status == 2) {
                 tvStatus.setTextColor(context.getResources().getColor(R.color.circle_ready));
             } else {
@@ -439,7 +438,7 @@ public class LydiaActivity extends AppCompatActivity {
     void dialogInit() {
         mdb = new MaterialDialog.Builder(context);
         mdb.theme(Theme.LIGHT);
-        mdb.titleColor(getResources().getColor(R.color.color_primary_dark));
+        mdb.titleColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
     }
 
     // Types de requêtes qui ont lieu lors du onCreate (première ouverture de l'app)
@@ -499,7 +498,7 @@ public class LydiaActivity extends AppCompatActivity {
             String msg = getString(R.string.error_network_unknown);
 
             // Check data
-            if (Utilities.isNetworkDataValid(data)) {
+            if (Utils.isNetworkDataValid(data)) {
 
                 try {
                     // Get object
@@ -574,7 +573,7 @@ public class LydiaActivity extends AppCompatActivity {
                     String msg = getString(R.string.error_network_unknown);
 
                     // Check data
-                    if (Utilities.isNetworkDataValid(data)) {
+                    if (Utils.isNetworkDataValid(data)) {
 
                         try {
                             // Get object

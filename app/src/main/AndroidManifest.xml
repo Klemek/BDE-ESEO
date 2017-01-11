@@ -20,7 +20,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/OasisTheme"
         android:versionCode="@string/app_version_code"
         android:versionName="@string/app_version_name">
 
@@ -28,8 +28,7 @@
         <activity
             android:name="fr.bde_eseo.eseomega.SplashActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -124,14 +123,12 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="fr.bde_eseo.eseomega.lacommande.OrderDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_order"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="fr.bde_eseo.eseomega.news.ImageViewActivity"
@@ -145,7 +142,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="fr.bde_eseo.eseomega.rooms.BigPictureActivity"
@@ -209,7 +205,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name_family"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 
