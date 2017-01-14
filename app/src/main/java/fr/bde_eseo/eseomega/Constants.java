@@ -186,13 +186,13 @@ public class Constants {
     public static final String KEY_LYDIA_ORDER_ASKED = "lydia.order_status";
     public static final String TYPE_LYDIA_CAFET = "CAFET";
     public static final String TYPE_LYDIA_EVENT = "EVENT";
+    public static final String URL_JSON_STUDENT_SEARCH = URL_JSON_FAMILY + "search/";
+    public static final String URL_API_EVENT_SIGNUP = URL_JSON_EVENTS + "signup/";
     /**
      * API V3.0 - Since December 2015 ↔ January 2016
      */
 
 
-    public static final String URL_JSON_STUDENT_SEARCH = URL_JSON_FAMILY + "search/";
-    public static final String URL_API_EVENT_SIGNUP = URL_JSON_EVENTS + "signup/";
     private static final String URL_SERVER2 = "https://web59.secure-secure.co.uk/francoisle.fr/"; // secure way
     public static final String URL_ASSETS = URL_SERVER2 + "lacommande/assets/";
     public static final String URL_JSON_INGENEWS = URL_SERVER2 + "eseonews/jsondata/ingenews_data/ingenews.php";
