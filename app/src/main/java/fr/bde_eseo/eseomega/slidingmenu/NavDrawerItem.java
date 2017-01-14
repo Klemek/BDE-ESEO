@@ -24,8 +24,8 @@ public class NavDrawerItem {
     private String id;
 	private String moreData;
 
-    // TODO in a int description type
-    private boolean isProfile;
+	// TODO in a int description type (FL)
+	private boolean isProfile;
 	private boolean isDivider;
     private boolean isOption;
 

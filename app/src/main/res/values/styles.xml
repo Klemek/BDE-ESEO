@@ -5,12 +5,13 @@
     <style name="DefaultTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/oasis_primary</item>
-        <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
-        <item name="colorAccent">@color/oasis_accent</item>
-        <item name="android:colorBackground">@color/oasis_bg</item>
-        <item name="android:colorForegroundInverse">@color/oasis_bg2</item>
-        <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
+        <item name="colorPrimary">@color/default_primary</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
+        <item name="colorAccent">@color/default_accent</item>
+        <item name="android:colorBackground">@color/default_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/default_bg</item>
+        <item name="colorButtonNormal">@color/md_white_1000</item>
+
     </style>
 
     <style name="OasisTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -20,8 +21,8 @@
         <item name="colorPrimaryDark">@color/oasis_primary_dark</item>
         <item name="colorAccent">@color/oasis_accent</item>
         <item name="android:colorBackground">@color/oasis_bg</item>
-        <item name="android:colorForegroundInverse">@color/oasis_bg2</item>
         <item name="android:textColorPrimaryInverse">@color/oasis_txt</item>
+        <item name="colorButtonNormal">@color/md_white_1000</item>
     </style>
 
     <style name="MegaTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -32,12 +33,26 @@
         <item name="colorAccent">@color/mega_accent</item>
         <item name="android:colorBackground">@color/mega_bg</item>
         <item name="android:textColorPrimaryInverse">@color/mega_bg</item>
+        <item name="colorButtonNormal">@color/md_white_1000</item>
     </style>
 
-    <style name="AppThemeSingle" parent="OasisTheme">
-        <item name="windowActionBar">true</item>
-        <item name="windowNoTitle">false</item>
-        <item name="android:textColorPrimary">?attr/android:textColorPrimaryInverse</item>
+    <style name="EldoradoTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay.v14.Material</item>
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/eldo_primary</item>
+        <item name="colorPrimaryDark">@color/eldo_primary_dark</item>
+        <item name="colorAccent">@color/eldo_accent</item>
+        <item name="android:colorBackground">@color/eldo_bg</item>
+        <item name="android:textColorPrimaryInverse">@color/eldo_bg2</item>
+        <item name="colorButtonNormal">@color/eldo_bg2</item>
+    </style>
+
+    <!-- single activity theme. -->
+    <style name="AppThemeSingle" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/default_primary</item>
+        <item name="colorPrimaryDark">@color/default_primary_dark</item>
+        <item name="colorAccent">@color/default_accent</item>
     </style>
 
 

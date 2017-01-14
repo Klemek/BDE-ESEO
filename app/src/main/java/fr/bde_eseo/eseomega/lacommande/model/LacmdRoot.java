@@ -25,11 +25,13 @@ import java.util.ArrayList;
  * Classe mère pour l'héritage et la récupération de paramètres communs menus / élements
  */
 public class LacmdRoot {
-    protected String name, idstr, objectType;
-    protected double price;
-    protected ArrayList<LacmdRoot> items;
-    protected int hasIngredients;
-    protected int hasElements;
+    protected final double price;
+    final String idstr;
+    final int hasIngredients;
+    private final String objectType;
+    private final int hasElements;
+    String name;
+    private ArrayList<LacmdRoot> items;
 
     public LacmdRoot(String name, String idstr, int hasIngredients, int hasElements, double price, String objType) {
         this.name = name;

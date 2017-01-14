@@ -36,10 +36,10 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
  * Created by François L. on 31/08/2015.
  *
  */
-public class ClubItem {
+class ClubItem {
 
-    public static String NEWSTAG = "news";
-    public static String EVENTTAG = "event";
+    public static final String NEWSTAG = "news";
+    public static final String EVENTTAG = "event";
     private String name, desc, img;
     private HashMap<String, String> contacts;
     private ArrayList<SubList> details;
@@ -104,8 +104,8 @@ public class ClubItem {
     }
 
     public class SubList {
-        private String name;
-        private ArrayList<ListItem> items;
+        private final String name;
+        private final ArrayList<ListItem> items;
 
         public SubList(Context ctx, String name, JSONArray array){
             this.name = name;

@@ -68,7 +68,7 @@
                 android:layout_alignRight="@+id/tvUserPassword"
                 android:layout_marginBottom="16dp"
                 android:text="@string/layout_connect_profile_2"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <com.rengwuxian.materialedittext.MaterialEditText
                 android:id="@+id/etUserPassword"
@@ -95,7 +95,7 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/layout_connect_profile_4"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/button_disconnect"

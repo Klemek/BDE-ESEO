@@ -7,11 +7,12 @@
     <ImageView
         android:id="@+id/imgLogo"
         android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:adjustViewBounds="true"
         android:scaleType="fitCenter"
-        android:src="@drawable/logo_white" />
+        android:src="@drawable/logo_default_white" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -24,9 +25,20 @@
         android:gravity="center_horizontal"
         android:text="@string/app_copyright"
         android:textColor="@color/md_white_1000"
-        android:textSize="13dp"
+        android:textSize="13sp"
         android:textStyle="italic"
         android:visibility="invisible" />
+
+    <ProgressBar
+        android:id="@+id/idLoadc"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="241dp"
+        android:layout_height="241dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:max="500"
+        android:progress="0"
+        android:progressDrawable="@drawable/circular_load" />
 
     <ProgressBar
         android:id="@+id/idLoad"
@@ -39,6 +51,5 @@
         android:indeterminate="false"
         android:max="500"
         android:progressDrawable="@drawable/simple_load" />
-
 
 </RelativeLayout>

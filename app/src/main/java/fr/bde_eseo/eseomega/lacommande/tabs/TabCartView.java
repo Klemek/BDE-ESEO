@@ -63,7 +63,6 @@ public class TabCartView extends Fragment {
     private TextView tvPrice;
     private ImageView img;
     private TextView tv1, tv2;
-    private RecyclerView recList;
     private MyCartAdapter mAdapter;
     private EditText etInstr;
     private View viewOrder;
@@ -90,7 +89,7 @@ public class TabCartView extends Fragment {
 
         // Database model and view
         mAdapter = new MyCartAdapter(getActivity());
-        recList = (RecyclerView) v.findViewById(R.id.recyList);
+        RecyclerView recList = (RecyclerView) v.findViewById(R.id.recyList);
         recList.setAdapter(mAdapter);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

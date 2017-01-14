@@ -42,39 +42,37 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdElement;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdMenu;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 /**
  * Created by François L. on 24/08/2015.
  */
 public class ElementChooserActivity extends AppCompatActivity {
 
-    private RecyclerView recList;
     private MenuListAdapter mAdapter;
-    private TextView tvIngredients, tvAdd, tvStackMorePrice, tvStackMoreText;
-    private Toolbar toolbar;
-    private String menuID;
+    private TextView tvAdd;
+    private TextView tvStackMorePrice;
+    private TextView tvStackMoreText;
     private LacmdMenu menuTemp, menu;
-    private double supplMore;
     private int nbSandw, nbElems;
     private boolean activityStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_ingredients);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
         setSupportActionBar(toolbar);
 
         // Objets & UI
         tvAdd = (TextView) findViewById(R.id.tvValid);
-        tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
+        TextView tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
         tvStackMorePrice = (TextView) findViewById(R.id.tvStackMorePrice);
         tvStackMoreText = (TextView) findViewById(R.id.tvStackMoreText);
         mAdapter = new MenuListAdapter();
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setAdapter(mAdapter);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -82,6 +80,7 @@ public class ElementChooserActivity extends AppCompatActivity {
         recList.setLayoutManager(llm);
 
         // Get parameters
+        String menuID;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if (extras == null) {
@@ -112,7 +111,7 @@ public class ElementChooserActivity extends AppCompatActivity {
         if (nbElems > 0)
             menu.getItems().add(new LacmdElement("", "", 0.0, 0.0, 0, 0, 0));
 
-        supplMore = 0;
+        double supplMore = 0;
         mAdapter.notifyDataSetChanged();
         tvStackMoreText.setVisibility(View.INVISIBLE);
         tvStackMorePrice.setVisibility(View.INVISIBLE);
@@ -158,7 +157,7 @@ public class ElementChooserActivity extends AppCompatActivity {
     }
 
     // A method to find height of the status bar
-    public int getStatusBarHeight() {
+    private int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -221,7 +220,7 @@ public class ElementChooserActivity extends AppCompatActivity {
      */
     public class MenuListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-        public ArrayList<CustomObjItem> adapterObjects;
+        public final ArrayList<CustomObjItem> adapterObjects;
 
         public MenuListAdapter() {
             adapterObjects = new ArrayList<>();
@@ -229,9 +228,8 @@ public class ElementChooserActivity extends AppCompatActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            MenuItemHolder cbh = new MenuItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_menu, parent, false));
 
-            return cbh;
+            return new MenuItemHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview_menu, parent, false));
         }
 
         @Override
@@ -278,7 +276,7 @@ public class ElementChooserActivity extends AppCompatActivity {
 
                             final int nb = st.countTokens();
                             CharSequence items[] = new CharSequence[nb];
-                            final ArrayList<String> strings = new ArrayList<String>();
+                            final ArrayList<String> strings = new ArrayList<>();
 
                             for (int i = 0; i < nb; i++) {
                                 String s = st.nextToken();
@@ -329,8 +327,10 @@ public class ElementChooserActivity extends AppCompatActivity {
         // Holder for menu item
         public class MenuItemHolder extends RecyclerView.ViewHolder {
 
-            protected TextView tvName, tvHeader, tvMore;
-            protected CardView cardView;
+            final TextView tvName;
+            final TextView tvHeader;
+            final TextView tvMore;
+            final CardView cardView;
 
             public MenuItemHolder(View itemView) {
                 super(itemView);
@@ -346,9 +346,10 @@ public class ElementChooserActivity extends AppCompatActivity {
      * Mixed
      */
     private class CustomObjItem {
-        private String name, idstr;
-        private double priceMore;
-        private boolean isMain;
+        private final String idstr;
+        private final double priceMore;
+        private final boolean isMain;
+        private String name;
 
         public CustomObjItem(String name, String idstr, double priceMore, boolean isMain) {
             this.name = name;

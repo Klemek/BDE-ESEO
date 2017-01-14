@@ -36,11 +36,12 @@ public class HistoryItem {
     public final static int STATUS_DONE = 2;
     public final static int STATUS_NOPAID = 3;
 
-    private String commandName;
+    private final String commandName;
+    private final boolean isHeader;
     private int commandStatus;
     private String commandDate, commandStr;
     private double commandPrice;
-    private boolean isHeader, isFooter;
+    private boolean isFooter;
     private int commandNumber, commandModulo;
     private Context ctx;
 
@@ -72,7 +73,7 @@ public class HistoryItem {
         return commandStatus;
     }
 
-    public String getCommandStatusAsString () {
+    private String getCommandStatusAsString() {
         switch (commandStatus) {
             case STATUS_DONE:
                 return ctx.getString(R.string.cmd_status_finished_tostring);
@@ -119,11 +120,11 @@ public class HistoryItem {
         return "Command Data = {\""+getCommandName()+"\" the "+getCommandDate()+", price = "+commandPrice+"€, status = "+getCommandStatusAsString()+"}";
     }
 
-    public Date getParsedDate () {
+    private Date getParsedDate() {
         return DateUtils.oldfromString(this.commandDate);
     }
 
-    public String getFrenchDate (boolean simpleDate) {
+    private String getFrenchDate(boolean simpleDate) {
         Date d = getParsedDate();
         SimpleDateFormat sdf;
         if (simpleDate)

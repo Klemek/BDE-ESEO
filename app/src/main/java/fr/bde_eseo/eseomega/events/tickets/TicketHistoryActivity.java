@@ -82,21 +82,10 @@ public class TicketHistoryActivity extends AppCompatActivity {
     private ArrayList<EventTicketItem> eventTicketItems;
     // User profile
     private UserProfile userProfile;
-    // Adapter / recycler
-    private MyTicketAdapter mAdapter;
-    private RecyclerView recList;
-    // Layout
-    private ProgressBar progressLoad, progressToken;
-    private TextView tvNothing, tvNothing2;
-    private ImageView imgNothing;
-    private View viewToken;
-    private FloatingActionButton fab;
-    // Cache
-    private File cacheTicketsJSON;
     /**
      * Background task to fetch data periodically from server
      */
-    private Runnable updateTimerThread = new Runnable() {
+    private final Runnable updateTimerThread = new Runnable() {
         public void run() {
 
             try {
@@ -111,6 +100,17 @@ public class TicketHistoryActivity extends AppCompatActivity {
             }
         }
     };
+    // Adapter / recycler
+    private MyTicketAdapter mAdapter;
+    private RecyclerView recList;
+    // Layout
+    private ProgressBar progressLoad, progressToken;
+    private TextView tvNothing, tvNothing2;
+    private ImageView imgNothing;
+    private View viewToken;
+    private FloatingActionButton fab;
+    // Cache
+    private File cacheTicketsJSON;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +177,7 @@ public class TicketHistoryActivity extends AppCompatActivity {
                             .negativeText(R.string.dialog_ok)
                             .cancelable(false)
                             .show();
-                } else if (false  && !tzStr.equalsIgnoreCase(Constants.TZ_ID_PARIS)) {
+                } else if (false) {
                     new MaterialDialog.Builder(context)
                             .title(R.string.error)
                             .content(R.string.ticket_bad_country)

@@ -22,6 +22,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -60,6 +62,7 @@ import fr.bde_eseo.eseomega.news.NewsListFragment;
 import fr.bde_eseo.eseomega.utils.Blur;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -67,15 +70,11 @@ import fr.bde_eseo.eseomega.utils.Utils;
  */
 public class ClubViewActivity extends AppCompatActivity {
 
-    public static final String COM_SNAPCHAT_ANDROID = "com.snapchat.android";
-    private Toolbar toolbar;
+    private static final String COM_SNAPCHAT_ANDROID = "com.snapchat.android";
     private ClubItem clubItem;
-    private TextView tvDesc, tvNoMember;
-    private ImageView imgClub, iWeb, iFb, iTw, iSnap, iMail, iLinked, iPhone, iYou, iInsta;
+    private TextView tvNoMember;
+    private ImageView imgClub;
     private ArrayList<MixedItem> items;
-    private DetailsAdapter mAdapter;
-    private RecyclerView recList;
-    private RelativeLayout rlClubPicture;
 
     /**
      * Open another app.
@@ -84,28 +83,27 @@ public class ClubViewActivity extends AppCompatActivity {
      * @param packageName the full package name of the app to open
      * @return true if likely successful, false if unsuccessful
      */
-    public static boolean openApp(Context context, String packageName) {
+    private static void openApp(Context context, String packageName) {
         PackageManager manager = context.getPackageManager();
 
         Intent i = manager.getLaunchIntentForPackage(packageName);
         if (i == null) {
-            return false;
+            return;
             //throw new PackageManager.NameNotFoundException();
         }
         i.addCategory(Intent.CATEGORY_LAUNCHER);
         context.startActivity(i);
-        return true;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
 
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_club_view);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -128,20 +126,20 @@ public class ClubViewActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(clubItem.getName());
         }
 
-        tvDesc = (TextView) findViewById(R.id.tvDescClub);
+        TextView tvDesc = (TextView) findViewById(R.id.tvDescClub);
         tvNoMember = (TextView) findViewById(R.id.tvNoDetails);
         imgClub = (ImageView) findViewById(R.id.imgClub);
-        rlClubPicture = (RelativeLayout) findViewById(R.id.rlClubPicture);
+        RelativeLayout rlClubPicture = (RelativeLayout) findViewById(R.id.rlClubPicture);
 
-        iWeb = (ImageView) findViewById(R.id.icoWeb);
-        iFb = (ImageView) findViewById(R.id.icoFb);
-        iTw = (ImageView) findViewById(R.id.icoTwitter);
-        iSnap = (ImageView) findViewById(R.id.icoSnap);
-        iMail = (ImageView) findViewById(R.id.icoMail);
-        iLinked = (ImageView) findViewById(R.id.icoLinkedIn);
-        iYou = (ImageView) findViewById(R.id.icoYoutube);
-        iPhone = (ImageView) findViewById(R.id.icoPhone);
-        iInsta = (ImageView) findViewById(R.id.icoInsta);
+        ImageView iWeb = (ImageView) findViewById(R.id.icoWeb);
+        ImageView iFb = (ImageView) findViewById(R.id.icoFb);
+        ImageView iTw = (ImageView) findViewById(R.id.icoTwitter);
+        ImageView iSnap = (ImageView) findViewById(R.id.icoSnap);
+        ImageView iMail = (ImageView) findViewById(R.id.icoMail);
+        ImageView iLinked = (ImageView) findViewById(R.id.icoLinkedIn);
+        ImageView iYou = (ImageView) findViewById(R.id.icoYoutube);
+        ImageView iPhone = (ImageView) findViewById(R.id.icoPhone);
+        ImageView iInsta = (ImageView) findViewById(R.id.icoInsta);
 
         tvDesc.setText(JSONUtils.fromHtml(clubItem.getDesc()));
 
@@ -319,7 +317,7 @@ public class ClubViewActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(ClubViewActivity.this, ImageViewActivity.class);
                 myIntent.putExtra(Constants.KEY_IMG, clubItem.getImg());
-                startActivity(myIntent); //TODO do same for news
+                startActivity(myIntent);
             }
         });
 
@@ -334,10 +332,10 @@ public class ClubViewActivity extends AppCompatActivity {
 
     }
 
-    public void updateDetails(){
+    private void updateDetails() {
         // Adapter & recycler view
-        mAdapter = new DetailsAdapter();
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        DetailsAdapter mAdapter = new DetailsAdapter();
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setAdapter(mAdapter);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -378,7 +376,7 @@ public class ClubViewActivity extends AppCompatActivity {
     }
 
     // Intent to browser
-    public void intentToBrowser(String url) {
+    private void intentToBrowser(String url) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
@@ -388,8 +386,10 @@ public class ClubViewActivity extends AppCompatActivity {
      * Custom class for Member + Module
      */
     private class MixedItem {
-        private boolean isModule;
-        private String title, desc, imgLink;
+        private final boolean isModule;
+        private final String title;
+        private String desc;
+        private String imgLink;
         private int id;
 
         public MixedItem(String title) {
@@ -447,6 +447,7 @@ public class ClubViewActivity extends AppCompatActivity {
                 //String s = mi.getDesc();
                 //mvh.desc.setText(s!=null&&s.length()>0?s:"Membre");
                 mvh.desc.setText(JSONUtils.fromHtml(mi.getDesc()));
+                mvh.view.setOnClickListener(null);
                 if(mi.getImgLink().equals(ClubItem.EVENTTAG)){
                     Picasso.with(ClubViewActivity.this).load(R.drawable.ic_events2).into(mvh.img);
                     mvh.view.setOnClickListener(new View.OnClickListener() {
@@ -455,8 +456,11 @@ public class ClubViewActivity extends AppCompatActivity {
                             EventsListFragment.openEvent(ClubViewActivity.this, mi.getId());
                         }
                     });
+                    //mvh.img.setColorFilter(new PorterDuffColorFilter(ThemeUtils.resolveColorFromTheme(getApplicationContext(), R.attr.colorAccent), PorterDuff.Mode.SRC_OVER));
+
                 }else if(mi.getImgLink().equals(ClubItem.NEWSTAG)){
                     Picasso.with(ClubViewActivity.this).load(R.drawable.ic_news2).into(mvh.img);
+                    mvh.img.setColorFilter(new PorterDuffColorFilter(ThemeUtils.resolveColorFromTheme(getApplicationContext(), R.attr.colorAccent), PorterDuff.Mode.SRC_OVER));
                     mvh.view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -465,6 +469,7 @@ public class ClubViewActivity extends AppCompatActivity {
                     });
                 }else{
                     ImageUtils.loadImage(ClubViewActivity.this, mi.getImgLink(), R.drawable.ic_unknown2, R.drawable.ic_unknown2, mvh.img);
+
                 }
 
             }
@@ -491,7 +496,7 @@ public class ClubViewActivity extends AppCompatActivity {
         // Classic View Holder for Module (header)
         public class TitleViewHolder extends RecyclerView.ViewHolder {
 
-            protected TextView name;
+            final TextView name;
 
             public TitleViewHolder(View v) {
                 super(v);
@@ -502,9 +507,10 @@ public class ClubViewActivity extends AppCompatActivity {
         // Classic View Holder for Member
         public class ItemViewHolder extends RecyclerView.ViewHolder {
 
-            protected TextView name, desc;
-            protected CircleImageView img;
-            protected View view;
+            final TextView name;
+            final TextView desc;
+            final CircleImageView img;
+            final View view;
 
             public ItemViewHolder(View v) {
                 super(v);
@@ -518,7 +524,7 @@ public class ClubViewActivity extends AppCompatActivity {
 
     public class AsyncJSONClubDetail extends AsyncTask<Integer ,Void, JSONObject> {
 
-        private Context ctx;
+        private final Context ctx;
 
         public AsyncJSONClubDetail(Context ctx){
             this.ctx = ctx;
@@ -541,8 +547,7 @@ public class ClubViewActivity extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(Integer... params) {
-            JSONObject details = JSONUtils.getJSONFromUrl(Constants.URL_JSON_CLUBS+params[0]);
-            return details;
+            return JSONUtils.getJSONFromUrl(Constants.URL_JSON_CLUBS + params[0]);
         }
     }
 

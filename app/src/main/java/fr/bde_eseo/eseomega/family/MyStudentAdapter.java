@@ -27,11 +27,9 @@ import java.util.ArrayList;
 
 import fr.bde_eseo.eseomega.R;
 
-public class MyStudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class MyStudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private int TYPE_ITEM = 1;
-
-    private ArrayList<StudentItem> studentItems;
+    private final ArrayList<StudentItem> studentItems;
 
     public MyStudentAdapter(ArrayList<StudentItem> studentItems) {
         this.studentItems = studentItems;
@@ -44,6 +42,7 @@ public class MyStudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public int getItemViewType(int position) {
+        int TYPE_ITEM = 1;
         return TYPE_ITEM;
     }
 
@@ -64,7 +63,8 @@ public class MyStudentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     // Classic View Holder for Room item
     public class StudentItemViewHolder extends RecyclerView.ViewHolder {
-        protected TextView name, details;
+        final TextView name;
+        final TextView details;
 
         public StudentItemViewHolder(View v) {
             super(v);

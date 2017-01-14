@@ -12,8 +12,6 @@
 		android:layout_alignParentTop="true"
         android:layout_marginLeft="72dp"
         android:layout_marginRight="16dp"
-		android:layout_toEndOf="@+id/icon"
-        android:layout_toRightOf="@+id/icon"
 		android:gravity="center_vertical"
 		android:minHeight="?android:attr/listPreferredItemHeightSmall"
 		android:text="Paramètres"

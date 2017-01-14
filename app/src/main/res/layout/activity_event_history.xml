@@ -79,7 +79,8 @@
             android:layout_height="85dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/img_no_ticket"/>
+            android:src="@drawable/img_no_ticket"
+            android:tint="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/tvListNothing"
@@ -89,7 +90,7 @@
             android:layout_marginBottom="14dp"
             android:gravity="center"
             android:text="@string/empty_header_order"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView

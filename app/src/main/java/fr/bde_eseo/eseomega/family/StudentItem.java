@@ -12,14 +12,16 @@ public class StudentItem implements Cloneable{
 
     public final static float NULL = -18616843.6419819f; //random
 
-    private String name, promo;
-    private int id, rank;
-    private ArrayList<Integer> children;
-    private ArrayList<Integer> parents;
+    private final String name;
+    private final int id;
+    private final int rank;
+    private final ArrayList<Integer> children;
+    private final ArrayList<Integer> parents;
+    private String promo;
     private float p;
     private boolean marked;
 
-    public StudentItem(int id, String name, String promo, ArrayList<Integer> parents, ArrayList<Integer> children,  int rank, float p){
+    private StudentItem(int id, String name, String promo, ArrayList<Integer> parents, ArrayList<Integer> children, int rank, float p) {
         this.id = id;
         this.name = name;
         this.rank = rank;
@@ -37,7 +39,7 @@ public class StudentItem implements Cloneable{
         this.promo = promo;
     }
 
-    public StudentItem(int id, String name, String promo, ArrayList<Integer> parents, ArrayList<Integer> children,  int rank){
+    private StudentItem(int id, String name, String promo, ArrayList<Integer> parents, ArrayList<Integer> children, int rank) {
         this(id, name, promo, parents, children, rank, NULL);
     }
 
@@ -55,7 +57,7 @@ public class StudentItem implements Cloneable{
     }
 
     private static ArrayList<Integer> cloneList(ArrayList<Integer> list) {
-        ArrayList<Integer> clone = new ArrayList<Integer>(list.size());
+        ArrayList<Integer> clone = new ArrayList<>(list.size());
         for (Integer item : list) clone.add(item);
         return clone;
     }

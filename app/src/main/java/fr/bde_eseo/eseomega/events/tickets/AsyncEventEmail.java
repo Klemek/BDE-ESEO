@@ -41,14 +41,15 @@ import fr.bde_eseo.eseomega.utils.Utils;
 /**
  * Sends the email adress to server
  */
-public class AsyncEventEmail extends AsyncTask<String, String, String> {
+class AsyncEventEmail extends AsyncTask<String, String, String> {
 
-    private Context context;
+    private final Context context;
+    private final String email;
+    private final UserProfile userProfile;
+    private final AppCompatActivity backActivity;
+    private final int idcmd;
     private MaterialDialog md;
-    private String email, b64email;
-    private UserProfile userProfile;
-    private AppCompatActivity backActivity;
-    private int idcmd;
+    private String b64email;
 
     public AsyncEventEmail(Context context, String email, AppCompatActivity backActivity, UserProfile userProfile, int idcmd) {
         this.context = context;

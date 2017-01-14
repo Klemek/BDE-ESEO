@@ -37,11 +37,10 @@ import fr.bde_eseo.eseomega.events.tickets.model.CheckShuttleItem;
  */
 public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_TICKET_ITEM = 0;
-    public static final int TYPE_TICKET_HEADER = 1;
-
+    private static final int TYPE_TICKET_ITEM = 0;
+    private static final int TYPE_TICKET_HEADER = 1;
+    private final Context context;
     private ArrayList<CheckShuttleItem> checkShuttleItems;
-    private Context context;
 
     public MyShuttlesAdapter(Context context) {
         this.checkShuttleItems = new ArrayList<>();
@@ -110,7 +109,7 @@ public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     /**
      * Uncheck all items
      */
-    void uncheckAll() {
+    private void uncheckAll() {
         for (int i = 0; i < checkShuttleItems.size(); i++) {
             checkShuttleItems.get(i).setIsCheck(false);
         }
@@ -119,9 +118,11 @@ public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // Classic View Holder for Shuttle
     public static class ShuttleViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vPlace, vDeparture, vSeats;
-        protected CheckBox checkShuttle;
-        protected CardView cardView;
+        final TextView vPlace;
+        final TextView vDeparture;
+        final TextView vSeats;
+        final CheckBox checkShuttle;
+        final CardView cardView;
 
         public ShuttleViewHolder(View v) {
             super(v);
@@ -136,7 +137,7 @@ public class MyShuttlesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // Classic View Holder for Ticket Header
     public static class ShuttleHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
+        final TextView vName;
 
         public ShuttleHeaderViewHolder(View v) {
             super(v);

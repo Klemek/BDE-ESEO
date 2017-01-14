@@ -45,6 +45,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
             android:src="@drawable/img_nothing"
+            android:tint="?attr/colorPrimary"
+            android:tintMode="multiply"
             android:visibility="visible" />
 
         <TextView

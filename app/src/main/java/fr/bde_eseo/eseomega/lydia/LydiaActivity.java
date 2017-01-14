@@ -52,6 +52,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -80,7 +81,6 @@ public class LydiaActivity extends AppCompatActivity {
     private UserProfile userProfile;
     private String clientPhone;
     private boolean hasBeenPaused = false;
-    private SharedPreferences prefsUser;
     // Intent-from
     private String orderType = "";
     private int orderID = -1;
@@ -154,7 +154,7 @@ public class LydiaActivity extends AppCompatActivity {
         // Get objects
         userProfile = new UserProfile();
         userProfile.readProfilePromPrefs(context);
-        prefsUser = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences prefsUser = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         // Init dialog
         dialogInit();
@@ -195,7 +195,7 @@ public class LydiaActivity extends AppCompatActivity {
      * Les boutons Annuler / Payer permettent de fermer l'activité et d'effectuer une demande de paiement auprès de Lydia
      * → passage direct à l'AsyncTask si téléphone déjà renseigné → ok done
      */
-    void dialogFromApp() {
+    private void dialogFromApp() {
 
         // If phone number already present, skip renseignements
         if (userProfile.verifyPhoneNumber(userProfile.getPhoneNumber())) {
@@ -276,7 +276,7 @@ public class LydiaActivity extends AppCompatActivity {
     /**
      * Initialise un dialogue avec un texte affichant le statut de la commande
      */
-    void dialogFromLydia() {
+    private void dialogFromLydia() {
 
         // Current title
         mdb.title(R.string.lydia_payment_status);
@@ -311,7 +311,7 @@ public class LydiaActivity extends AppCompatActivity {
         // Dialog's elements
         tvStatus = (TextView) mdView.findViewById(R.id.tvStatusLydia);
         progressStatus = (ProgressBar) mdView.findViewById(R.id.progressCheckLydia);
-        progressStatus.getIndeterminateDrawable().setColorFilter(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+        progressStatus.getIndeterminateDrawable().setColorFilter(ThemeUtils.resolveColorFromTheme(context, R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
 
         // Set values
         progressStatus.setVisibility(View.GONE);
@@ -328,7 +328,7 @@ public class LydiaActivity extends AppCompatActivity {
     /**
      * Closes the dialog / activity
      */
-    void close() {
+    private void close() {
         Intent data = new Intent();
         data.putExtra(Constants.RESULT_LYDIA_VALUE, 2);
         if (getParent() == null) {
@@ -342,7 +342,7 @@ public class LydiaActivity extends AppCompatActivity {
     /**
      * Make an Intent to Lydia App / Web navigator if app is not found
      */
-    void intentToLydia() {
+    private void intentToLydia() {
 
         // Configure and make Lydia Intent
         //String intentUri;
@@ -414,16 +414,16 @@ public class LydiaActivity extends AppCompatActivity {
     /**
      * Set TextView status text and color
      */
-    void updateTextStatus(String text, int status, boolean isLoading) {
+    private void updateTextStatus(String text, int status, boolean isLoading) {
 
         tvStatus.setText(text);
         if (isLoading) {
-            tvStatus.setTextColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
+            tvStatus.setTextColor(ThemeUtils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
         } else {
             if (status == 0) {
                 tvStatus.setTextColor(context.getResources().getColor(R.color.md_prim_dark_yellow));
             } else if (status == 1) {
-                tvStatus.setTextColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
+                tvStatus.setTextColor(ThemeUtils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
             } else if (status == 2) {
                 tvStatus.setTextColor(context.getResources().getColor(R.color.circle_ready));
             } else {
@@ -435,10 +435,10 @@ public class LydiaActivity extends AppCompatActivity {
     /**
      * Init the dialog for the current session
      */
-    void dialogInit() {
+    private void dialogInit() {
         mdb = new MaterialDialog.Builder(context);
         mdb.theme(Theme.LIGHT);
-        mdb.titleColor(Utils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
+        mdb.titleColor(ThemeUtils.resolveColorFromTheme(context, R.attr.colorPrimaryDark));
     }
 
     // Types de requêtes qui ont lieu lors du onCreate (première ouverture de l'app)

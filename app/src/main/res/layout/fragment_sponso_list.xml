@@ -44,7 +44,8 @@
             android:layout_height="150dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="14dp"
-            android:src="@drawable/img_nothing"/>
+            android:src="@drawable/img_nothing"
+            android:tint="?attr/colorPrimary" />
 
         <TextView
             android:id="@+id/tvListNothing"
@@ -53,7 +54,7 @@
             android:layout_below="@id/imgNoSponsor"
             android:gravity="center"
             android:text="@string/empty_header_tips"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView

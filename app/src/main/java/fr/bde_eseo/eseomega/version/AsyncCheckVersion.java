@@ -40,9 +40,9 @@ import fr.bde_eseo.eseomega.utils.Utils;
  */
 public class AsyncCheckVersion extends AsyncTask<String, String, String> {
 
-    private Context context;
-    private AsyncTask<String, Void, String> task;
-    private String taskarg;
+    private final Context context;
+    private final AsyncTask<String, Void, String> task;
+    private final String taskarg;
 
     public AsyncCheckVersion(Context context, AsyncTask<String, Void, String> task, String taskarg) {
         this.context = context;

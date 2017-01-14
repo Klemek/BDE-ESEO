@@ -88,14 +88,10 @@ public class OrderHistoryFragment extends Fragment {
     private Context context;
     private AsyncInfoService asyncInfoService;
     private SyncHistory syncHistory;
-    private SyncTimeToken syncTimeToken;
-    private AsyncCheckVersion asyncCheckVersion;
-    private TextView tvNothing, tvNothing2, tvServiceInfo;
-    private ImageView imgNothing;
     /**
      * Background task to fetch data periodically from server
      */
-    private Runnable updateTimerThread = new Runnable() {
+    private final Runnable updateTimerThread = new Runnable() {
         public void run() {
 
             try {
@@ -110,6 +106,10 @@ public class OrderHistoryFragment extends Fragment {
             }
         }
     };
+    private SyncTimeToken syncTimeToken;
+    private AsyncCheckVersion asyncCheckVersion;
+    private TextView tvNothing, tvNothing2, tvServiceInfo;
+    private ImageView imgNothing;
 
     public OrderHistoryFragment() {
     }
@@ -241,7 +241,7 @@ public class OrderHistoryFragment extends Fragment {
                             .negativeText(R.string.dialog_ok)
                             .cancelable(false)
                             .show();
-                } else if (false && !tzStr.equalsIgnoreCase(Constants.TZ_ID_PARIS)) {
+                } else if (false) {
                     new MaterialDialog.Builder(getActivity())
                             .title(R.string.error)
                             .content(R.string.cafet_bad_country)
@@ -296,8 +296,8 @@ public class OrderHistoryFragment extends Fragment {
      */
     class SyncTimeToken extends AsyncTask<String, Void, String> {
 
+        final Context context;
         String content;
-        Context context;
 
         public SyncTimeToken (Context context) {
             this.context = context;
@@ -599,7 +599,7 @@ public class OrderHistoryFragment extends Fragment {
      */
     private class AsyncInfoService extends AsyncTask <String, String, String> {
 
-        private Activity a;
+        private final Activity a;
 
         public AsyncInfoService(Activity a){
             this.a = a;

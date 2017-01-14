@@ -38,7 +38,7 @@ import fr.bde_eseo.eseomega.lacommande.model.LacmdElement;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdIngredient;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdMenu;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 /**
  * Created by François L. on 24/08/2015.
@@ -47,33 +47,28 @@ import fr.bde_eseo.eseomega.utils.Utils;
  */
 public class SecoElementChooserActivity extends AppCompatActivity {
 
-    private RecyclerView recList;
-    private CheckboxListAdapter mAdapter;
-    private TextView tvIngredients, tvAdd, tvStackMorePrice, tvStackMoreText;
+    private TextView tvAdd;
     private ArrayList<CheckboxItem> checkboxItems;
-    private Toolbar toolbar;
-    private LacmdMenu menu;
     private String menuID;
     private int maxElements, currentElements, elemPos;
-    private double supplMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_ingredients);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
         setSupportActionBar(toolbar);
 
         // Objets & UI
         tvAdd = (TextView) findViewById(R.id.tvValid);
-        tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
-        tvStackMorePrice = (TextView) findViewById(R.id.tvStackMorePrice);
-        tvStackMoreText = (TextView) findViewById(R.id.tvStackMoreText);
+        TextView tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
+        TextView tvStackMorePrice = (TextView) findViewById(R.id.tvStackMorePrice);
+        TextView tvStackMoreText = (TextView) findViewById(R.id.tvStackMoreText);
         checkboxItems = new ArrayList<>();
-        mAdapter = new CheckboxListAdapter();
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        CheckboxListAdapter mAdapter = new CheckboxListAdapter();
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setAdapter(mAdapter);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -105,13 +100,13 @@ public class SecoElementChooserActivity extends AppCompatActivity {
             }
         }
 
-        supplMore = 0;
+        double supplMore = 0;
         mAdapter.notifyDataSetChanged();
         tvStackMoreText.setVisibility(View.INVISIBLE);
         tvStackMorePrice.setVisibility(View.INVISIBLE);
 
         getSupportActionBar().setTitle(R.string.cafet_choose3);
-        menu = DataManager.getInstance().getMenu();
+        LacmdMenu menu = DataManager.getInstance().getMenu();
         maxElements = menu.getMaxSecoElem();
         tvIngredients.setText(getString(R.string.cafet_choose4) +" " + maxElements +
                 " " +getString(R.string.cafet_elem) + (maxElements > 0 ? "s" : "") +
@@ -168,7 +163,7 @@ public class SecoElementChooserActivity extends AppCompatActivity {
     }
 
     // A method to find height of the status bar
-    public int getStatusBarHeight() {
+    private int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -220,8 +215,8 @@ public class SecoElementChooserActivity extends AppCompatActivity {
         // Holder for checkbox item
         public class CheckBoxHolder extends RecyclerView.ViewHolder {
 
-            protected CheckBox checkBox;
-            protected TextView tvMore;
+            final CheckBox checkBox;
+            final TextView tvMore;
 
             public CheckBoxHolder(View itemView) {
                 super(itemView);
@@ -232,8 +227,8 @@ public class SecoElementChooserActivity extends AppCompatActivity {
     }
 
     private class CheckboxItem extends LacmdRoot {
+        private final String more;
         private boolean checked;
-        private String more;
         private boolean visible;
 
         public CheckboxItem(String name, String id, double price) {

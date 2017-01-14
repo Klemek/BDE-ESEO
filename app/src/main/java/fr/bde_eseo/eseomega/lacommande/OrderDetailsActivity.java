@@ -58,6 +58,7 @@ import fr.bde_eseo.eseomega.utils.Blur;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.EncryptUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -70,27 +71,10 @@ public class OrderDetailsActivity extends AppCompatActivity {
     private static final int RUN_START = 100;
     private static Handler mHandler;
     private static boolean run;
-    // UI elements
-    private Toolbar toolbar;
-    private TextView tvOrderDetails, tvOrderPrice, tvOrderDate, tvOrderNumero, tvDesc, tvInstruction, tvInstrHeader;
-    private ImageView imgCategory;
-    private ProgressBar progressBar;
-    private RelativeLayout rl1, rl2;
-    // Android
-    private Context context;
-    // Others
-    private float oldScreenBrightness;
-    private int idcmd;
-    private String oldData = "";
-    private UserProfile profile;
-    private DetailedItem detailedItem = null;
-
-    // Couleurs des commandes
-    private int circle_preparing, blue_light, circle_done, gray_light, circle_ready, green_light, circle_error, orange_light;
     /**
      * Background task to fetch data periodically from server
      */
-    private Runnable updateTimerThread = new Runnable() {
+    private final Runnable updateTimerThread = new Runnable() {
         public void run() {
             try {
                 if (run) {
@@ -104,14 +88,28 @@ public class OrderDetailsActivity extends AppCompatActivity {
             }
         }
     };
+    private TextView tvOrderDetails, tvOrderPrice, tvOrderDate, tvOrderNumero, tvDesc, tvInstruction, tvInstrHeader;
+    private ImageView imgCategory;
+    private ProgressBar progressBar;
+    private RelativeLayout rl1, rl2;
+    // Android
+    private Context context;
+    // Others
+    private float oldScreenBrightness;
+    private int idcmd;
+    private String oldData = "";
+    private UserProfile profile;
+    private DetailedItem detailedItem = null;
+    // Couleurs des commandes
+    private int circle_preparing, blue_light, circle_done, gray_light, circle_ready, green_light, circle_error, orange_light;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

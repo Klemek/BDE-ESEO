@@ -37,7 +37,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdElement;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdIngredient;
 import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 /**
  * Created by François L. on 18/08/2015.
@@ -46,33 +46,31 @@ import fr.bde_eseo.eseomega.utils.Utils;
  */
 public class IngredientsChooserActivity extends AppCompatActivity {
 
-    private RecyclerView recList;
-    private CheckboxListAdapter mAdapter;
-    private TextView tvIngredients, tvAdd, tvStackMorePrice, tvStackMoreText;
+    private TextView tvAdd;
+    private TextView tvStackMorePrice;
+    private TextView tvStackMoreText;
     private ArrayList<CheckboxItem> checkboxItems;
-    private Toolbar toolbar;
     private LacmdElement element;
-    private String elementID;
     private int maxElements, currentElements, elemPos;
     private double supplMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_ingredients);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, getStatusBarHeight(), 0, 0);
         setSupportActionBar(toolbar);
 
         // Objets & UI
         tvAdd = (TextView) findViewById(R.id.tvValid);
-        tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
+        TextView tvIngredients = (TextView) findViewById(R.id.tv_act_ingr_desc);
         tvStackMorePrice = (TextView) findViewById(R.id.tvStackMorePrice);
         tvStackMoreText = (TextView) findViewById(R.id.tvStackMoreText);
         checkboxItems = new ArrayList<>();
-        mAdapter = new CheckboxListAdapter();
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        CheckboxListAdapter mAdapter = new CheckboxListAdapter();
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setAdapter(mAdapter);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -96,6 +94,7 @@ public class IngredientsChooserActivity extends AppCompatActivity {
         tvStackMorePrice.setVisibility(View.INVISIBLE);
 
         // Get parameters
+        String elementID;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
@@ -126,7 +125,7 @@ public class IngredientsChooserActivity extends AppCompatActivity {
             public void onClick(View v) {
                 tvAdd.setBackgroundColor(0x2fffffff);
                 // Add all checked items
-                ArrayList<LacmdRoot> items = new ArrayList<LacmdRoot>();
+                ArrayList<LacmdRoot> items = new ArrayList<>();
                 for (int i=0;i<checkboxItems.size();i++) {
                     if (checkboxItems.get(i).isChecked())
                         items.add(checkboxItems.get(i));
@@ -145,7 +144,7 @@ public class IngredientsChooserActivity extends AppCompatActivity {
     }
 
     // A method to find height of the status bar
-    public int getStatusBarHeight() {
+    private int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
         if (resourceId > 0) {
@@ -161,9 +160,8 @@ public class IngredientsChooserActivity extends AppCompatActivity {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            CheckBoxHolder cbh = new CheckBoxHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_check, parent, false));
 
-            return cbh;
+            return new CheckBoxHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_check, parent, false));
         }
 
         @Override
@@ -205,8 +203,8 @@ public class IngredientsChooserActivity extends AppCompatActivity {
         // Holder for checkbox item
         public class CheckBoxHolder extends RecyclerView.ViewHolder {
 
-            protected CheckBox checkBox;
-            protected TextView tvMore;
+            final CheckBox checkBox;
+            final TextView tvMore;
 
             public CheckBoxHolder(View itemView) {
                 super(itemView);
@@ -220,8 +218,8 @@ public class IngredientsChooserActivity extends AppCompatActivity {
      * Custom class to handle on checkbox
      */
     private class CheckboxItem extends LacmdRoot {
+        private final String more;
         private boolean checked;
-        private String more;
         private boolean visible;
 
         public CheckboxItem (String name, String id, double price) {

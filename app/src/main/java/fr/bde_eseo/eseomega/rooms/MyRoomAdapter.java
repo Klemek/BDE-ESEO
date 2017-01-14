@@ -31,17 +31,15 @@ import fr.bde_eseo.eseomega.R;
 /**
  * Created by François L. on 23/03/2016.
  */
-public class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private int TYPE_HEADER = 0;
-    private int TYPE_ITEM = 1;
+    private final int TYPE_HEADER = 0;
 
     private ArrayList<RoomItem> roomItems;
-    private Context ctx;
 
     public MyRoomAdapter(Context ctx, ArrayList<RoomItem> roomItems) {
         this.roomItems = roomItems;
-        this.ctx = ctx;
+        Context ctx1 = ctx;
     }
 
     public ArrayList<RoomItem> getRoomItems() {
@@ -62,6 +60,7 @@ public class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemViewType(int position) {
+        int TYPE_ITEM = 1;
         return roomItems.get(position).isHeader() ? TYPE_HEADER : TYPE_ITEM;
     }
 
@@ -88,7 +87,8 @@ public class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     // Classic View Holder for Room item
     public class RoomItemViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView name, details;
+        final TextView name;
+        final TextView details;
 
         public RoomItemViewHolder(View v) {
             super(v);
@@ -100,7 +100,8 @@ public class MyRoomAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     // Classic View Holder for Room header
     public class RoomHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView name, details;
+        final TextView name;
+        protected TextView details;
 
         public RoomHeaderViewHolder(View v) {
             super(v);

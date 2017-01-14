@@ -15,17 +15,14 @@
         android:layout_height="wrap_content"
         android:text="Atelier"
         android:textColor="@android:color/black"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvNameSponsor"
-        android:layout_alignStart="@+id/tvNameSponsor"
-        android:layout_below="@+id/tvNameSponsor"
         android:text="Etage ABC - Salle du conseil - Il fait chaud dedans"
-        android:textSize="14dp" />
+        android:textSize="14sp" />
 
     <View
         android:layout_width="match_parent"

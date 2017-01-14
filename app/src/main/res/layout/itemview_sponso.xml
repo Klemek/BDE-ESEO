@@ -31,6 +31,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?attr/colorButtonNormal"
             android:padding="10dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -54,7 +55,7 @@
         android:layout_toRightOf="@+id/circleSponsor"
         android:text="Alinéa"
         android:textColor="@android:color/black"
-        android:textSize="16dp" />
+        android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tvAdr"
@@ -76,7 +77,7 @@
                 android:layout_below="@+id/tvAdr"
                 android:text="Description du sponsor"
                 android:textColor="@color/text_black_clear"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvOffers"

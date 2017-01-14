@@ -66,13 +66,12 @@ public class ViewProfileFragment extends Fragment {
     private static final int RESULT_OK = -1;
     // Storage Permissions
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
-    private static String[] PERMISSIONS_STORAGE = {
+    private static final String[] PERMISSIONS_STORAGE = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     private UserProfile profile;
-    private TextView tvUserName, tvDisconnect;
-    private String userName;
+    private TextView tvDisconnect;
     private CircleImageView imageView;
     private OnUserProfileChange mOnUserProfileChange;
     private String userFirst;
@@ -88,7 +87,7 @@ public class ViewProfileFragment extends Fragment {
      *
      * @param activity
      */
-    public static void verifyStoragePermissions(Activity activity) {
+    private static void verifyStoragePermissions(Activity activity) {
         // Check if we have write permission
         int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
 
@@ -120,7 +119,7 @@ public class ViewProfileFragment extends Fragment {
 
         // Find layout elements
         View rootView = inflater.inflate(R.layout.fragment_view_profile, container, false);
-        tvUserName = (TextView) rootView.findViewById(R.id.tvUserName);
+        TextView tvUserName = (TextView) rootView.findViewById(R.id.tvUserName);
         tvDisconnect = (TextView) rootView.findViewById(R.id.tvDisconnect);
         imageView = (CircleImageView) rootView.findViewById(R.id.circleView);
 
@@ -128,7 +127,7 @@ public class ViewProfileFragment extends Fragment {
         profile = new UserProfile();
         profile.readProfilePromPrefs(getActivity());
         //Log.d("PROFILE", profile.getId() + ", " + profile.getPushToken());
-        userName = profile.getName();
+        String userName = profile.getName();
         tvUserName.setText(userName);
         userFirst = profile.getFirstName();
         setImageView();
@@ -223,7 +222,7 @@ public class ViewProfileFragment extends Fragment {
         }
     }
 
-    public void setImageView() {
+    private void setImageView() {
         File fp = new File(profile.getPicturePath());
         if (fp.exists()) {
             Bitmap bmp = ImageUtils.getResizedBitmap(BitmapFactory.decodeFile(profile.getPicturePath()), MainActivity.MAX_PROFILE_SIZE);
@@ -235,8 +234,8 @@ public class ViewProfileFragment extends Fragment {
     // Class to disconnect profile from server
     private class AsyncDisconnect extends AsyncTask<UserProfile, String, String> {
 
-        private Context ctx;
-        private UserProfile profile;
+        private final Context ctx;
+        private final UserProfile profile;
 
         public AsyncDisconnect (Context ctx, UserProfile profile) {
             this.ctx = ctx;

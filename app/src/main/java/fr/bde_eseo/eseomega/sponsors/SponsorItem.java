@@ -29,7 +29,7 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
 /**
  * Created by François L. on 11/08/2015.
  */
-public class SponsorItem {
+class SponsorItem {
 
     private String name, detail, img, url, adr;
     private ArrayList<String> avantages;

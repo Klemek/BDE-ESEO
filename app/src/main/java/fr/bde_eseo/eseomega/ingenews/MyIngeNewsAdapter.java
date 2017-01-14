@@ -39,10 +39,10 @@ import fr.bde_eseo.eseomega.R;
 /**
  * Created by François L. on 11/08/2015.
  */
-public class MyIngeNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class MyIngeNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private final Context ctx;
     private ArrayList<IngenewsItem> ingenewsItems;
-    private Context ctx;
 
     public MyIngeNewsAdapter(Context ctx, ArrayList<IngenewsItem> ingenewsItems) {
         this.ingenewsItems = ingenewsItems;
@@ -123,10 +123,11 @@ public class MyIngeNewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // Classic View Holder for Ingénews item
     public class IngeNewsItemViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView name, details;
-        protected ImageView imgThumb;
-        protected RelativeLayout icShare;
-        protected LinearLayout llGlobal;
+        final TextView name;
+        final TextView details;
+        final ImageView imgThumb;
+        final RelativeLayout icShare;
+        final LinearLayout llGlobal;
 
         public IngeNewsItemViewHolder(View v) {
             super(v);

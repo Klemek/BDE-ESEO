@@ -26,11 +26,9 @@ import android.content.pm.Signature;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.preference.PreferenceManager;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -53,7 +51,6 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import fr.bde_eseo.eseomega.Constants;
-import fr.bde_eseo.eseomega.R;
 
 /**
  * Created by François on 18/04/2015.
@@ -108,7 +105,7 @@ public class Utils {
         } return false;
     }*/
 
-    public static String convertStreamToString(InputStream is) {
+    private static String convertStreamToString(InputStream is) {
     /*
      * To convert the InputStream to String we use the BufferedReader.readLine()
      * method. We iterate until the BufferedReader return null which means
@@ -118,7 +115,7 @@ public class Utils {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
 
-        String line = null;
+        String line;
         try {
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append("\n");
@@ -136,7 +133,7 @@ public class Utils {
     }
 
     public static String getStringFromFile (File filePath)  {
-        FileInputStream fin = null;
+        FileInputStream fin;
         String ret = "";
         try {
             fin = new FileInputStream(filePath);
@@ -151,7 +148,7 @@ public class Utils {
     }
 
     public static void writeStringToFile (File filePath, String data) {
-        FileOutputStream stream = null;
+        FileOutputStream stream;
         try {
             try {
                 stream = new FileOutputStream(filePath);
@@ -308,21 +305,5 @@ public class Utils {
      * Resolve color from theme
      */
 
-    public static int resolveColorFromTheme(Context ctx, int attr) {
-        TypedValue a = new TypedValue();
-        ctx.getTheme().resolveAttribute(attr, a, true);
-        return a.data;
-    }
-
-    public static int getPreferredTheme(Context ctx) {
-        switch (PreferenceManager.getDefaultSharedPreferences(ctx).getString(Constants.PREFS_GENERAL_THEME, "0")) {
-            default:
-                return R.style.DefaultTheme;
-            case "1":
-                return R.style.OasisTheme;
-            case "2":
-                return R.style.MegaTheme;
-        }
-    }
 
 }

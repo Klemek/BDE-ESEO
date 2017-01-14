@@ -45,6 +45,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -65,7 +66,6 @@ public class SponsoFragment extends Fragment {
     private RecyclerView.OnItemTouchListener disabler;
     // Model
     private ArrayList<SponsorItem> sponsorItems;
-    private String cachePath;
     private File cacheFileEseo;
 
     private AsyncJSON asyncJSON;
@@ -78,7 +78,7 @@ public class SponsoFragment extends Fragment {
         // UI
         View rootView = rootInfl.inflate(R.layout.fragment_sponso_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.tips_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressList);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -91,7 +91,7 @@ public class SponsoFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "tips.json");
 
         // Model / objects
@@ -153,7 +153,7 @@ public class SponsoFragment extends Fragment {
     }
 
     // Scroll listener to prevent issue 77846
-    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
+    private class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -176,7 +176,7 @@ public class SponsoFragment extends Fragment {
      */
     private class AsyncJSON extends AsyncTask<String, String, JSONArray> {
 
-        private boolean displayCircle;
+        private final boolean displayCircle;
 
         public AsyncJSON (boolean displayCircle) {
             this.displayCircle = displayCircle;

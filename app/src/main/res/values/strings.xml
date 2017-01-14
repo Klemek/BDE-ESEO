@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">ESEOASIS</string>
+    <string name="app_name">BDE ESEO</string>
     <string name="app_name_family">Généalogie</string>
     <string name="app_name_order">Votre commande</string>
     <string name="app_name_tickets">Vos réservations</string>
     <string name="app_name_sales">Faire une réservation</string>
     <string name="app_name_shuttles">Choisir une navette</string>
-    <string name="app_version_name">1.0.8</string>
+    <string name="app_version_name">1.1.0</string>
     <string name="app_version_code">43</string>
     <string name="app_copyright">None</string>
 
@@ -18,7 +18,7 @@
     <string name="action_browser">Ouvrir dans le navigateur</string>
     <string name="action_plans_details">Afficher le plan complet</string>
     <string name="action_sort">Trier</string>
-    <string name="action_search">Rechercher ...</string>
+    <string name="action_search">Rechercher …</string>
     <string name="text_edit_profile">Votre profil ESEO est nécessaire pour pouvoir accéder à certaines fonctionnalités, comme la commande à la caféteria ou l\'accès aux réservations.\nUne fois la connexion validée, uniquement votre identifiant, nom et prénom sont conservés jusqu\'à votre déconnexion, rien de plus.</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum, urna a suscipit efficitur, nisl felis laoreet tellus, non gravida enim nisl sed ex. Mauris posuere metus et enim pretium venenatis. In neque diam, sodales sit amet porta quis, rhoncus ac dolor. Aliquam id lectus viverra, gravida erat non, cursus dolor. Quisque vel consequat odio, eu placerat tellus. Aliquam eleifend diam ac lacus posuere dictum. Aliquam ipsum nisi, consectetur eu est et, consequat varius magna. In risus nisl, dictum id ante molestie, sagittis suscipit justo. Aliquam erat volutpat. Nulla eu ligula nulla. Maecenas commodo massa ut odio condimentum tincidunt. Aliquam eu urna a ex gravida porta. Morbi porta imperdiet dapibus. Duis ultrices id ipsum eget rutrum.
@@ -31,11 +31,11 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
 
     <!-- Security -->
     <string name="MESSAGE_GET_TOKEN">Mauvais Login / Mot de passe</string> <!-- V2.1 -->
-    <string name="MESSAGE_GET_TOKEN_EVENT">(c) Team Sheep Dev</string>
+    <string name="MESSAGE_GET_TOKEN_EVENT">© Team Sheep Dev</string>
     <string name="MESSAGE_SEND_EMAIL_EVENT">Email invalide</string>
     <string name="MEMORY_SYNC_USER">selfRetain_$_0x128D4_objc</string> <!-- V2.1 -->
     <string name="MESSAGE_PASS_USER">Oups, erreur de connexion</string> <!-- V2.1 -->
-    <string name="MESSAGE_HISTORY_USER">Connexion au serveur ...</string> <!-- V2.1 -->
+    <string name="MESSAGE_HISTORY_USER">Connexion au serveur …</string> <!-- V2.1 -->
     <string name="MESSAGE_TICKETS_USER">Connexion en cours</string>
     <string name="MACRO_SYNC_SINGLE">base64(json_encode(#MACRO))</string> <!-- V2.1 -->
     <string name="MESSAGE_SYNC_PUSH">Erreur mémoire cache</string> <!-- V2.1 -->
@@ -121,7 +121,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="empty_desc_club">Pourtant, on est pas tout seuls !\nDes clubs à l\'ESEO, y\'en a plein.\nVérifiez l\'état de votre connexion internet, puis rafraîchissez cette onglet.</string>
 
     <string name="empty_header_plans">Aucune salle trouvée</string>
-    <string name="empty_desc_plans">Le bâtiment ESEO a peut-être été détruit, ou alors c\'est que votre connexion internet est pas au top de sa forme ...</string>
+    <string name="empty_desc_plans">Le bâtiment ESEO a peut-être été détruit, ou alors c\'est que votre connexion internet est pas au top de sa forme …</string>
 
     <string name="empty_desc_family">Retrouvez içi la généalogie des familles de parrainage de l\'ESEO. Effectuez une recherche grâce au bouton en haut à droite.</string>
     <string name="empty_desc_nothing_family">Votre recherche n\'a pas abouti, vérifiez l\'orthographe du nom. (Si c\'est vous-même, veuillez vous présenter au module RCII du BDE.)</string>
@@ -137,8 +137,8 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="contact_snapchat">Ajoutez le pseudo ci-dessus sur Snapchat !</string>
     <string name="open_snapchat">Ouvrir Snapchat</string>
 
-    <string name="contact_mail_subject">[Renseignements] ... </string>
-    <string name="contact_mail_text">Bonjour ...</string>
+    <string name="contact_mail_subject">[Renseignements] … </string>
+    <string name="contact_mail_text">Bonjour …</string>
     <string name="contact_mail_name">Contacter</string>
 
     <string name="mail_sending_title">Envoi de l\'email</string>
@@ -150,11 +150,11 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="user_welcome">Bienvenue,</string>
     <string name="user_welcome_desc">Votre profil a été synchronisé, et les notifications ont été activées, vous bénéficiez désormais de toutes les fonctionnalités.\nProfitez-en !</string>
 
-    <string name="log_error_title">Oups ...</string>
+    <string name="log_error_title">Oups …</string>
     <string name="log_error_desc">Impossible d\'enregistrer votre appareil sur nos serveur\nVous êtes connectés, mais vous ne pourrez pas recevoir les notifications news et cafétéria.\Tentez de vous reconnecter, ou contactez nous.</string>
 
     <string name="login_no_id">Vous ne savez pas quoi mettre ?</string>
-    <string name="login_no_pass">Un trou de mémoire ? Mmh ...</string>
+    <string name="login_no_pass">Un trou de mémoire ? Mmh …</string>
 
     <string name="registration">Enregistrement de l\'appareil</string>
 
@@ -173,10 +173,8 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="cafet_main">élément principal</string>
     <string name="cafet_main2">Elément principal</string>
     <string name="cafet_second">éléments secondaires</string>
-    <string name="cafet_menu2">Carte</string>
-    <string name="cafet_cart">Panier</string>
     <string name="cafet_cart_expired">Votre panier a expiré</string>
-    <string name="cafet_cart_expired_text">Pour des raisons de sécurité, il n\'est possible de passer commande que pendant 10 minutes sans la valider.\nMerci de bien vouloir recommencer ...</string>
+    <string name="cafet_cart_expired_text">Pour des raisons de sécurité, il n\'est possible de passer commande que pendant 10 minutes sans la valider.\nMerci de bien vouloir recommencer …</string>
     <string name="cafet_cart_action_title">Quelle action effectuer ?</string>
     <string name="cafet_comment">Ajouter un commentaire ?</string>
     <string name="cafet_dialog_confirm1">Finaliser la commande</string>
@@ -236,16 +234,16 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="lydia_payment_done">Paiement effectué !</string>
     <string name="lydia_payment_ask">Demande de paiement</string>
     <string name="lydia_payment_refused">Paiement refusé par votre banque</string>
-    <string name="lydia_payment_check">Vérification ...</string>
+    <string name="lydia_payment_check">Vérification …</string>
     <string name="lydia_phone_error_title">Numéro incorrect</string>
     <string name="lydia_phone_error_text">Vous pouvez écrire votre téléphone sous la forme +33 ou 06</string>
 
     <string name="finished">Terminé !</string>
-    <string name="preparing">Préparation ...</string>
-    <string name="updating">Mise à jour ...</string>
+    <string name="preparing">Préparation …</string>
+    <string name="updating">Mise à jour …</string>
     <string name="mail_dev_title">[APP] Questions / Problèmes</string>
     <string name="mail_dev_txt">Version de l\'application</string>
-    <string name="contact_dev">Contacter les développeurs ...</string>
+    <string name="contact_dev">Contacter les développeurs …</string>
 
     <string name="presales_available">Tickets disponibles</string>
     <string name="presales_confirm">Confirmer l\'achat</string>
@@ -255,7 +253,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="presales_reservation_fail">Échec de la réservation</string>
     <string name="presales_reservation_fail_txt">Le paiement n\'a pas abouti.\nImpossible de valider la transaction.\n\nRéessayez plus tard ou contactez un membre du BDE.</string>
     <string name="presales_reservation_expired">Votre réservation a expiré</string>
-    <string name="presales_reservation_expired_txt">Pour des raisons de sécurité, il est impossible d\'effectuer une réservation pendant plus de 10 minutes sans avoir confimé l\'achat.\nMerci de bien vouloir recommencer ...</string>
+    <string name="presales_reservation_expired_txt">Pour des raisons de sécurité, il est impossible d\'effectuer une réservation pendant plus de 10 minutes sans avoir confimé l\'achat.\nMerci de bien vouloir recommencer …</string>
 
     <string name="shuttle_no_select">Vous n\'avez sélectionné aucune navette !\nSélectionnez-en une depuis la liste.</string>
     <string name="shuttle_departure">Départ</string>
@@ -301,7 +299,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="ticket_bad_country">L\'accès aux réservations ne peut se faire depuis un autre pays que la France.\nEnvoyez nous une carte postale !</string>
 
     <string name="ticket_resend_title">Renvoyer l\'email</string>
-    <string name="ticket_resend_txt">Vous avez perdu votre place, vous ne retouvez plus le mail associé ?\nPas de soucis, vous avez la possibilité de recevoir de nouveau votre place ...</string>
+    <string name="ticket_resend_txt">Vous avez perdu votre place, vous ne retouvez plus le mail associé ?\nPas de soucis, vous avez la possibilité de recevoir de nouveau votre place …</string>
 
     <string name="ticket_future_events">ÉVÉNEMENTS À VENIR</string>
     <string name="ticket_terminated_events">ÉVÉNEMENTS PASSÉS</string>
@@ -323,8 +321,8 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="this_fr">tte</string>
     <string name="error">Erreur</string>
     <string name="reason">Cause</string>
-    <string name="wait">Veuillez patienter ...</string>
-    <string name="connecting">Connexion au serveur ...</string>
+    <string name="wait">Veuillez patienter …</string>
+    <string name="connecting">Connexion au serveur …</string>
     <string name="connected">Connexion effectuée !</string>
 
     <string name="hey">Hey !</string>
@@ -336,20 +334,17 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="layout_shuttles">Choisissez une navette</string>
 
     <string name="layout_tutorial_01">Merci !</string>
-    <string name="layout_tutorial_02">... d\'avoir installé ou mis à jour notre application.\nLes principales nouveautés sont les suivantes :</string>
-    <string name="layout_tutorial_10">Ce n\'est pas un mirage...</string>
-    <string name="layout_tutorial_11">Et oui ! Changement de BDE, changement d\'application ! Profitez d\'un moment de fraicheur avec le nouveau thème Oasis de l\'application.</string>
-    <string name="layout_tutorial_20">Généalogie</string>
-    <string name="layout_tutorial_21">Vous pouvez maintenant accéder à votre arbre généalogique de parrainage depuis l\'application !</string>
-    <string name="layout_tutorial_22">Depuis l\'onglet généalogie, effectuez une recherche et observez vos ancêtres.</string>
-    <string name="layout_tutorial_30">Pas le temps de niaiser</string>
-    <string name="layout_tutorial_31">Vous pouvez dorénavant indiquer que vous allez participer à un évenement d\'un simple clique depuis la liste !</string>
-    <string name="layout_tutorial_40">Tout est lié !</string>
-    <string name="layout_tutorial_41">Ne perdez rien de l\'activité d\'un club en regardant les articles et évenements associés sur sa description.</string>
+    <string name="layout_tutorial_02">… d\'avoir installé ou mis à jour notre application.\nLes principales nouveautés sont les suivantes :</string>
+    <string name="layout_tutorial_10">Pour tous les goûts</string>
+    <string name="layout_tutorial_11">Vous pouvez maintenant changer de thème de l\'application depuis le menu Réglages</string>
+    <string name="layout_tutorial_20">Ingénews back</string>
+    <string name="layout_tutorial_21">Accedez aux dernières versions d\'Ingénews directement depuis l\'app.</string>
+    <string name="layout_tutorial_30">Accès à la commande cafétaria</string>
+    <string name="layout_tutorial_31">L\'impossibilité de commander à la cafet\' provient de la non-accessibilité du campus depuis l\'exterieur. Désolé du dérangement.</string>
     <string name="layout_tutorial_end">Pour fermer ce tutorial, cliquez sur l\'îcone en haut.</string>
 
     <string name="layout_add_instructions_1">Vous pouvez entrer ci-dessous quelques indications pour votre commande.</string>
-    <string name="layout_add_instructions_2">Consignes, ...</string>
+    <string name="layout_add_instructions_2">Consignes, …</string>
     <string name="layout_lydia_1">Numéro de téléphone</string>
     <string name="layout_lydia_2">Se souvenir de mon numéro</string>
     <string name="layout_connect_profile_1">Renseignez les informations suivantes puis validez pour synchroniser vos données.</string>
@@ -376,7 +371,6 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="toast_cafet_select">Vous devez sélectionner tous vos éléments.</string>
     <string name="toast_cafet_max">Vous avez attend le nombre max d\'éléments</string>
     <string name="toast_cafet_removed">Élément retiré du panier</string>
-    <string name="toast_pay_lydia_temp">Oh, il semblerait que nous n\'ayont pas tous les éléments pour effectuer un paiement Lydia. Revenez quand l\'orage sera passé et en attendant, payez au comptoir.</string>
     <string name="toast_good_choice">Vous avez fait le bon choix.</string>
     <string name="toast_error_img">Erreur lors du traitement de l\'image.</string>
     <!-- Server Error -->

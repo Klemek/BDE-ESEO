@@ -32,19 +32,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import fr.bde_eseo.eseomega.R;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 public class NavDrawerListAdapter extends BaseAdapter {
 
     // Custom definitions
-    public static final int TYPE_DRAWER_ITEM = 0;
-    public static final int TYPE_DRAWER_PROFILE = 1;
-    public static final int TYPE_DRAWER_DIVIDER = 2;
-    public static final int TYPE_DRAWER_OPTION = 3;
-    public static final int TYPE_MAX_COUNT = 4; // profile - itemlist - divider - option
+    private static final int TYPE_DRAWER_ITEM = 0;
+    private static final int TYPE_DRAWER_PROFILE = 1;
+    private static final int TYPE_DRAWER_DIVIDER = 2;
+    private static final int TYPE_DRAWER_OPTION = 3;
+    private static final int TYPE_MAX_COUNT = 4; // profile - itemlist - divider - option
 
-    private Context context;
-	private ArrayList<NavDrawerItem> navDrawerItems;
+    private final Context context;
+    private final ArrayList<NavDrawerItem> navDrawerItems;
     private Bitmap bmp; // faster
 
     // Pour garder en mémoire la position du profile
@@ -123,8 +123,8 @@ public class NavDrawerListAdapter extends BaseAdapter {
             if (ndi.isProfile()) {
                 convertView = mInflater.inflate(R.layout.drawer_profile, null);
                 ImageView iv = (ImageView) convertView.findViewById(R.id.menu_material);
-                context.setTheme(Utils.getPreferredTheme(context));
-                iv.setColorFilter(Utils.resolveColorFromTheme(context, R.attr.colorPrimary), PorterDuff.Mode.MULTIPLY);
+                context.setTheme(ThemeUtils.preferredTheme(context));
+                iv.setColorFilter(ThemeUtils.resolveColorFromTheme(context, R.attr.colorPrimary), PorterDuff.Mode.MULTIPLY);
             }
             else if (ndi.isDivider())
                 convertView = mInflater.inflate(R.layout.drawer_list_divider, null);

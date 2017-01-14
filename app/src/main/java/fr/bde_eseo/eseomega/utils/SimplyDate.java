@@ -38,13 +38,13 @@ public class SimplyDate {
     private static final long ONE_MONTH = 30*ONE_DAY;   // En moyenne, 1 mois = 30 jours, la flemme de faire une fonction adéquate
     private long hours, days, weeks, months;
     private Date remote_date;
-    private SimpleDateFormat simpleDateFormat;
 
     /**
      * If date fail : try with seconds or without (english style)
      * @param remote_date The date to convert as a string
      */
     public SimplyDate(String remote_date)  {
+        SimpleDateFormat simpleDateFormat;
         try {
             simpleDateFormat = new SimpleDateFormat("dd/MM/yy hh:mm", Locale.FRANCE); // Thomas's way
             this.remote_date = simpleDateFormat.parse(remote_date);
@@ -60,7 +60,7 @@ public class SimplyDate {
         }
     }
 
-    public void calcIntervalFromNow() {
+    private void calcIntervalFromNow() {
         long diff = Calendar.getInstance().getTime().getTime() - remote_date.getTime();
 
         //Log.d("Sim", "From : " + Calendar.getInstance().getTime().getTime() + " to " + remote_date.getTime() + " → " + diff);

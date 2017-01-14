@@ -43,11 +43,10 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
  */
 public class MySponsoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private final Context ctx;
+    private final Drawable drawable;
+    private final MyGetter myGetter;
     private ArrayList<SponsorItem> sponsorItems;
-    private Context ctx;
-    private float px;
-    private Drawable drawable;
-    private MyGetter myGetter;
 
 
     public MySponsoAdapter(Context ctx, ArrayList<SponsorItem> sponsorItems) {
@@ -55,10 +54,10 @@ public class MySponsoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.ctx = ctx;
 
         // Dp to Pixels : 15 -> ?
-        px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, ctx.getResources().getDisplayMetrics());
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 15, ctx.getResources().getDisplayMetrics());
 
         drawable = ctx.getResources().getDrawable(R.drawable.ic_green_avantage);
-        drawable.setBounds(0,0,(int)px,(int)px);
+        drawable.setBounds(0, 0, (int) px, (int) px);
         myGetter = new MyGetter();
     }
 
@@ -160,9 +159,12 @@ public class MySponsoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Classic View Holder for Sponsor
     public class SponsorTipsViewHolder extends RecyclerView.ViewHolder {
 
-        protected CircleImageView imageView;
-        protected View view;
-        protected TextView name, details, adr, offers;
+        final CircleImageView imageView;
+        final View view;
+        final TextView name;
+        final TextView details;
+        final TextView adr;
+        final TextView offers;
 
         public SponsorTipsViewHolder(View v) {
             super(v);

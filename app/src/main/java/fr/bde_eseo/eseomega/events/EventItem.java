@@ -93,21 +93,23 @@ public class EventItem {
 
             if (this.getDatefin().before(new Date())) {
                 this.setIsPassed(true);
-                this.color = 0xFF7F7F7F;
+                //this.color = ctx.getResources().getColor(R.color.md_grey_600);
             } else {
                 this.setIsPassed(false);
-                this.color = 0xFF71DAEB;
+                //this.color =  ctx.getResources().getColor(ThemeUtils.resolveColorFromTheme(ctx, R.attr.colorAccent));
+                //this.color = 0;
                 //The superior said no rainbow event list
                 /*JSONArray colorsJSON = obj.getJSONArray(JSON_KEY_ARRAY_COLOR);
                 int[] colors = new int[3];
                 for (int a = 0; a < colorsJSON.length(); a++) {
-                    colors[a] = colorsJSON.getInt(a); // TODO pass integer directly without using string
+                    colors[a] = colorsJSON.getInt(a); // TOD pass integer directly without using string
                 }
                 this.color = 0xFF000000 | (colors[0] << 16) | (colors[1] << 8) | (colors[2]);*/
             }
 
         subEventItems = new ArrayList<>();
         //TODO tickets system
+        //No needed this year
         /*JSONArray tickets = obj.getJSONArray(JSON_KEY_ARRAY_TICKETS);
         for (int i=0;i<tickets.length();i++) {
             SubEventItem sei = new SubEventItem(tickets.getJSONObject(i));
@@ -115,7 +117,7 @@ public class EventItem {
         }*/
     }
 
-    public EventItem(Context ctx, String stdate, String enddate){
+    private EventItem(Context ctx, String stdate, String enddate) {
         setDateAsString(stdate, enddate);
         performShortedDetails(ctx);
     }
@@ -160,7 +162,7 @@ public class EventItem {
     // V2.1 :
     // À : heure début si != 00:02 · Fin : date fin si != date debut + heure fin si != heure debut
     // Par : club si != null
-    public void performShortedDetails (Context ctx) {
+    private void performShortedDetails(Context ctx) {
         this.shorted = "";
         if(ctx==null)return;
         String outFormat = "";
@@ -211,7 +213,7 @@ public class EventItem {
     }
 
     // If equal to hour_pass (00h02 ?) set it all day, no specific hour
-    public String getTimeAsString (Date d) {
+    private String getTimeAsString(Date d) {
         SimpleDateFormat sdf = new SimpleDateFormat("HH':'mm", DateUtils.getLocale());
         String sDate = sdf.format(d);
         if (sDate.equals(HOUR_PASS_ALLDAY))
@@ -219,7 +221,7 @@ public class EventItem {
         return sDate;
     }
 
-    public void setDateAsString(String dateAsString, String dateAsStringEnd) {
+    private void setDateAsString(String dateAsString, String dateAsStringEnd) {
         this.datefin = DateUtils.fromString(dateAsStringEnd);
         this.date = DateUtils.fromString(dateAsString);
     }
@@ -295,7 +297,7 @@ public class EventItem {
         return lieu;
     }
 
-    public void setIsPassed(boolean isPassed) {
+    private void setIsPassed(boolean isPassed) {
         this.isPassed = isPassed;
     }
 

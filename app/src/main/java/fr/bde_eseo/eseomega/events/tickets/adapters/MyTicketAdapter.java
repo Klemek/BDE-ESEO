@@ -36,10 +36,10 @@ import fr.bde_eseo.eseomega.events.tickets.model.EventTicketItem;
  */
 public class MyTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_TICKET_ITEM = 0;
-    public static final int TYPE_TICKET_HEADER = 1;
+    private static final int TYPE_TICKET_ITEM = 0;
+    private static final int TYPE_TICKET_HEADER = 1;
+    private final Context context;
     private ArrayList<EventTicketItem> eventTicketItems;
-    private Context context;
 
     public MyTicketAdapter(Context context) {
         this.eventTicketItems = new ArrayList<>();
@@ -100,12 +100,12 @@ public class MyTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Classic View Holder for Ticket
     public static class TicketViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
-        protected TextView vNumero;
-        protected TextView vPrice;
-        protected TextView vDate;
-        protected ImageView vImg;
-        protected View vCircle;
+        final TextView vName;
+        final TextView vNumero;
+        final TextView vPrice;
+        final TextView vDate;
+        final ImageView vImg;
+        final View vCircle;
 
         public TicketViewHolder(View v) {
             super(v);
@@ -121,7 +121,7 @@ public class MyTicketAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Classic View Holder for Ticket Header
     public static class TicketHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
+        final TextView vName;
 
         public TicketHeaderViewHolder(View v) {
             super(v);

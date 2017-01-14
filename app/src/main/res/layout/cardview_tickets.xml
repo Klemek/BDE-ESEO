@@ -15,7 +15,8 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="?attr/colorButtonNormal">
 
         <RelativeLayout
             android:id="@+id/rl1"
@@ -83,7 +84,7 @@
                 android:layout_marginRight="8dp"
                 android:text="Jeudi 23 Juillet à 12:25"
                 android:textColor="@color/text_light"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
@@ -114,13 +115,12 @@
                 android:id="@+id/ticketNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/rl2"
                 android:layout_gravity="end"
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="10dp"
                 android:text="n°42"
                 android:textColor="@color/text_light"
-                android:textSize="14dp"
+                android:textSize="14sp"
                 android:textStyle="italic" />
 
         </LinearLayout>

@@ -50,7 +50,7 @@ public class ConnexionUtils {
     public static String postServerData(String sUrl, HashMap<String, String> postDataParams, Context ctx) {
 
         String result = "";
-        URL url = null;
+        URL url;
 
         if (Utils.isOnline(ctx)) {
             try {

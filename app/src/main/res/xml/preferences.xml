@@ -8,7 +8,7 @@
             android:entries="@array/theme_items"
             android:entryValues="@array/preferences_theme_values"
             android:key="settings.general.theme"
-            android:summary="Choisissez le thème principal de l'application (nécessite un redémarrage de l'application)"
+            android:summary="Choisissez le thème principal de l'application"
             android:title="Thème" />
 
         <ListPreference

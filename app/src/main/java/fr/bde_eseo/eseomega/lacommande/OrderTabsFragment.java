@@ -38,12 +38,10 @@ import fr.bde_eseo.eseomega.slidingtab.ViewPagerAdapter;
  */
 public class OrderTabsFragment extends Fragment {
 
-    public static final long MAX_DELAY_ORDER = 582*1000;
+    private static final long MAX_DELAY_ORDER = 582 * 1000;
     private ViewPager mPager;
     private SlidingTabLayout mTabs;
     private ViewPagerAdapter mAdapter;
-    private CharSequence titles[];
-    private int nbTabs = 2;
     private Handler mHandler;
     private int count = 0;
 
@@ -53,7 +51,8 @@ public class OrderTabsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_order, container, false);
 
         mPager = (ViewPager) rootView.findViewById(R.id.home_fragment_pager);
-        titles = new CharSequence[]{"Carte","Panier (0)"};
+        CharSequence[] titles = new CharSequence[]{"Carte", "Panier (0)"};
+        int nbTabs = 2;
         mAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), titles, nbTabs);
         mPager.setAdapter(mAdapter);
 

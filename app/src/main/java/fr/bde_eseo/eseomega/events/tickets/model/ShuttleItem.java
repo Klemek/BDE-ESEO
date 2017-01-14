@@ -85,11 +85,11 @@ public class ShuttleItem {
         return departureStr;
     }
 
-    public Date getParsedDate (String datetime) {
+    private Date getParsedDate(String datetime) {
         return DateUtils.oldfromString(datetime);
     }
 
-    public String getFrenchDate (String datetime) {
+    private String getFrenchDate(String datetime) {
         Date d = getParsedDate(datetime);
         SimpleDateFormat sdf = new SimpleDateFormat("E dd MMM 'à' HH'h'mm", DateUtils.getLocale());
         return sdf.format(d);

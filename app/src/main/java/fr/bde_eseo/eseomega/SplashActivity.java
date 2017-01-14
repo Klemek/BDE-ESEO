@@ -21,14 +21,17 @@ import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import fr.bde_eseo.eseomega.profile.UserProfile;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 /**
  * Created by François on 20/04/2015.
@@ -38,7 +41,6 @@ public class SplashActivity extends Activity {
     private final static int SPLASH_TIME_OUT = 1900;
     private final static int MIN_TRICK = 5;
     private int trick = 0;
-    private UserProfile profile;
 
     // Preferences
     private SharedPreferences prefs_Read;
@@ -46,14 +48,26 @@ public class SplashActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         setContentView(R.layout.activity_splash);
         ImageView vLogo = (ImageView) findViewById(R.id.imgLogo);
-        profile = new UserProfile();
+        int lcolor = ThemeUtils.updateLogo(vLogo);
+        UserProfile profile = new UserProfile();
         profile.readProfilePromPrefs(this);
 
-        final ProgressBar progressBar = (ProgressBar) findViewById(R.id.idLoad);
+        final ProgressBar progressBar;
 
+        if (ThemeUtils.circularLoad(getApplicationContext())) {
+            progressBar = (ProgressBar) findViewById(R.id.idLoadc);
+            findViewById(R.id.idLoad).setVisibility(View.GONE);
+        } else {
+            progressBar = (ProgressBar) findViewById(R.id.idLoad);
+            findViewById(R.id.idLoadc).setVisibility(View.GONE);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            progressBar.getProgressDrawable().setColorFilter(getResources().getColor(lcolor), PorterDuff.Mode.MULTIPLY);
+        }
         // Initialize preference objects
         prefs_Read = getSharedPreferences(Constants.PREFS_APP_WELCOME, 0);
 

@@ -57,6 +57,7 @@ import fr.bde_eseo.eseomega.events.tickets.model.TicketStore;
 import fr.bde_eseo.eseomega.profile.UserProfile;
 import fr.bde_eseo.eseomega.utils.ConnexionUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -79,7 +80,6 @@ public class EventsListFragment extends Fragment {
     private RecyclerView.OnItemTouchListener disabler;
     // Model
     private ArrayList<EventItem> eventItems;
-    private String cachePath;
     private File cacheFileEseo;
 
     public EventsListFragment() {
@@ -109,7 +109,12 @@ public class EventsListFragment extends Fragment {
             }
 
             ((TextView) mdView.findViewById(R.id.tvEventName)).setText(ei.getName());
-            (mdView.findViewById(R.id.rlBackDialogEvent)).setBackgroundColor(ei.getColor());
+            if (ei.isPassed()) {
+                (mdView.findViewById(R.id.rlBackDialogEvent)).setBackgroundColor(iv.getResources().getColor(R.color.md_grey_600));
+            } else {
+                (mdView.findViewById(R.id.rlBackDialogEvent)).setBackgroundColor(iv.getResources().getColor(ThemeUtils.resolveColorFromTheme2(iv.getContext(), R.attr.colorAccent, false)));
+            }
+
             if (ei.getDetails() != null && ei.getDetails().length() > 0) {
                 ((TextView) mdView.findViewById(R.id.tvEventDetails)).setText(JSONUtils.fromHtml(ei.getDetails()));
             } else {
@@ -211,7 +216,7 @@ public class EventsListFragment extends Fragment {
         // UI
         View rootView = rootInfl.inflate(R.layout.fragment_event_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.events_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressEvent);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -224,7 +229,7 @@ public class EventsListFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "events.json");
 
         // Init static model
@@ -275,11 +280,11 @@ public class EventsListFragment extends Fragment {
 
     public static class AsyncSignup extends AsyncTask<String, String, String> {
 
-        private ImageButton button;
-        private UserProfile up;
-        private Context ctx;
-        private EventItem ei;
-        private boolean bg;
+        private final ImageButton button;
+        private final UserProfile up;
+        private final Context ctx;
+        private final EventItem ei;
+        private final boolean bg;
 
         public AsyncSignup(EventItem ei, ImageButton button, UserProfile up, boolean bg) {
             this.button = button;
@@ -336,7 +341,7 @@ public class EventsListFragment extends Fragment {
 
     public static class AsyncJSONSingleEvent extends AsyncTask<Integer ,Void, JSONObject> {
 
-        private Activity act;
+        private final Activity act;
 
         public AsyncJSONSingleEvent(Activity act) {
             this.act = act;
@@ -357,14 +362,12 @@ public class EventsListFragment extends Fragment {
         @Override
         protected JSONObject doInBackground(Integer... params) {
 
-            JSONObject event = JSONUtils.getJSONFromUrl(Constants.URL_JSON_EVENTS+params[0]);
-
-            return event;
+            return JSONUtils.getJSONFromUrl(Constants.URL_JSON_EVENTS + params[0]);
         }
     }
 
     // Scroll listener to prevent issue 77846
-    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
+    private class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -387,7 +390,7 @@ public class EventsListFragment extends Fragment {
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSON(boolean displayCircle) {
             this.displayCircle = displayCircle;

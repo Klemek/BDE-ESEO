@@ -25,6 +25,7 @@ import java.util.ArrayList;
 /**
  * Created by François L. on 31/08/2015.
  */
+
 public class ClubDataHolder {
     private static ClubDataHolder instance;
     private ArrayList<ClubItem> clubs;

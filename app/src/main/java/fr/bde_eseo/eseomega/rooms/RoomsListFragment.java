@@ -17,6 +17,7 @@
 
 package fr.bde_eseo.eseomega.rooms;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -48,12 +49,14 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Objects;
 
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.DateUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -75,7 +78,6 @@ public class RoomsListFragment extends Fragment {
     private RecyclerView recList;
     private MyRoomAdapter mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
     // Toolbar
     private MenuItem mSearchAction;
@@ -86,8 +88,6 @@ public class RoomsListFragment extends Fragment {
     // Model
     private ArrayList<RoomItem> roomItems;
     private ArrayList<RoomItem> roomItemsDisplay;
-    // Cache managing
-    private String cachePath;
     private File cacheFileEseo;
     private int sortType;
     private AsyncJSON asyncJSON;
@@ -102,10 +102,11 @@ public class RoomsListFragment extends Fragment {
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progress);
         imgA = (ImageView) rootView.findViewById(R.id.imgA);
         imgA.setImageResource(R.drawable.img_nothing);
+        imgA.setColorFilter(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimary), PorterDuff.Mode.MULTIPLY);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv1.setText(R.string.empty_header_plans);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -117,7 +118,7 @@ public class RoomsListFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "salles.json");
 
         // Model / objects
@@ -141,7 +142,7 @@ public class RoomsListFragment extends Fragment {
         asyncJSON.execute(Constants.URL_JSON_PLANS);
 
         // Swipe-to-refresh implementations
-        timestamp = 0;
+        long timestamp = 0;
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -177,7 +178,7 @@ public class RoomsListFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         // Retrieve the SearchView and plug it into SearchManager
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(getActivity().SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Activity.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -246,13 +247,13 @@ public class RoomsListFragment extends Fragment {
     /**
      * Sort rooms by names
      */
-    public void sortRoomArray() {
+    private void sortRoomArray() {
         Collections.sort(roomItems, new Comparator<RoomItem>() {
             @Override
             public int compare(RoomItem lhs, RoomItem rhs) {
                 switch (sortType) {
                     case SORT_BAT:
-                        if (lhs.getBatiment() != rhs.getBatiment())
+                        if (!Objects.equals(lhs.getBatiment(), rhs.getBatiment()))
                             return lhs.getBatiment().compareToIgnoreCase(rhs.getBatiment());
                         return lhs.getNumber().compareToIgnoreCase(rhs.getNumber());
                     case SORT_FLOOR:
@@ -356,7 +357,7 @@ public class RoomsListFragment extends Fragment {
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSON (boolean displayCircle) {
             this.displayCircle = displayCircle;

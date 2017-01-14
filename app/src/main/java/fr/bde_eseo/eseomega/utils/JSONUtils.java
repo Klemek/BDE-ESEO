@@ -71,7 +71,7 @@ public class JSONUtils {
 
     public static JSONArray getJSONArrayFromUrl2(String url, Context ctx) {
 
-        String result = null;
+        String result;
         JSONArray array = null;
 
         result = ConnexionUtils.postServerData(url, new HashMap<String, String>(), ctx);
@@ -121,7 +121,7 @@ public class JSONUtils {
     }
 
     public static ArrayList<Integer> getList(JSONObject obj, String key) throws JSONException{
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         if(obj.has(key)){
             JSONArray ids = obj.getJSONArray(key);
             for(int i = 0; i < ids.length(); i++){

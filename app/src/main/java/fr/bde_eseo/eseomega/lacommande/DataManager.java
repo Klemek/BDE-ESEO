@@ -42,7 +42,6 @@ public class DataManager {
     private final static String JSON_KEY_INGREDIENTS = "lacmd-ingredients";
     private static DataManager instance;
     private String token;
-    private int nbCartItems = 0;
     /**
      * LOOK AT HERE BABY IT'S READY
      * 17/08/2015
@@ -83,7 +82,7 @@ public class DataManager {
 
     public void reset() {
         this.token = null;
-        this.nbCartItems = 0;
+        int nbCartItems = 0;
         if (cartArray == null) this.cartArray = new ArrayList<>();
         this.cartArray.clear();
         if (elements == null) this.elements = new ArrayList<>();
@@ -188,7 +187,7 @@ public class DataManager {
 
     // Increments number of items
     public void addCartItem (LacmdRoot root) {
-        cartArray.add(new LacmdRoot(root)); // HARDWARE COPY -> TODO
+        cartArray.add(new LacmdRoot(root)); // HARDWARE COPY -> TOD
     }
 
     // Calculates the cart's price

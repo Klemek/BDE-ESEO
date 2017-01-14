@@ -15,7 +15,8 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:background="?attr/colorButtonNormal">
 
         <RelativeLayout
             android:id="@+id/rl1"
@@ -95,7 +96,7 @@
                 android:layout_marginLeft="4dp"
                 android:layout_marginRight="8dp"
                 android:text="12/25 places disponibles"
-                android:textSize="14dp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 

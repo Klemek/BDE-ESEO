@@ -46,6 +46,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -68,8 +69,6 @@ public class IngeListFragment extends Fragment {
     private RecyclerView.OnItemTouchListener disabler;
     // Model
     private ArrayList<IngenewsItem> ingenewsItems;
-    // Cache managing
-    private String cachePath;
     private File cacheFileEseo;
 
     private AsyncJSON asyncJSON;
@@ -86,7 +85,7 @@ public class IngeListFragment extends Fragment {
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.inge_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimary));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimary));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressInge);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
@@ -99,7 +98,7 @@ public class IngeListFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "menu_empty.json");
 
         // Model / objects
@@ -175,7 +174,7 @@ public class IngeListFragment extends Fragment {
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONObject> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSON(boolean displayCircle) {
             this.displayCircle = displayCircle;

@@ -61,7 +61,6 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
 public class TabListFood extends Fragment {
 
     private OnItemAddToCart mOnItemAddToCart;
-    private RecyclerView recList;
     private MyFoodListAdapter mAdapter;
     private TextView tvNetStatus;
     private boolean activityStarted;
@@ -78,7 +77,7 @@ public class TabListFood extends Fragment {
 
         // Search for the listView, then set its adapter
         mAdapter = new MyFoodListAdapter(getActivity());
-        recList = (RecyclerView) rootView.findViewById(R.id.cardListFood);
+        RecyclerView recList = (RecyclerView) rootView.findViewById(R.id.cardListFood);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -168,7 +167,7 @@ public class TabListFood extends Fragment {
      * Asynctask to parse JSON data (categories, elements, sandwiches, all data)
      * We could display list of categories once everything is downloaded :)
      */
-    class AsyncGetData extends AsyncTask<String, String, JSONArray> {
+    private class AsyncGetData extends AsyncTask<String, String, JSONArray> {
 
         @Override
         protected void onPreExecute() {

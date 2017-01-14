@@ -30,7 +30,7 @@ import fr.bde_eseo.eseomega.R;
 /**
  * Created by François L. on 23/03/16.
  */
-public class RoomItem {
+class RoomItem {
 
     private String name, number, batiment, info, details;
     private int floor;

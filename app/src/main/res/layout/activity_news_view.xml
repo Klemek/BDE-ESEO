@@ -66,6 +66,6 @@
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/imgHeaderNews"
-        android:background="@color/md_white_1000" />
+        android:background="?attr/colorButtonNormal" />
 
 </RelativeLayout>

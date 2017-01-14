@@ -31,7 +31,7 @@ import fr.bde_eseo.eseomega.utils.JSONUtils;
 /**
  * Created by François L. on 25/08/2015.
  */
-public class NewsItem {
+class NewsItem {
     private String name, strDate, data, shData, frenchStr, headerImg;
     private boolean isFooter;
     private boolean isHeader;
@@ -61,7 +61,8 @@ public class NewsItem {
         this.date = getParsedDate(strDate);
         this.frenchStr = getFrenchDate(strDate);
         this.headerImg = JSONUtils.getString(obj, Constants.JSON_NEWS_IMG, null, true);
-        // TODO parse data and fill imgLinks
+        // TODO parse data and fill imgLinks (FL)
+        //only one image on server
         this.imgLinks = new ArrayList<>();
         imgLinks.add(this.headerImg);
 

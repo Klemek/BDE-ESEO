@@ -37,7 +37,7 @@
             android:layout_marginBottom="14dp"
             android:gravity="center"
             android:text="@string/empty_header_presales"
-            android:textSize="18dp"
+            android:textSize="18sp"
             android:textStyle="bold"/>
 
         <TextView

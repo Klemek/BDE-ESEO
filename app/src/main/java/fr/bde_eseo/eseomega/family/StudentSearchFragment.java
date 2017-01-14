@@ -17,6 +17,7 @@
 
 package fr.bde_eseo.eseomega.family;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Intent;
 import android.graphics.PorterDuff;
@@ -51,7 +52,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 public class StudentSearchFragment extends Fragment {
 
@@ -60,11 +61,10 @@ public class StudentSearchFragment extends Fragment {
     // UI
     private ProgressBar progCircle;
     private ImageView imgA;
-    private TextView tv1, tv2;
+    private TextView tv2;
     private RecyclerView recList;
     private MyStudentAdapter mAdapter;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
     // Toolbar
     private MenuItem mSearchAction;
@@ -92,11 +92,12 @@ public class StudentSearchFragment extends Fragment {
             }
         });
 
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progress);
         imgA = (ImageView) rootView.findViewById(R.id.imgA);
         imgA.setImageResource(R.drawable.img_family_search);
-        tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
+        imgA.clearColorFilter();
+        TextView tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
         progCircle.setVisibility(View.GONE);
         progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
@@ -148,7 +149,7 @@ public class StudentSearchFragment extends Fragment {
         asyncJSONSearch.execute(Constants.URL_JSON_PLANS);*/
 
         // Swipe-to-refresh implementations
-        timestamp = 0;
+        long timestamp = 0;
         return rootView;
     }
 
@@ -163,7 +164,7 @@ public class StudentSearchFragment extends Fragment {
         inflater.inflate(R.menu.menu_families, menu);
         // Retrieve the SearchView and plug it into SearchManager
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        SearchManager searchManager = (SearchManager) getActivity().getSystemService(getActivity().SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Activity.SEARCH_SERVICE);
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -190,6 +191,7 @@ public class StudentSearchFragment extends Fragment {
                     imgA.setVisibility(View.VISIBLE);
                     tv2.setVisibility(View.VISIBLE);
                     imgA.setImageResource(R.drawable.img_family_search);
+                    imgA.clearColorFilter();
                     tv2.setText(R.string.empty_desc_family);
                     mAdapter.notifyDataSetChanged();
                 }
@@ -218,7 +220,7 @@ public class StudentSearchFragment extends Fragment {
      */
     public class AsyncJSONSearch extends AsyncTask<String, String, JSONArray> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSONSearch(boolean displayCircle) {
             this.displayCircle = displayCircle;
@@ -248,6 +250,7 @@ public class StudentSearchFragment extends Fragment {
                 imgA.setVisibility(View.VISIBLE);
                 tv2.setVisibility(View.VISIBLE);
                 imgA.setImageResource(R.drawable.img_nothing);
+                imgA.setColorFilter(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimary), PorterDuff.Mode.MULTIPLY);
                 tv2.setText(R.string.empty_desc_nothing_family);
             }
             progCircle.setVisibility(View.GONE);
@@ -259,8 +262,7 @@ public class StudentSearchFragment extends Fragment {
         @Override
         protected JSONArray doInBackground(String... params) {
 
-            JSONArray array = JSONUtils.getJSONArrayFromUrl(params[0]);
-            return array;
+            return JSONUtils.getJSONArrayFromUrl(params[0]);
         }
 
         @Override

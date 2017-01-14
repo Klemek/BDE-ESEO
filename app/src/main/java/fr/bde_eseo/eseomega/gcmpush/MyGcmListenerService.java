@@ -41,7 +41,7 @@ import java.net.URL;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.MainActivity;
 import fr.bde_eseo.eseomega.R;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 public class MyGcmListenerService extends GcmListenerService {
 
@@ -54,8 +54,7 @@ public class MyGcmListenerService extends GcmListenerService {
             connection.setDoInput(true);
             connection.connect();
             InputStream input = connection.getInputStream();
-            Bitmap myBitmap = BitmapFactory.decodeStream(input);
-            return myBitmap;
+            return BitmapFactory.decodeStream(input);
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -164,7 +163,7 @@ public class MyGcmListenerService extends GcmListenerService {
                     .setContentText(message)
                     .setAutoCancel(true)
                     .setLights(Color.YELLOW, 1000, 3000)
-                    .setColor(Utils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary))
+                    .setColor(ThemeUtils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary))
                     .setVibrate(pattern)
                     .setSound(defaultSoundUri)
                     .setContentIntent(pendingIntent)

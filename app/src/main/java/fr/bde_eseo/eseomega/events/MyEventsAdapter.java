@@ -33,15 +33,16 @@ import java.util.ArrayList;
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.profile.UserProfile;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 /**
  * Created by François L. on 11/08/2015.
  */
-public class MyEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class MyEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public final static int TYPE_HEADER = 0;
-    public final static int TYPE_ITEM = 1;
-    private Activity parentActivity;
+    private final static int TYPE_HEADER = 0;
+    private final static int TYPE_ITEM = 1;
+    private final Activity parentActivity;
     private ArrayList<EventItem> eventItems;
 
     public MyEventsAdapter (ArrayList<EventItem> eventItems, Activity parentActivity) {
@@ -81,15 +82,21 @@ public class MyEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             eivh.name.setText(ei.getName());
 
             if (ei.isPassed()) {
-                eivh.name.setTextColor(0xFF7F7F7F);
+                eivh.name.setTextColor(parentActivity.getResources().getColor(R.color.md_grey_600));
             } else {
-                eivh.name.setTextColor(0xFF454545);
+                eivh.name.setTextColor(parentActivity.getResources().getColor(R.color.md_grey_800));
             }
 
             // For RelativeLayout : get background drawable, then change color
             //LayerDrawable layerDrawable = (LayerDrawable) eivh.rlColor.getBackground();
             //eivh.rlColor.setBackgroundColor(ei.getColor());
-            ((GradientDrawable)eivh.rlColor.getBackground()).setColor(ei.getColor());
+            if (ei.isPassed()) {
+                ((GradientDrawable) eivh.rlColor.getBackground()).setColor(parentActivity.getResources().getColor(R.color.md_grey_600));
+            } else {
+                //((GradientDrawable)eivh.rlColor.getBackground()).setColor(eivh.rlColor.getContext().getResources().getColor(ThemeUtils.resolveColorFromTheme(eivh.rlColor.getContext(), R.attr.colorAccent)));
+                ((GradientDrawable) eivh.rlColor.getBackground()).setColor(parentActivity.getResources().getColor(ThemeUtils.resolveColorFromTheme2(parentActivity.getApplicationContext(), R.attr.colorAccent, false)));
+            }
+
 
             if (ei.getShortedDetails().length() > 1) {
                 eivh.details.setVisibility(View.VISIBLE);
@@ -151,10 +158,13 @@ public class MyEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Classic View Holder for Event item
     public class EventItemViewHolder extends RecyclerView.ViewHolder{
 
-        protected View view;
-        protected TextView name, details, dayNum, dayName;
-        protected RelativeLayout rlColor;
-        protected ImageButton button;
+        final View view;
+        final TextView name;
+        final TextView details;
+        final TextView dayNum;
+        final TextView dayName;
+        final RelativeLayout rlColor;
+        final ImageButton button;
 
         public EventItemViewHolder(View v) {
             super(v);
@@ -171,7 +181,7 @@ public class MyEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     // Classic View Holder for Event header
     public class EventHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView name;
+        final TextView name;
 
         public EventHeaderViewHolder(View v) {
             super(v);

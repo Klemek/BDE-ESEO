@@ -39,10 +39,10 @@ import fr.bde_eseo.eseomega.utils.ImageUtils;
 
 public class MyFoodListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_FOOD_ITEM = 0;
+    private static final int TYPE_FOOD_ITEM = 0;
     private static final int TYPE_NUMBER = TYPE_FOOD_ITEM + 1;
+    private final Context context;
     private ArrayList<LacmdCategory> foodCategoryArrayList;
-    private Context context;
 
     public MyFoodListAdapter(Context context) {
         this.foodCategoryArrayList = new ArrayList<>();
@@ -105,11 +105,11 @@ public class MyFoodListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // Classic View Holder for Food
     public static class FoodListViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
-        protected TextView vSmallText;
-        protected ImageView vImg;
-        protected TextView vPrice;
-        protected CardView cardView;
+        final TextView vName;
+        final TextView vSmallText;
+        final ImageView vImg;
+        final TextView vPrice;
+        final CardView cardView;
 
         public FoodListViewHolder(View v) {
             super(v);

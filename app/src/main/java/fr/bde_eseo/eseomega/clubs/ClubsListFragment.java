@@ -45,6 +45,7 @@ import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerItemClickListener;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -63,7 +64,6 @@ public class ClubsListFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
-    private String cachePath;
     private AsyncJSON asyncJSON;
 
     // Model -> static
@@ -77,7 +77,7 @@ public class ClubsListFragment extends Fragment {
         // UI
         View rootView = rootInfl.inflate(R.layout.fragment_club_list, container, false);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.clubs_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle = (ProgressBar) rootView.findViewById(R.id.progressClubs);
         progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
         tv1 = (TextView) rootView.findViewById(R.id.tvListNothing);
@@ -90,7 +90,7 @@ public class ClubsListFragment extends Fragment {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "community.json");
 
         // Model / objects
@@ -146,7 +146,7 @@ public class ClubsListFragment extends Fragment {
     }
 
     // Scroll listener to prevent issue 77846
-    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
+    private class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -169,7 +169,7 @@ public class ClubsListFragment extends Fragment {
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONArray> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSON (boolean displayCircle) {
             this.displayCircle = displayCircle;
@@ -236,7 +236,7 @@ public class ClubsListFragment extends Fragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            return new ClubViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_community, parent, false));
+            return new ClubViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_club, parent, false));
         }
 
         @Override
@@ -265,9 +265,9 @@ public class ClubsListFragment extends Fragment {
         // Classic View Holder for Club
         public class ClubViewHolder extends RecyclerView.ViewHolder {
 
-            protected TextView name;
-            protected ImageView img;
-            protected CardView cardView;
+            final TextView name;
+            final ImageView img;
+            final CardView cardView;
 
             public ClubViewHolder(View v) {
                 super(v);

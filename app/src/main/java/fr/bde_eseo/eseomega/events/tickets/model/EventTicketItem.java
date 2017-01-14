@@ -117,7 +117,7 @@ public class EventTicketItem {
         return strcmd + new DecimalFormat("000").format(modcmd);
     }
 
-    public Date getParsedDate () {
+    private Date getParsedDate() {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", DateUtils.getLocale());
         Date date = null;
         try {
@@ -128,7 +128,7 @@ public class EventTicketItem {
         return date;
     }
 
-    public String getFrenchDate (boolean simpleDate) {
+    private String getFrenchDate(boolean simpleDate) {
         Date d = getParsedDate();
         SimpleDateFormat sdf;
         if (simpleDate)

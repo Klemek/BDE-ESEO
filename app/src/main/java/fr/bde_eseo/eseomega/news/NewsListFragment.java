@@ -50,6 +50,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -71,13 +72,12 @@ public class NewsListFragment extends Fragment {
     private long timestamp;
     private RecyclerView.OnItemTouchListener disabler;
     private File cacheFile;
-    private String cachePath;
     private AsyncJSON asyncJSON;
     private File cacheFileEseo;
 
-    public static void openArticle(Activity act, NewsItem ni) {
+    private static void openArticle(Activity act, NewsItem ni) {
         if (!ni.isHeader() && !ni.isFooter()) {
-            Intent myIntent = new Intent(act, ViewNewsActivityMaterial.class);
+            Intent myIntent = new Intent(act, NewsViewActivity.class);
             myIntent.putExtra(Constants.KEY_NEWS_TITLE, ni.getName());
             myIntent.putExtra(Constants.KEY_NEWS_IMGARRAY, ni.getImgLinks());
             myIntent.putExtra(Constants.KEY_NEWS_DATE, ni.getFrenchStr());
@@ -100,7 +100,7 @@ public class NewsListFragment extends Fragment {
         tv2 = (TextView) rootView.findViewById(R.id.tvListNothing2);
         img = (ImageView) rootView.findViewById(R.id.imgNoNews);
         swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.news_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark));
         progCircle.setVisibility(View.GONE);
         progCircle.getIndeterminateDrawable().setColorFilter(getResources().getColor(R.color.md_grey_500), PorterDuff.Mode.SRC_IN);
         tv1.setVisibility(View.GONE);
@@ -111,7 +111,7 @@ public class NewsListFragment extends Fragment {
         // Set preferences objects
         prefs_Read = getActivity().getSharedPreferences(Constants.PREFS_NEWS_KEY, 0);
         prefs_Write = prefs_Read.edit();
-        cachePath = getActivity().getCacheDir() + "/";
+        String cachePath = getActivity().getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "news_eseomega.json");
         ptr = 0;
         newsItems = new ArrayList<>();
@@ -190,7 +190,7 @@ public class NewsListFragment extends Fragment {
 
     public static class AsyncJSONSingleNews extends AsyncTask<Integer, Void, JSONObject> {
 
-        private Activity act;
+        private final Activity act;
 
         public AsyncJSONSingleNews(Activity act) {
             this.act = act;
@@ -211,14 +211,12 @@ public class NewsListFragment extends Fragment {
         @Override
         protected JSONObject doInBackground(Integer... params) {
 
-            JSONObject news = JSONUtils.getJSONFromUrl(Constants.URL_JSON_NEWS_SINGLE + params[0]);
-
-            return news;
+            return JSONUtils.getJSONFromUrl(Constants.URL_JSON_NEWS_SINGLE + params[0]);
         }
     }
 
     // Scroll listener to prevent issue 77846
-    public class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
+    private class RecyclerViewDisabler implements RecyclerView.OnItemTouchListener {
 
         @Override
         public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
@@ -241,8 +239,8 @@ public class NewsListFragment extends Fragment {
      */
     private class AsyncJSON extends AsyncTask<String,String,JSONArray> {
 
-        private boolean displayCircle;
-        private boolean addMore;
+        private final boolean displayCircle;
+        private final boolean addMore;
         private boolean loadedFromCache;
 
         private AsyncJSON(boolean displayCircle, boolean addMore) {
@@ -353,7 +351,7 @@ public class NewsListFragment extends Fragment {
         private final static int TYPE_NORMAL = 0;
         private final static int TYPE_FOOTER = 1;
         private final static int TYPE_HEADER = 2;
-        private Context ctx;
+        private final Context ctx;
 
         public MyNewsAdapter (Context ctx) {
             this.ctx = ctx;
@@ -419,10 +417,12 @@ public class NewsListFragment extends Fragment {
 
         private class NewsHolder extends RecyclerView.ViewHolder {
 
-            protected TextView tvName, tvContent, tvDateAuthor;
-            protected ImageView imgHeader;
+            final TextView tvName;
+            final TextView tvContent;
+            final TextView tvDateAuthor;
+            final ImageView imgHeader;
+            final CardView cardView;
             protected TextView tvLast;
-            protected CardView cardView;
 
             public NewsHolder(View itemView) {
                 super(itemView);
@@ -436,19 +436,19 @@ public class NewsListFragment extends Fragment {
 
         private class NewsFooterHolder extends RecyclerView.ViewHolder {
 
-            protected ProgressBar progressMore;
+            final ProgressBar progressMore;
 
             public NewsFooterHolder (View itemView) {
                 super(itemView);
                 progressMore = (ProgressBar) itemView.findViewById(R.id.progressNewsMore);
-                progressMore.getIndeterminateDrawable().setColorFilter(Utils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+                progressMore.getIndeterminateDrawable().setColorFilter(ThemeUtils.resolveColorFromTheme(getContext(), R.attr.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
             }
 
         }
 
         private class NewsHeaderHolder extends RecyclerView.ViewHolder {
 
-            protected TextView tvLast;
+            final TextView tvLast;
 
             public NewsHeaderHolder (View itemView) {
                 super(itemView);

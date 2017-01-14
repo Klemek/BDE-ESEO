@@ -26,9 +26,11 @@ import fr.bde_eseo.eseomega.events.EventItem;
  */
 public class TicketPictItem {
 
-    private String imgUrl, title, description, lowPrice;
-    private EventItem externalEventItem;
-    private double bestPrice;
+    private final String imgUrl;
+    private final String title;
+    private final String description;
+    private final String lowPrice;
+    private final EventItem externalEventItem;
 
     public TicketPictItem(EventItem eventItem) {
         externalEventItem = eventItem;
@@ -36,7 +38,7 @@ public class TicketPictItem {
         description = eventItem.getDetails();
         imgUrl = eventItem.getImgUrl();
 
-        bestPrice = 0;
+        double bestPrice = 0;
         for (int i=0;i<externalEventItem.getSubEventItems().size();i++) {
             double p = externalEventItem.getSubEventItems().get(i).getPrice();
             if (bestPrice == 0 || p < bestPrice)

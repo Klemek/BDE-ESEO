@@ -138,7 +138,7 @@
             android:layout_marginBottom="20dp"
             android:text="..."
             android:textColor="@android:color/white"
-            android:textSize="72dp"
+            android:textSize="72sp"
             android:textStyle="bold"
             android:typeface="monospace"/>
 
@@ -154,7 +154,7 @@
         android:layout_marginBottom="8dp"
         android:text="@string/layout_order_detail_2"
         android:textColor="@color/circle_error"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textStyle="bold"/>
 
     <ProgressBar

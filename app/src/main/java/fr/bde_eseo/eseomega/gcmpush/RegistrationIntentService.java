@@ -121,9 +121,9 @@ public class RegistrationIntentService extends IntentService {
      */
     private class GcmPushToken extends AsyncTask <String,String,String> {
 
-        private Context ctx;
+        private final Context ctx;
+        private final String token;
         private UserProfile profile;
-        private String token;
 
         public GcmPushToken (Context ctx, String token) {
             this.ctx = ctx;

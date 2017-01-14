@@ -17,6 +17,7 @@
 
 package fr.bde_eseo.eseomega.news;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -40,28 +41,26 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.Blur;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
  * Created by François L. on 30/08/2015.
  */
-public class ViewNewsActivityMaterial extends AppCompatActivity {
+public class NewsViewActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private NewsItem newsItem;
     //private MyImageAdapter mAdapter;
     //private RecyclerView recList;
     private ImageView imageView;
-    private TextView tvName, tvAuthor;
-    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_material);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setContentView(R.layout.activity_news_view);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,7 +72,7 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                Toast.makeText(ViewNewsActivityMaterial.this, R.string.toast_error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NewsViewActivity.this, R.string.toast_error, Toast.LENGTH_SHORT).show();
                 finish();
             } else {
                 newsItem = new NewsItem(
@@ -92,7 +91,7 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
             ImageUtils.loadImage(this, newsItem.getImgLinks().get(0), R.drawable.placeholder, R.drawable.placeholder_error, new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap loadedImage, Picasso.LoadedFrom from) {
-                    imageView.setImageBitmap(Blur.fastblur(ViewNewsActivityMaterial.this, loadedImage, 12)); // seems ok
+                    imageView.setImageBitmap(Blur.fastblur(NewsViewActivity.this, loadedImage, 12)); // seems ok
                 }
 
                 @Override
@@ -105,15 +104,15 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
 
                 }
             });
-            tvName = (TextView) findViewById(R.id.tvTitle);
+            TextView tvName = (TextView) findViewById(R.id.tvTitle);
             tvName.setText(newsItem.getName());
-            tvAuthor = (TextView) findViewById(R.id.tvAuthor);
+            TextView tvAuthor = (TextView) findViewById(R.id.tvAuthor);
             tvAuthor.setText(newsItem.getFrenchStr());
             /*
             tvHtml = (TextView) findViewById(R.id.tvHtml);
             tvHtml.setText(Html.fromHtml(newsItem.getData()));
             tvHtml.setMovementMethod(LinkMovementMethod.getInstance());*/
-            webView = (WebView) findViewById(R.id.webview);
+            WebView webView = (WebView) findViewById(R.id.webview);
             webView.setBackgroundColor(Color.TRANSPARENT);
             webView.setHapticFeedbackEnabled(false);
             webView.getSettings().setDefaultFontSize(15);
@@ -129,6 +128,17 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
             webView.loadData("" +
                     "<body style=\"margin:20px 10px 20px 10px\"><style>img {max-width:98%;}</style>" + newsItem.getData() + "</body>", "text/html; charset=UTF-8", null);
             //mAdapter.notifyDataSetChanged();
+
+            // News picture clic : open it wide
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent myIntent = new Intent(NewsViewActivity.this, ImageViewActivity.class);
+                    myIntent.putExtra(Constants.KEY_IMG, newsItem.getImgLinks().get(0));
+                    startActivity(myIntent);
+                }
+            });
+
         }
     }
 
@@ -145,6 +155,7 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_share:
                 //TODO link to share
+                //Not implemented on server
                 /*
                 Intent intent2 = new Intent(); intent2.setAction(Intent.ACTION_SEND);
                 intent2.setType("text/plain");
@@ -166,7 +177,7 @@ public class ViewNewsActivityMaterial extends AppCompatActivity {
                 if (i.resolveActivity(getPackageManager()) != null)
                     startActivity(i);
                 else
-                    Toast.makeText(ViewNewsActivityMaterial.this, "Pas d'application installée pour ça", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewsViewActivity.this, "Pas d'application installée pour ça", Toast.LENGTH_SHORT).show();
                 return true;
                 */
             default:

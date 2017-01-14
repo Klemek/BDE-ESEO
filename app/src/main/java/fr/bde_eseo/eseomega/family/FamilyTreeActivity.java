@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.SparseArray;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -11,27 +12,25 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 public class FamilyTreeActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
     private TreeView trv;
-    private HashMap<Integer,StudentItem> family;
+    private SparseArray<StudentItem> family;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
 
         setContentView(R.layout.activity_family_tree);
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         trv = (TreeView) findViewById(R.id.tree);
         trv.setVisibility(View.GONE);
@@ -64,7 +63,7 @@ public class FamilyTreeActivity extends AppCompatActivity {
 
     public class AsyncJSONFamily extends AsyncTask<String, String, JSONArray> {
 
-        private int markedid;
+        private final int markedid;
 
         public AsyncJSONFamily(int id){
             this.markedid = id;
@@ -72,7 +71,7 @@ public class FamilyTreeActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            family = new HashMap<>();
+            family = new SparseArray<>();
         }
 
         @Override
@@ -102,8 +101,7 @@ public class FamilyTreeActivity extends AppCompatActivity {
         @Override
         protected JSONArray doInBackground(String... params) {
 
-            JSONArray array = JSONUtils.getJSONArrayFromUrl(params[0]);
-            return array;
+            return JSONUtils.getJSONArrayFromUrl(params[0]);
         }
     }
 }

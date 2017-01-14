@@ -34,9 +34,8 @@ import fr.bde_eseo.eseomega.lacommande.model.LacmdRoot;
  */
 public class MyCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    private Context ctx;
     public MyCartAdapter (Context ctx) {
-        this.ctx = ctx;
+        Context ctx1 = ctx;
     }
 
     @Override
@@ -73,8 +72,10 @@ public class MyCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     // Holder for cart item
     public class CartItemHolder extends RecyclerView.ViewHolder {
 
-        protected TextView tvPrice, tvName, tvDetails;
-        protected CardView cardView;
+        final TextView tvPrice;
+        final TextView tvName;
+        final TextView tvDetails;
+        final CardView cardView;
 
         public CartItemHolder(View itemView) {
             super(itemView);

@@ -43,6 +43,7 @@ import fr.bde_eseo.eseomega.Constants;
 import fr.bde_eseo.eseomega.R;
 import fr.bde_eseo.eseomega.listeners.RecyclerViewDisabler;
 import fr.bde_eseo.eseomega.utils.JSONUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 
 /**
@@ -65,22 +66,20 @@ public class IngeListActivity extends AppCompatActivity {
     private RecyclerView.OnItemTouchListener disabler;
     // Model
     private ArrayList<IngenewsItem> ingenewsItems;
-    // Cache managing
-    private String cachePath;
     private File cacheFileEseo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
 
         setContentView(R.layout.fragment_ingenews_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // UI
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.inge_refresh);
-        swipeRefreshLayout.setColorSchemeColors(Utils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary));
+        swipeRefreshLayout.setColorSchemeColors(ThemeUtils.resolveColorFromTheme(getApplicationContext(), R.attr.colorPrimary));
         progCircle = (ProgressBar) findViewById(R.id.progressInge);
         tv1 = (TextView) findViewById(R.id.tvListNothing);
         tv2 = (TextView) findViewById(R.id.tvListNothing2);
@@ -93,7 +92,7 @@ public class IngeListActivity extends AppCompatActivity {
         disabler = new RecyclerViewDisabler();
 
         // I/O cache data
-        cachePath = getCacheDir() + "/";
+        String cachePath = getCacheDir() + "/";
         cacheFileEseo = new File(cachePath + "menu_empty.json");
 
         // Model / objects
@@ -163,7 +162,7 @@ public class IngeListActivity extends AppCompatActivity {
      */
     public class AsyncJSON extends AsyncTask<String, String, JSONObject> {
 
-        boolean displayCircle;
+        final boolean displayCircle;
 
         public AsyncJSON(boolean displayCircle) {
             this.displayCircle = displayCircle;

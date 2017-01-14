@@ -136,12 +136,12 @@ public class StringUtils {
     private static final HashMap<String, CharSequence> lookupMap;
 
     static {
-        lookupMap = new HashMap<String, CharSequence>();
+        lookupMap = new HashMap<>();
         for (final CharSequence[] seq : ESCAPES)
             lookupMap.put(seq[1].toString(), seq[0]);
     }
 
-    public static final String simpleString(final String s) {
+    public static String simpleString(final String s) {
         String out = s.toLowerCase(DateUtils.getLocale());
         out = out.replace("é", "e");
         out = out.replace("è", "e");
@@ -156,7 +156,7 @@ public class StringUtils {
         return out;
     }
 
-    public static final String unescapeHtml3(final String input) {
+    public static String unescapeHtml3(final String input) {
         StringWriter writer = null;
         int len = input.length();
         int i = 1;

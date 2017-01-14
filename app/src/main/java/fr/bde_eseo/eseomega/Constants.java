@@ -80,17 +80,7 @@ public class Constants {
     // URL's
 
 
-    //TODO remove all old urls
     //ESEOMEGA URLs
-
-    public static final String URL_SERVER2 = "https://web59.secure-secure.co.uk/francoisle.fr/"; // secure way
-    public static final String URL_ASSETS = URL_SERVER2 + "lacommande/assets/";
-    public static final String URL_JSON_INGENEWS = URL_SERVER2 + "eseonews/jsondata/ingenews_data/ingenews.php";
-    public static final String URL_API = "https://api.eseoasis.com/";
-    public static final String URL_JSON_APP_INFO = URL_API+"app_info";
-    //News
-    public static final String URL_JSON_NEWS = URL_API + "news?smtype=ANDROID&";
-    public static final String URL_JSON_NEWS_SINGLE = URL_API + "news/";
     public static final String JSON_NEWS_ID = "id";
     public static final String JSON_NEWS_TITLE = "title";
     public static final String JSON_NEWS_IMG = "img";
@@ -98,24 +88,18 @@ public class Constants {
     public static final String JSON_NEWS_FULLDATE = "fulldate";
     public static final String JSON_NEWS_PREVIEW = "preview";
     public static final String JSON_NEWS_CONTENT = "content";
-    //Event
-    public static final String URL_JSON_EVENTS = URL_API + "events/";
     public final static String JSON_EVENT_ID = "id";
     public final static String JSON_EVENT_NAME = "title";
     public final static String JSON_EVENT_DETAIL = "text";
     public final static String JSON_EVENT_DATE = "fulldate";
     public final static String JSON_EVENT_DATEFIN = "fullenddate";
     public final static String JSON_EVENT_SIGNUP = "signup";
-
-
     //ESEOASIS URLs
     public final static String JSON_EVENT_LIEU = "place";
     //JSON Reading
     public final static String JSON_EVENT_CLUB = "from";
     public final static String JSON_EVENT_URL = "adr";
     public final static String JSON_EVENT_IMGURL = "imgUrl";
-    //Clubs
-    public static final String URL_JSON_CLUBS = URL_API + "clubs/";
     public final static String JSON_CLUB_ID = "id";
     public final static String JSON_CLUB_NAME = "name";
     public final static String JSON_CLUB_DETAIL = "description";
@@ -136,22 +120,17 @@ public class Constants {
     public final static String JSON_CLUB_MEMBER_NAME = "name";
     public final static String JSON_CLUB_MEMBER_DETAIL = "role";
     public final static String JSON_CLUB_MEMBER_IMG = "img";
-    //Sponsos
-    public static final String URL_JSON_SPONSORS = URL_API + "sponsors/";
     public final static String JSON_SPONSO_NAME = "name";
     public final static String JSON_SPONSO_DETAIL = "description";
     public final static String JSON_SPONSO_IMG = "img";
     public final static String JSON_SPONSO_URL = "url";
     public final static String JSON_SPONSO_ADR = "address";
     public final static String JSON_SPONSO_AVANTAGES = "perks";
-    //Salles
-    public static final String URL_JSON_PLANS = URL_API + "rooms/";
     public static final String JSON_ROOM_NAME = "name";
     public static final String JSON_ROOM_NUM = "num";
     public static final String JSON_ROOM_BAT = "bat";
     public final static String JSON_ROOM_FLO = "floor";
     public static final String JSON_ROOM_NFO = "info";
-    public static final String URL_JSON_FAMILY = URL_API + "family/";
     public static final String URL_JSON_STUDENT_SEARCH = URL_JSON_FAMILY + "search/";
     public static final String JSON_STUDENT_ID = "id";
     public static final String JSON_STUDENT_NAME = "name";
@@ -171,7 +150,6 @@ public class Constants {
     public static final int ERROR_UNPAID = 4;
     public static final int ERROR_APP_PB = 6;
     public static final int ERROR_USER_BAN = 7;
-
     //Family
     public static final int ERROR_BAD_VERSION = 8;
     public static final int ERROR_HOTSPOT = -2;
@@ -208,6 +186,23 @@ public class Constants {
     public static final String KEY_LYDIA_ORDER_ASKED = "lydia.order_status";
     public static final String TYPE_LYDIA_CAFET = "CAFET";
     public static final String TYPE_LYDIA_EVENT = "EVENT";
+    private static final String URL_SERVER2 = "https://web59.secure-secure.co.uk/francoisle.fr/"; // secure way
+    public static final String URL_ASSETS = URL_SERVER2 + "lacommande/assets/";
+    public static final String URL_JSON_INGENEWS = URL_SERVER2 + "eseonews/jsondata/ingenews_data/ingenews.php";
+    private static final String URL_API = "https://api.eseoasis.com/";
+    public static final String URL_JSON_APP_INFO = URL_API + "app_info";
+    //News
+    public static final String URL_JSON_NEWS = URL_API + "news?smtype=ANDROID&";
+    public static final String URL_JSON_NEWS_SINGLE = URL_API + "news/";
+    //Event
+    public static final String URL_JSON_EVENTS = URL_API + "events/";
+    //Clubs
+    public static final String URL_JSON_CLUBS = URL_API + "clubs/";
+    //Sponsos
+    public static final String URL_JSON_SPONSORS = URL_API + "sponsors/";
+    //Salles
+    public static final String URL_JSON_PLANS = URL_API + "rooms/";
+    public static final String URL_JSON_FAMILY = URL_API + "family/";
     /**
      * API V3.0 - Since December 2015 ↔ January 2016
      */

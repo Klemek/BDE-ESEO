@@ -73,6 +73,7 @@ import fr.bde_eseo.eseomega.slidingmenu.NavDrawerItem;
 import fr.bde_eseo.eseomega.slidingmenu.NavDrawerListAdapter;
 import fr.bde_eseo.eseomega.sponsors.SponsoFragment;
 import fr.bde_eseo.eseomega.utils.ImageUtils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 import fr.bde_eseo.eseomega.utils.Utils;
 import fr.bde_eseo.eseomega.version.AsyncCheckVersion;
 
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
     // Others constant values
     public static final int MAX_PROFILE_SIZE = 256; // seems good
     // Profile item
-    UserProfile profile = new UserProfile();
+    private UserProfile profile = new UserProfile();
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -93,10 +94,6 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
     private ActionBarDrawerToggle mDrawerToggle;
     // used to store app title
     private CharSequence mTitle;
-    // Preferences
-    private SharedPreferences prefs_Read;
-    private SharedPreferences.Editor prefs_Write;
-    private SharedPreferences prefsUser;
 
     // Latch to remember position of fragment
     private int fragPosition = 0;
@@ -106,13 +103,9 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
 
     // slide menu items
     private String[] navMenuTitles, navMenuOptions;
-    private TypedArray navMenuIcons;
     private ListView mDrawerList;
     private NavDrawerListAdapter navAdapter;
     private ArrayList<NavDrawerItem> navDrawerItems;
-
-    // Material Toolbar
-    private Toolbar toolbar;
 
     // Inside update
     private LinearLayout llUpdate;
@@ -123,13 +116,13 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setTheme(Utils.getPreferredTheme(getApplicationContext()));
+        setTheme(ThemeUtils.preferredTheme(getApplicationContext()));
 
         setContentView(R.layout.activity_main);
 
 
         // Global UI View
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         toolbar.setPadding(0, Utils.getStatusBarHeight(this), 0, 0);
         setSupportActionBar(toolbar);
         mTitle = getTitle();
@@ -191,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         navMenuOptions = getResources().getStringArray(R.array.nav_drawer_options);
 
         // nav drawer icons from resources
-        navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+        TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
@@ -227,7 +220,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         // set picture
         // WARNING ! Bitmap could be null if picture is removed from storage !
         // EDIT : It's ok, getResizedBitmap has been modified to survive to that kind of mistake
-        // TODO : correct photo orientation
+        // TODO : correct photo orientation (FL)
         // @see http://stackoverflow.com/questions/7286714/android-get-orientation-of-a-camera-bitmap-and-rotate-back-90-degrees
         File fp = new File(profile.getPicturePath());
         if (fp.exists())
@@ -265,9 +258,9 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         // Initialize preference objects
-        prefs_Read = getSharedPreferences(Constants.PREFS_APP_WELCOME, 0);
-        prefs_Write = prefs_Read.edit();
-        prefsUser = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        SharedPreferences prefs_Read = getSharedPreferences(Constants.PREFS_APP_WELCOME, 0);
+        SharedPreferences.Editor prefs_Write = prefs_Read.edit();
+        SharedPreferences prefsUser = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         // Receive Intent from notification
         Bundle extras = getIntent().getExtras();
@@ -403,6 +396,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
 
             // Event : on passe à la vue de l'historique d'achat des place events
             //TODO tickets
+            //No needed this year
             /*case R.id.action_ticketevent:
                 Intent intentEvent = new Intent(MainActivity.this, TicketHistoryActivity.class);
                 startActivity(intentEvent);
@@ -493,6 +487,7 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
             mDrawerList.setItemChecked(position, true);
             mDrawerList.setSelection(position);
             mDrawerList.setItemsCanFocus(true);
+            mDrawerList.setBackgroundColor(ThemeUtils.resolveColorFromTheme(getApplicationContext(), R.attr.colorButtonNormal));
 
             // Invalidate Menu to redraw it : Ingenews only visible from fragment n°1 (news)
             invalidateOptionsMenu();

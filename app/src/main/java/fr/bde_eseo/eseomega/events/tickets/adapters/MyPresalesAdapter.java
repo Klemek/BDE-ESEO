@@ -38,8 +38,8 @@ import fr.bde_eseo.eseomega.events.tickets.model.TicketPictItem;
  */
 public class MyPresalesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private final Context context;
     private ArrayList<TicketPictItem> ticketPictItems;
-    private Context context;
 
     public MyPresalesAdapter(Context context) {
         this.ticketPictItems = new ArrayList<>();
@@ -82,10 +82,10 @@ public class MyPresalesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     // Classic View Holder for Ticket
     public static class PresalesViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vTitle;
-        protected TextView vDesc;
-        protected TextView vPrice;
-        protected ImageView vImg;
+        final TextView vTitle;
+        final TextView vDesc;
+        final TextView vPrice;
+        final ImageView vImg;
 
         public PresalesViewHolder(View v) {
             super(v);

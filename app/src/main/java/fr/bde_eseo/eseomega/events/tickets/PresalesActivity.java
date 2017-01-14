@@ -69,7 +69,7 @@ import fr.bde_eseo.eseomega.utils.Utils;
  */
 public class PresalesActivity extends AppCompatActivity {
 
-    public static final long MAX_DELAY_ORDER = 582 * 1000;
+    private static final long MAX_DELAY_ORDER = 582 * 1000;
     // Model
     private ArrayList<TicketPictItem> ticketPictItems;
     // Android objects
@@ -77,12 +77,6 @@ public class PresalesActivity extends AppCompatActivity {
     private boolean isVisible, messageNotShown;
     // User profile
     private UserProfile userProfile;
-    // UI
-    private TextView tvNo1, tvNo2;
-    private ImageView imgNo;
-    // Adapter / recycler
-    private MyPresalesAdapter mAdapter;
-    private RecyclerView recList;
     // Data
     private int idcmd = -1;
     private String eventName, eventDate, eventID, ticketName;
@@ -101,9 +95,9 @@ public class PresalesActivity extends AppCompatActivity {
         userProfile.readProfilePromPrefs(context);
 
         // Get layout
-        tvNo1 = (TextView) findViewById(R.id.tvListNothing);
-        tvNo2 = (TextView) findViewById(R.id.tvListNothing2);
-        imgNo = (ImageView) findViewById(R.id.imgNoPresale);
+        TextView tvNo1 = (TextView) findViewById(R.id.tvListNothing);
+        TextView tvNo2 = (TextView) findViewById(R.id.tvListNothing2);
+        ImageView imgNo = (ImageView) findViewById(R.id.imgNoPresale);
 
         // Get current events / tickets
         fillArray();
@@ -120,8 +114,8 @@ public class PresalesActivity extends AppCompatActivity {
         }
 
         // Init adapter / recycler view
-        mAdapter = new MyPresalesAdapter(context);
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        MyPresalesAdapter mAdapter = new MyPresalesAdapter(context);
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setHasFixedSize(true);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
@@ -363,8 +357,8 @@ public class PresalesActivity extends AppCompatActivity {
      */
     private class AsyncSendTicket extends AsyncTask<String, String, String> {
 
+        private final Context context;
         private MaterialDialog md;
-        private Context context;
 
         public AsyncSendTicket(Context context) {
             this.context = context;

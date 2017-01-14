@@ -30,7 +30,7 @@ import fr.bde_eseo.eseomega.utils.SimplyDate;
  * Created by François L. on 22/12/2015.
  * Sur la bonne idée de Mr Naudet
  */
-public class IngenewsItem {
+class IngenewsItem {
 
     private final static double MBYTE = 1048576.0;
     private final static String MBYTE_STR = " Mio";
@@ -38,7 +38,6 @@ public class IngenewsItem {
     private final static String KBYTE_STR = " Kio";
     private final static double BYTE = 1.0;
     private final static String BYTE_STR = " octets";
-    private int id;
     private long size;
     private String name, date, file, details, imgLink;
 
@@ -47,7 +46,7 @@ public class IngenewsItem {
      * Constructeur depuis un objet JSON (depuis le serveur / cache)
      */
     public IngenewsItem(JSONObject obj, Context ctx) throws JSONException {
-        this.id = obj.getInt("id");
+        int id = obj.getInt("id");
         this.name = obj.getString("name");
         this.date = obj.getString("date");
         this.file = obj.getString("file");
@@ -75,7 +74,7 @@ public class IngenewsItem {
         return imgLink;
     }
 
-    public String getFormattedSize() {
+    private String getFormattedSize() {
         if (size >= MBYTE) {
             return new DecimalFormat("0.0").format(size / MBYTE) + MBYTE_STR;
         } else if (size >= KBYTE && size < MBYTE) {

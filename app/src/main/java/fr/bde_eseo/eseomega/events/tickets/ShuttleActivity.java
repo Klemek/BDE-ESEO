@@ -55,10 +55,6 @@ public class ShuttleActivity extends AppCompatActivity {
     // Android objects
     private Context context;
 
-    // Adapter / recycler
-    private MyShuttlesAdapter mAdapter;
-    private RecyclerView recList;
-
     // Layout
     private TextView tvValid;
 
@@ -128,8 +124,8 @@ public class ShuttleActivity extends AppCompatActivity {
         fillCheckables();
 
         // Init adapter / recycler view
-        mAdapter = new MyShuttlesAdapter(context);
-        recList = (RecyclerView) findViewById(R.id.recyList);
+        MyShuttlesAdapter mAdapter = new MyShuttlesAdapter(context);
+        RecyclerView recList = (RecyclerView) findViewById(R.id.recyList);
         recList.setHasFixedSize(false);
         LinearLayoutManager llm = new LinearLayoutManager(context);
         llm.setOrientation(LinearLayoutManager.VERTICAL);

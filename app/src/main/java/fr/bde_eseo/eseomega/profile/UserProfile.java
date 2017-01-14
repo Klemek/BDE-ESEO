@@ -35,8 +35,8 @@ import fr.bde_eseo.eseomega.utils.StringUtils;
  */
 public class UserProfile {
 
-    public static final String RESEAU_ESEO_FR = "@reseau.eseo.fr";
     public static final Pattern PHONE_PATTERN = Pattern.compile("/^((\\+|00)33\\s?|0)[679](\\s?\\d{2}){4}$/");
+    private static final String RESEAU_ESEO_FR = "@reseau.eseo.fr";
     private final static int MAX_TEXT_LENGTH = 39;
     private String name;
     private String id;
@@ -147,7 +147,7 @@ public class UserProfile {
         }
     }
 
-    public String getFamilyName () {
+    private String getFamilyName() {
         int sp = getLastSpaceInString(this.name);
         if (sp != -1 && this.name.length() >= sp+2) {
             return this.name.substring(sp+1);
@@ -186,7 +186,7 @@ public class UserProfile {
     }
 
     // Use getShortNameV2 instead
-    public String getShortName () {
+    private String getShortName() {
         if (this.name.length() > MAX_TEXT_LENGTH)
             return this.name.substring(0, MAX_TEXT_LENGTH) + "...";
         else
@@ -208,7 +208,7 @@ public class UserProfile {
             return s;
     }
 
-    public String getShortEmail () {
+    private String getShortEmail() {
         if (this.email.length() > MAX_TEXT_LENGTH)
             return this.email.substring(0, MAX_TEXT_LENGTH) + "...";
         else

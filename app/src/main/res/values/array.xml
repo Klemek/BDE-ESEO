@@ -13,12 +13,14 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
     </string-array>
 
     <string-array name="theme_items">
         <item>Défaut</item>
-        <item>Eseoasis</item>
-        <item>Eseomega</item>
+        <item>ESEOASIS</item>
+        <item>ESEOmega</item>
+        <item>BDEl\'Dorado (beta)</item>
     </string-array>
 
     <string-array name="nav_drawer_items">

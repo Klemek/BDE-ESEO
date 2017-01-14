@@ -34,14 +34,14 @@ import fr.bde_eseo.eseomega.lacommande.model.HistoryItem;
  * Created by François on 24/04/2015.
  */
 
-public class MyHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+class MyHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    public static final int TYPE_HISTORY_ITEM = 0;
-    public static final int TYPE_HISTORY_HEADER = 1;
-    public static final int TYPE_HISTORY_FOOTER = 2;
+    private static final int TYPE_HISTORY_ITEM = 0;
+    private static final int TYPE_HISTORY_HEADER = 1;
+    private static final int TYPE_HISTORY_FOOTER = 2;
     private static final int TYPE_NUMBER = TYPE_HISTORY_ITEM + TYPE_HISTORY_HEADER + TYPE_HISTORY_FOOTER;
+    private final Context context;
     private ArrayList<HistoryItem> historyList;
-    private Context context;
 
     public MyHistoryAdapter(Context context) {
         this.historyList = new ArrayList<>();
@@ -130,12 +130,12 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     // Classic View Holder for News
     public static class HistoryViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
-        protected TextView vNumero;
-        protected ImageView vImg;
-        protected TextView vPrice;
-        protected TextView vDate;
-        protected View vCircle;
+        final TextView vName;
+        final TextView vNumero;
+        final ImageView vImg;
+        final TextView vPrice;
+        final TextView vDate;
+        final View vCircle;
 
         public HistoryViewHolder(View v) {
             super(v);
@@ -151,7 +151,7 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
     // Classic View Holder for Header
     public static class HistoryHeaderViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView vName;
+        final TextView vName;
 
         public HistoryHeaderViewHolder(View v) {
             super(v);

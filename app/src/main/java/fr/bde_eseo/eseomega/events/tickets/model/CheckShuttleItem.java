@@ -23,7 +23,8 @@ package fr.bde_eseo.eseomega.events.tickets.model;
  */
 public class CheckShuttleItem {
 
-    private boolean isCheck, isHeader;
+    private final boolean isHeader;
+    private boolean isCheck;
     private String name;
     private ShuttleItem shuttleItem;
 

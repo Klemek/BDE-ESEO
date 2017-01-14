@@ -86,7 +86,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_signup" />
+            android:src="@drawable/ic_signup"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/eventAddCalendar"
@@ -94,7 +95,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_events" />
+            android:src="@drawable/ic_events"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/eventMap"
@@ -102,7 +104,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_map" />
+            android:src="@drawable/ic_map"
+            android:tint="?attr/colorAccent" />
 
         <ImageButton
             android:id="@+id/eventUrl"
@@ -110,7 +113,8 @@
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_website" />
+            android:src="@drawable/ic_website"
+            android:tint="?attr/colorAccent" />
     </LinearLayout>
 
 </LinearLayout>

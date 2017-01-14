@@ -8,15 +8,14 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
+import android.util.SparseArray;
 import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 
 import fr.bde_eseo.eseomega.R;
-import fr.bde_eseo.eseomega.utils.Utils;
+import fr.bde_eseo.eseomega.utils.ThemeUtils;
 
 
 /**
@@ -30,12 +29,13 @@ public class TreeView extends View {
     private static final float TMPS = 10000;
 
     private Paint pb, pb2, pb2g, pline, pbx, pn2, pn, ppr, ppr2;
-    private HashMap<Integer,StudentItem> family;
+    private SparseArray<StudentItem> family;
     private int depth, size, rnkmx;
     private int sizes[];
     private int dx, bs, dt;
     private int height, width;
     private String[] prnames;
+    private Rect r;
 
     public TreeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -52,13 +52,28 @@ public class TreeView extends View {
         return s.substring(0, n - end.length()) + end;
     }
 
+    private static SparseArray<StudentItem> copyf(SparseArray<StudentItem> f) {
+        SparseArray<StudentItem> clone = new SparseArray<>();
+        for (int i = 0; i < f.size(); i++) {
+            int k = f.keyAt(i);
+            clone.put(k, f.get(k).clone());
+        }
+        return clone;
+    }
+
+    private static int newKey(SparseArray a) {
+        int k = 0;
+        while (a.get(k) == null) k++;
+        return k;
+    }
+
     private void init() {
         pb = new Paint();
-        pb.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground));
+        pb.setColor(ThemeUtils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground));
         pb.setStyle(Paint.Style.FILL);
 
         pb2 = new Paint();
-        pb2.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.colorForegroundInverse));
+        pb2.setColor(getResources().getColor(R.color.md_grey_100));
 
         pb2g = new Paint();
 
@@ -73,7 +88,7 @@ public class TreeView extends View {
         pline.setAntiAlias(true);
 
         pn2 = new Paint();
-        pn2.setColor(Utils.resolveColorFromTheme(getContext(), android.R.attr.textColorPrimaryInverse));
+        pn2.setColor(ThemeUtils.resolveColorFromTheme(getContext(), android.R.attr.textColorPrimaryInverse));
         pn2.setTextAlign(Paint.Align.CENTER);
         pn2.setAntiAlias(true);
 
@@ -94,15 +109,18 @@ public class TreeView extends View {
         ppr2.setTextAlign(Paint.Align.CENTER);
         ppr2.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
 
+        r = new Rect();
+
         //gestureDetector = new GestureDetector(context, new GestureListener());
     }
 
-    public void setFamily(HashMap<Integer,StudentItem> family){
+    public void setFamily(SparseArray<StudentItem> family) {
         this.family = family;
         this.size = 0;
         int mid = family.size();
         rnkmx = 0;
-        for(int k:family.keySet()){
+        for (int i = 0; i < family.size(); i++) {
+            int k = family.keyAt(i);
             int rank = family.get(k).getRank();
             if(rank > rnkmx){
                 rnkmx = rank;
@@ -118,34 +136,36 @@ public class TreeView extends View {
     }
 
     private void organize(){
-        HashMap<Integer,StudentItem> f2 = copyf(family);
+        SparseArray<StudentItem> f2 = copyf(family);
         boolean cont = true;
-        HashMap<Integer,StudentItem> f3;
+        SparseArray<StudentItem> f3;
         while(cont){
             cont = false;
             f3 = copyf(f2);
-            for(int k: f2.keySet()){
+            for (int i = 0; i < f2.size(); i++) {
+                int k = f2.keyAt(i);
                 StudentItem si = f3.get(k);
                 if(prnames[si.getRank()-rnkmx+depth] == null){
                     prnames[si.getRank()-rnkmx+depth]  = si.getRnk();
                 }
                 if(si.getRank() < rnkmx && si.getParents().isEmpty()){
-                    int i = Collections.max(f3.keySet()) + 1;
-                    f3.put(i, new StudentItem(i, null, newList(new int[]{i}), si.getRank()+1));
-                    si.addParent(i);
+                    int i2 = newKey(f3);
+                    f3.put(i2, new StudentItem(i2, null, newList(new int[]{i2}), si.getRank() + 1));
+                    si.addParent(i2);
                     cont=true;
                 }
                 if(si.getRank() > 0 && si.getChildren().isEmpty()){
-                    int i = Collections.max(f3.keySet()) + 1;
-                    f3.put(i, new StudentItem(i, newList(new int[]{i}), null, si.getRank()-1));
-                    si.addChild(i);
+                    int i3 = newKey(f3);
+                    f3.put(i3, new StudentItem(i3, newList(new int[]{i3}), null, si.getRank() - 1));
+                    si.addChild(i3);
                     cont=true;
                 }
             }
             f2 = copyf(f3);
         }
         sizes= new int[rnkmx+1];
-        for(int k: f2.keySet()){
+        for (int i = 0; i < f2.size(); i++) {
+            int k = f2.keyAt(i);
             sizes[f2.get(k).getRank()]+=1;
         }
         size = 0;
@@ -155,28 +175,31 @@ public class TreeView extends View {
             }
         }
         float p = 0;
-        for(int k: f2.keySet()){
+        for (int i = 0; i < f2.size(); i++) {
+            int k = f2.keyAt(i);
             StudentItem si = f2.get(k);
             if(si.getRank()==rnkmx){
                 si.setP(p);
                 p+= TMPS /(sizes[rnkmx]+1);
             }
         }
-        for(int k: f2.keySet()){
+        for (int i = 0; i < f2.size(); i++) {
+            int k = f2.keyAt(i);
             if(f2.get(k).getRank()==rnkmx){
                 suborg(f2, k);
                 break;
             }
         }
-        for(int k: f2.keySet()){
-            if(family.containsKey(k)){
+        for (int i = 0; i < f2.size(); i++) {
+            int k = f2.keyAt(i);
+            if (family.get(k) != null) {
                 family.get(k).setP(f2.get(k).getP());
             }
         }
 
     }
 
-    private void suborg(HashMap<Integer,StudentItem> f2, int k){
+    private void suborg(SparseArray<StudentItem> f2, int k) {
         ArrayList<Integer> chi = f2.get(k).getChildren();
         if(chi.size() > 0 && f2.get(chi.get(0)).getP() == StudentItem.NULL){
             ArrayList<Integer> par = f2.get(chi.get(0)).getParents();
@@ -225,38 +248,37 @@ public class TreeView extends View {
     private ArrayList<Integer> newList(int[] l){
         Integer[] l2 = new Integer[l.length];
         for(int i = 0; i < l.length; i++){l2[i] = l[i];}
-        return new ArrayList<Integer>(Arrays.asList(l2));
-    }
-
-    private HashMap<Integer,StudentItem> copyf(HashMap<Integer,StudentItem> f){
-        HashMap<Integer,StudentItem> clone = new  HashMap<>();
-        for(Integer k:f.keySet()){
-            clone.put(k, f.get(k).clone());
-        }
-        return clone;
+        return new ArrayList<>(Arrays.asList(l2));
     }
 
     @Override
     public void onDraw (Canvas canvas){
         int he = canvas.getHeight();
         int wi = canvas.getWidth();
-        canvas.drawRect(new Rect(0, 0, wi, he), pb);
+        r.set(0, 0, wi, he);
+        canvas.drawRect(r, pb);
         if(family != null && family.size() > 0){
             calculate(width, height);
             for(int k = 0; k  < depth; k++){
                 if(k%2==1) {
-                    canvas.drawRect(new Rect(k * dx * 3 / 2, 0, k * dx * 3 / 2 + dx / 2, he), pb2g);
-                    canvas.drawRect(new Rect(k * dx * 3 / 2 + dx / 2, 0, (k + 1) * dx * 3 / 2, he), pb2);
-                    if(k != depth-1)
-                        canvas.drawRect(new Rect((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx/2, he), pb2g);
-                    else
-                        canvas.drawRect(new Rect((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx/2, he), pb2);
+                    r.set(k * dx * 3 / 2, 0, k * dx * 3 / 2 + dx / 2, he);
+                    canvas.drawRect(r, pb2g);
+                    r.set(k * dx * 3 / 2 + dx / 2, 0, (k + 1) * dx * 3 / 2, he);
+                    canvas.drawRect(r, pb2);
+                    if (k != depth - 1) {
+                        r.set((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx / 2, he);
+                        canvas.drawRect(r, pb2g);
+                    } else {
+                        r.set((k + 1) * dx * 3 / 2, 0, (k + 1) * dx * 3 / 2 + dx / 2, he);
+                        canvas.drawRect(r, pb2);
+                    }
                 }
                 canvas.drawText(StudentItem.getRnk(rnkmx-k), k * dx * 3 / 2 + dx, bs, ppr2);
                 canvas.drawText(prnames[depth-k], k * dx * 3 / 2 + dx, he-bs, ppr);
 
             }
-            for(int k: family.keySet()){
+            for (int i = 0; i < family.size(); i++) {
+                int k = family.keyAt(i);
                 drawMember(canvas, k);
                 for(Integer k2: family.get(k).getChildren()){
                     drawLink(canvas, k, k2);
@@ -282,7 +304,8 @@ public class TreeView extends View {
 
         float mi = TMPS; //first is 0 so...
         float ma = 0;
-        for(int k: family.keySet()){
+        for (int i = 0; i < family.size(); i++) {
+            int k = family.keyAt(i);
             float x = family.get(k).getP();
             if(x<mi) {
                 mi = x;
@@ -292,20 +315,22 @@ public class TreeView extends View {
             }
         }
         if(mi == ma){
-            for(int k: family.keySet()){
+            for (int i = 0; i < family.size(); i++) {
+                int k = family.keyAt(i);
                 family.get(k).setP(he/2 - bs/2);
             }
         }else {
             float fa = he * FACT / (ma - mi);
             float de = he * (1 - FACT) / 2;
-            for (int k : family.keySet()) {
+            for (int i = 0; i < family.size(); i++) {
+                int k = family.keyAt(i);
                 family.get(k).setP(de + fa * (-mi + family.get(k).getP()));
             }
         }
         pb2g.setShader(new LinearGradient(0, 0,
                 dx/2, 0,
-                Utils.resolveColorFromTheme(getContext(), android.R.attr.colorForegroundInverse), //TODO change
-                Utils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground), Shader.TileMode.MIRROR));
+                getResources().getColor(R.color.md_grey_100),
+                ThemeUtils.resolveColorFromTheme(getContext(), android.R.attr.colorBackground), Shader.TileMode.MIRROR));
     }
 
     private int[] getCoords(int k){

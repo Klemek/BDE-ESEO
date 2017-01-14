@@ -55,7 +55,6 @@ public class ConnectProfileFragment extends Fragment {
 
     private MaterialEditText etUserID, etUserPassword;
     private MaterialDialog mdProgress;
-    private Button btValid;
     private String userID, userName, userPassword;
     private OnUserProfileChange mOnUserProfileChange;
     private String[] bullshitHint;
@@ -72,7 +71,7 @@ public class ConnectProfileFragment extends Fragment {
             if (mdProgress != null) mdProgress.hide();
             //Toast.makeText(getActivity(), "Enregistrement notifs ok !", Toast.LENGTH_SHORT).show();
 
-            MaterialDialog md = new MaterialDialog.Builder(getActivity())
+            new MaterialDialog.Builder(getActivity())
                     .title(getText(R.string.user_welcome) +" " + profile.getFirstName() + " !")
                     .negativeText(R.string.dialog_close)
                     .content(R.string.user_welcome_desc)
@@ -82,7 +81,7 @@ public class ConnectProfileFragment extends Fragment {
         } else {
             if (mdProgress != null) mdProgress.hide();
 
-            MaterialDialog md = new MaterialDialog.Builder(getActivity())
+            new MaterialDialog.Builder(getActivity())
                     .title(R.string.log_error_title)
                     .content(R.string.log_error_desc)
                     .negativeText(R.string.dialog_close)
@@ -120,7 +119,7 @@ public class ConnectProfileFragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         //getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE | WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
-        btValid = (Button) rootView.findViewById(R.id.button_disconnect);
+        Button btValid = (Button) rootView.findViewById(R.id.button_disconnect);
         etUserID = (MaterialEditText) rootView.findViewById(R.id.etUserID);
         etUserPassword = (MaterialEditText) rootView.findViewById(R.id.etUserPassword);
         //Utils.hideSoftKeyboard(getActivity()); // UI's better with that
@@ -159,7 +158,7 @@ public class ConnectProfileFragment extends Fragment {
      */
     class AsyncLogin extends AsyncTask<String, String, String> {
 
-        private Context ctx;
+        private final Context ctx;
         private String enPass;
 
         public AsyncLogin (Context ctx) {
@@ -229,7 +228,7 @@ public class ConnectProfileFragment extends Fragment {
         @Override
         protected void onPostExecute(String result) {
 
-            String res, info = "";
+            String res;
             int status = 0;
 
             // Vérification des données reçues

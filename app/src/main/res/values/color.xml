@@ -3,9 +3,6 @@
 
     <!-- Customs -->
 
-    <color name="color_text_primary">#de000000</color>
-    <color name="color_text_secondary">#8a000000</color>
-
     <color name="drawer_text">#757575</color>
     <color name="drawer_text_item">#616161</color>
     <color name="drawer_background">#fefefe</color>
@@ -54,7 +51,6 @@
     <!--grey-->
     <color name="md_grey_100">#F5F5F5</color>
     <color name="md_grey_200">#EEEEEE</color>
-    <color name="md_grey_300">#d6d6d6</color>
     <color name="md_grey_400">#BDBDBD</color>
     <color name="md_grey_500">#9E9E9E</color>
     <color name="md_grey_600">#757575</color>
@@ -64,25 +60,35 @@
     <color name="md_white_1000">#ffffff</color>
 
     <!--blue grey-->
-    <color name="md_blue_grey_100">#cfd8dc</color>
 
     <color name="md_blue_700">#1976d2</color>
 
     <!-- BDE colors -->
 
+    <!--DEFAULT-->
+    <color name="default_primary">#004588</color>
+    <color name="default_primary_dark">#004588</color>
+    <color name="default_accent">#E2001B</color>
+    <color name="default_bg">#D9DADC</color>
+
+    <!--ESEOASIS-->
+    <color name="oasis_primary">#ff8000</color>
+    <color name="oasis_primary_dark">#df6f00</color>
+    <color name="oasis_accent">#71daeb</color>
+    <color name="oasis_bg">#ffedc0</color>
+    <color name="oasis_txt">#f8e388</color>
+
     <!--ESEOMEGA-->
     <color name="mega_primary">#1565C0</color>
     <color name="mega_primary_dark">#0D47A1</color>
     <color name="mega_accent">#009688</color>
-    <color name="mega_bg">#ffffff</color>
+    <color name="mega_bg">#CFD8DC</color>
 
-    <!--ESEOASIS-->
-    <color name="oasis_primary">#ff8000</color>
-    <color name="oasis_primary_dark">#e67200</color>
-    <color name="oasis_accent">#71daeb</color>
-    <color name="oasis_bg">#ffedc0</color>
-    <color name="oasis_bg2">#C1F6FF</color>
-    <color name="oasis_txt">#f8e388</color>
-
+    <!--BDELDORADO-->
+    <color name="eldo_primary">#960001</color>
+    <color name="eldo_primary_dark">#7e0001</color>
+    <color name="eldo_accent">#E8670C</color>
+    <color name="eldo_bg">#ffc000</color>
+    <color name="eldo_bg2">#ffe699</color>
 
 </resources>
