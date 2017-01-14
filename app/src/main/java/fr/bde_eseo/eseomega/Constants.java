@@ -131,7 +131,7 @@ public class Constants {
     public static final String JSON_ROOM_BAT = "bat";
     public final static String JSON_ROOM_FLO = "floor";
     public static final String JSON_ROOM_NFO = "info";
-    public static final String URL_JSON_STUDENT_SEARCH = URL_JSON_FAMILY + "search/";
+
     public static final String JSON_STUDENT_ID = "id";
     public static final String JSON_STUDENT_NAME = "name";
     public static final String JSON_STUDENT_CHILDREN = "children";
@@ -139,7 +139,7 @@ public class Constants {
     public static final String JSON_STUDENT_PROMO = "promo";
     public static final String JSON_STUDENT_RANK = "rank";
     //API
-    public static final String URL_API_EVENT_SIGNUP = URL_JSON_EVENTS + "signup/";
+
     public static final String POST_EVENT_SIGNUP_NAME = "name";
     public static final String POST_EVENT_SIGNUP_MAIL = "email";
     public static final String POST_EVENT_SIGNUP_TEL = "tel";
@@ -186,6 +186,13 @@ public class Constants {
     public static final String KEY_LYDIA_ORDER_ASKED = "lydia.order_status";
     public static final String TYPE_LYDIA_CAFET = "CAFET";
     public static final String TYPE_LYDIA_EVENT = "EVENT";
+    /**
+     * API V3.0 - Since December 2015 ↔ January 2016
+     */
+
+
+    public static final String URL_JSON_STUDENT_SEARCH = URL_JSON_FAMILY + "search/";
+    public static final String URL_API_EVENT_SIGNUP = URL_JSON_EVENTS + "signup/";
     private static final String URL_SERVER2 = "https://web59.secure-secure.co.uk/francoisle.fr/"; // secure way
     public static final String URL_ASSETS = URL_SERVER2 + "lacommande/assets/";
     public static final String URL_JSON_INGENEWS = URL_SERVER2 + "eseonews/jsondata/ingenews_data/ingenews.php";
@@ -203,10 +210,6 @@ public class Constants {
     //Salles
     public static final String URL_JSON_PLANS = URL_API + "rooms/";
     public static final String URL_JSON_FAMILY = URL_API + "family/";
-    /**
-     * API V3.0 - Since December 2015 ↔ January 2016
-     */
-
     // Base URL
     private static final String URL_API_BASE = URL_SERVER2 + "lacommande/api/";
     // Connexion
