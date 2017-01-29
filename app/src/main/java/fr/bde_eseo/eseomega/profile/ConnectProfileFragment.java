@@ -24,6 +24,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +57,7 @@ public class ConnectProfileFragment extends Fragment {
 
     private MaterialEditText etUserID, etUserPassword;
     private MaterialDialog mdProgress;
-    private String userID, userName, userPassword;
+    private String userID, userName, userPassword, userLogin;
     private OnUserProfileChange mOnUserProfileChange;
     private String[] bullshitHint;
     private Random rand;
@@ -121,6 +123,25 @@ public class ConnectProfileFragment extends Fragment {
 
         Button btValid = (Button) rootView.findViewById(R.id.button_disconnect);
         etUserID = (MaterialEditText) rootView.findViewById(R.id.etUserID);
+        etUserID.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                int l = charSequence.length();
+                if (l > 0 && charSequence.charAt(l - 1) == '@') {
+                    etUserID.setText(charSequence.subSequence(0, l - 1) + UserProfile.RESEAU_ESEO_FR);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         etUserPassword = (MaterialEditText) rootView.findViewById(R.id.etUserPassword);
         //Utils.hideSoftKeyboard(getActivity()); // UI's better with that
 
@@ -213,8 +234,8 @@ public class ConnectProfileFragment extends Fragment {
         protected String doInBackground(String... urls) {
 
             HashMap<String, String> pairs = new HashMap<>();
-            pairs.put(getActivity().getResources().getString(R.string.username), userID);
-            pairs.put(getActivity().getResources().getString(R.string.password), enPass);
+            pairs.put(getActivity().getResources().getString(R.string.mail), userID);
+            pairs.put(getActivity().getResources().getString(R.string.pass), enPass);
             pairs.put(getActivity().getResources().getString(R.string.hash), EncryptUtils.sha256(userID + enPass + getActivity().getResources().getString(R.string.MEMORY_SYNC_USER)));
 
             if (Utils.isOnline(getActivity())) {
@@ -230,10 +251,8 @@ public class ConnectProfileFragment extends Fragment {
 
             String res;
             int status = 0;
-
             // Vérification des données reçues
             if (Utils.isNetworkDataValid(result)) {
-
                 try {
                     JSONObject obj = new JSONObject(result);
                     status = obj.getInt("status");
@@ -241,6 +260,7 @@ public class ConnectProfileFragment extends Fragment {
                     if (status == 1) {
                         JSONObject data = obj.getJSONObject("data");
                         userName = data.getString("username");
+                        userLogin = data.getString("login");
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -252,8 +272,9 @@ public class ConnectProfileFragment extends Fragment {
 
                 // On crée le profil
                 // Le nom / prénom de l'utilisateur est stocké dans le champ "username" du JSON retourné
-                profile = new UserProfile(ctx, userName, userID, userPassword);
-                profile.guessEmailAddress();
+                profile = new UserProfile(ctx, userName, userLogin, userPassword);
+                profile.setEmail(userID);
+                //profile.guessEmailAddress();
                 profile.registerProfileInPrefs(getActivity());
 
                 // On check les Services Google, puis on démarre la classe Registration

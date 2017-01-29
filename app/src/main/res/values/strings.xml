@@ -5,8 +5,8 @@
     <string name="app_name_tickets">Vos réservations</string>
     <string name="app_name_sales">Faire une réservation</string>
     <string name="app_name_shuttles">Choisir une navette</string>
-    <string name="app_version_name">1.1.0</string>
-    <string name="app_version_code">43</string>
+    <string name="app_version_name">1.1.1</string>
+    <string name="app_version_code">45</string>
     <string name="app_copyright">None</string>
 
     <string name="desc_list_item_icon">Item Icon</string>
@@ -19,7 +19,7 @@
     <string name="action_plans_details">Afficher le plan complet</string>
     <string name="action_sort">Trier</string>
     <string name="action_search">Rechercher …</string>
-    <string name="text_edit_profile">Votre profil ESEO est nécessaire pour pouvoir accéder à certaines fonctionnalités, comme la commande à la caféteria ou l\'accès aux réservations.\nUne fois la connexion validée, uniquement votre identifiant, nom et prénom sont conservés jusqu\'à votre déconnexion, rien de plus.</string>
+    <string name="text_edit_profile">Votre profil ESEO permet de commander à la cafétéria, réserver des événements et recevoir des notifications.\nNous n\'avons pas accès à votre mot de passe, il permet uniquement à Outlook de valider que vous êtes le titulaire du compte name.</string>
 
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent rutrum, urna a suscipit efficitur, nisl felis laoreet tellus, non gravida enim nisl sed ex. Mauris posuere metus et enim pretium venenatis. In neque diam, sodales sit amet porta quis, rhoncus ac dolor. Aliquam id lectus viverra, gravida erat non, cursus dolor. Quisque vel consequat odio, eu placerat tellus. Aliquam eleifend diam ac lacus posuere dictum. Aliquam ipsum nisi, consectetur eu est et, consequat varius magna. In risus nisl, dictum id ante molestie, sagittis suscipit justo. Aliquam erat volutpat. Nulla eu ligula nulla. Maecenas commodo massa ut odio condimentum tincidunt. Aliquam eu urna a ex gravida porta. Morbi porta imperdiet dapibus. Duis ultrices id ipsum eget rutrum.
 
@@ -44,6 +44,8 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <!-- POST Parameters -->
     <string name="client">client</string>
     <string name="username">username</string>
+    <string name="name">name</string>
+    <string name="mail">mail</string>
     <string name="hash">hash</string>
     <string name="tstp">tstp</string>
     <string name="os">os</string>
@@ -55,6 +57,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="data">data</string>
     <string name="instructions">instructions</string>
     <string name="version">version</string>
+    <string name="pass">pass</string>
     <string name="password">password</string>
 
     <!-- Push -->
@@ -299,7 +302,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="ticket_bad_country">L\'accès aux réservations ne peut se faire depuis un autre pays que la France.\nEnvoyez nous une carte postale !</string>
 
     <string name="ticket_resend_title">Renvoyer l\'email</string>
-    <string name="ticket_resend_txt">Vous avez perdu votre place, vous ne retouvez plus le mail associé ?\nPas de soucis, vous avez la possibilité de recevoir de nouveau votre place …</string>
+    <string name="ticket_resend_txt">Vous avez perdu votre place, vous ne retouvez plus le name associé ?\nPas de soucis, vous avez la possibilité de recevoir de nouveau votre place …</string>
 
     <string name="ticket_future_events">ÉVÉNEMENTS À VENIR</string>
     <string name="ticket_terminated_events">ÉVÉNEMENTS PASSÉS</string>
@@ -340,7 +343,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="layout_tutorial_20">Ingénews back</string>
     <string name="layout_tutorial_21">Accedez aux dernières versions d\'Ingénews directement depuis l\'app.</string>
     <string name="layout_tutorial_30">Accès à la commande cafétaria</string>
-    <string name="layout_tutorial_31">L\'impossibilité de commander à la cafet\' provient de la non-accessibilité du campus depuis l\'exterieur. Désolé du dérangement.</string>
+    <string name="layout_tutorial_31">L\'accès à la cafet\' est de nouveau disponible !</string>
     <string name="layout_tutorial_end">Pour fermer ce tutorial, cliquez sur l\'îcone en haut.</string>
 
     <string name="layout_add_instructions_1">Vous pouvez entrer ci-dessous quelques indications pour votre commande.</string>
@@ -348,7 +351,7 @@ Duis mollis nulla sit amet turpis ullamcorper, bibendum volutpat justo auctor. N
     <string name="layout_lydia_1">Numéro de téléphone</string>
     <string name="layout_lydia_2">Se souvenir de mon numéro</string>
     <string name="layout_connect_profile_1">Renseignez les informations suivantes puis validez pour synchroniser vos données.</string>
-    <string name="layout_connect_profile_2">Identifiant :</string>
+    <string name="layout_connect_profile_2">Email :</string>
     <string name="layout_connect_profile_3">******</string>
     <string name="layout_connect_profile_4">Mot de passe :</string>
     <string name="layout_view_profile_1">BONJOUR</string>

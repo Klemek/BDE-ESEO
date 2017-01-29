@@ -67,6 +67,7 @@ public class ConnexionUtils {
                     if (postDataParams != null) {
                         OutputStream os = httpURLConnection.getOutputStream();
                         BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                        //Log.d("debugpost","post params:"+getPostDataString(postDataParams));
                         writer.write(getPostDataString(postDataParams));
 
                         writer.flush();
@@ -90,7 +91,7 @@ public class ConnexionUtils {
                 e.printStackTrace();
             }
         }
-
+        //Log.d("debugpost","server response:"+result);
         return result;
     }
 

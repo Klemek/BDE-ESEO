@@ -36,7 +36,7 @@ import fr.bde_eseo.eseomega.utils.StringUtils;
 public class UserProfile {
 
     public static final Pattern PHONE_PATTERN = Pattern.compile("/^((\\+|00)33\\s?|0)[679](\\s?\\d{2}){4}$/");
-    private static final String RESEAU_ESEO_FR = "@reseau.eseo.fr";
+    public static final String RESEAU_ESEO_FR = "@reseau.eseo.fr";
     private final static int MAX_TEXT_LENGTH = 39;
     private String name;
     private String id;
@@ -67,7 +67,7 @@ public class UserProfile {
         this.pushToken = pushToken;
     }
 
-    public String getName () {
+    public String getName() {
         return this.name;
     }
 
@@ -261,7 +261,7 @@ public class UserProfile {
     }
 
     public void removeProfileFromPrefs (Context context) {
-        // remove user name, id, mail and reset Profile_exists
+        // remove user name, id, name and reset Profile_exists
         this.isCreated = false;
         this.name = "";
         this.id = "";

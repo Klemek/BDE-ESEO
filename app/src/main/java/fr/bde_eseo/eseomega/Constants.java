@@ -213,7 +213,7 @@ public class Constants {
     // Base URL
     private static final String URL_API_BASE = URL_SERVER2 + "lacommande/api/";
     // Connexion
-    public static final String URL_API_CLIENT_CONNECT = URL_API_BASE + "client/connect.php";
+    public static final String URL_API_CLIENT_CONNECT = URL_API_BASE + "client/login";
     // Push notifications
     public static final String URL_API_PUSH_REGISTER = URL_API_BASE + "push/register.php";
     public static final String URL_API_PUSH_UNREGISTER = URL_API_BASE + "push/unregister.php";

@@ -157,8 +157,9 @@ public class MainActivity extends AppCompatActivity implements OnUserProfileChan
             public void onReceive(Context context, Intent intent) {
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
                 boolean sentToken = sharedPreferences.getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
-                ConnectProfileFragment mFragment = (ConnectProfileFragment) getSupportFragmentManager().findFragmentByTag("frag0");
-                if (mFragment != null) {
+                Fragment fragment = getSupportFragmentManager().findFragmentByTag("frag0");
+                if (fragment != null && fragment.getClass().equals(ConnectProfileFragment.class)) {
+                    ConnectProfileFragment mFragment = (ConnectProfileFragment) fragment;
                     mFragment.setPushRegistration(sentToken);
                 } else {
                     progressUpdate.setVisibility(View.GONE);
